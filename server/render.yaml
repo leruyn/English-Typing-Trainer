@@ -9,18 +9,24 @@
 # the Render shell or a one-off job):
 #   npx prisma migrate deploy
 #   npx prisma db seed
+#
+# Both resources are on the free plan (no card required to deploy this
+# blueprint): the web service spins down after ~15 min of inactivity (cold
+# start on the next request), and the free Postgres instance is deleted
+# after 90 days unless upgraded. Bump both `plan:` values to `starter` for
+# production-grade always-on behavior once ready to add a payment method.
 
 databases:
   - name: art-db
     databaseName: art
-    plan: starter
+    plan: free
     region: oregon
 
 services:
   - type: web
     name: art-server
     env: node
-    plan: starter
+    plan: free
     region: oregon
     rootDir: server
     buildCommand: npm install && npm run build
