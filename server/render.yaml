@@ -29,7 +29,10 @@ services:
     plan: free
     region: oregon
     rootDir: server
-    buildCommand: npm install && npm run build
+    # --include=dev is required: NODE_ENV=production (set below) makes plain
+    # `npm install` skip devDependencies, but the build needs typescript,
+    # @types/*, and prisma's CLI, which all live there.
+    buildCommand: npm install --include=dev && npm run build
     startCommand: npm start
     healthCheckPath: /health
     envVars:
