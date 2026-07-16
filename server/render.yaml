@@ -34,7 +34,10 @@ services:
     # @types/*, and prisma's CLI, which all live there.
     # packages/shared must be compiled to dist/ first (server imports the
     # compiled @art/shared, not its TypeScript source) before building server.
-    buildCommand: npm install --include=dev && npm run build -w packages/shared && npm run build
+    # Using --prefix (not -w/--workspace) because buildCommand runs with cwd
+    # already inside server/ (due to rootDir), where npm's workspace-target
+    # flags don't resolve sibling workspaces - a plain relative path does.
+    buildCommand: npm install --include=dev && npm --prefix ../packages/shared run build && npm run build
     startCommand: npm start
     healthCheckPath: /health
     envVars:
