@@ -8,3 +8,13 @@ build/
 *.log
 .DS_Store
 server/prisma/dev.db
+
+# Cowork/Claude tooling cache, not app source
+.claude/
+__pycache__/
+*.pyc
+
+# Regenerable raw extraction dumps (rebuild via scripts/extract-vocab.py
+# from the Oxford PDFs) - the curated beginner/intermediate/advanced.json
+# files are the ones the app actually reads.
+packages/shared/data/vocab/_raw-*.json
