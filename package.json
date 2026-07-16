@@ -1,0 +1,22 @@
+{
+  "name": "active-recall-english-typer",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "packages/shared",
+    "server",
+    "app"
+  ],
+  "scripts": {
+    "build:shared": "npm run build -w packages/shared",
+    "postinstall": "node scripts/fix-expo-ui-stub.js"
+  },
+  "overrides": {
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "dependencies": {
+    "caniuse-lite": "^1.0.30001806",
+    "yaml": "^2.9.0"
+  }
+}

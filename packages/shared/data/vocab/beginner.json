@@ -1,0 +1,97 @@
+[
+  {
+    "topicId": "family",
+    "topicNameVi": "Gia đình",
+    "cefrLevel": "A1",
+    "words": [
+      { "word": "mother", "pos": "n.", "meaningVi": "mẹ", "exampleSentence": "My ___ cooks dinner every night.", "iconHint": "woman with heart" },
+      { "word": "father", "pos": "n.", "meaningVi": "bố, cha", "exampleSentence": "My ___ works at a bank.", "iconHint": "man with briefcase" },
+      { "word": "parent", "pos": "n.", "meaningVi": "cha/mẹ, phụ huynh", "exampleSentence": "Every ___ wants their child to be happy.", "iconHint": "two adults holding a child's hand" },
+      { "word": "brother", "pos": "n.", "meaningVi": "anh trai, em trai", "exampleSentence": "My ___ is older than me.", "iconHint": "boy sibling giving thumbs up" },
+      { "word": "sister", "pos": "n.", "meaningVi": "chị gái, em gái", "exampleSentence": "My ___ likes to sing.", "iconHint": "girl sibling singing" },
+      { "word": "son", "pos": "n.", "meaningVi": "con trai", "exampleSentence": "Their ___ just started school.", "iconHint": "small boy with backpack" },
+      { "word": "daughter", "pos": "n.", "meaningVi": "con gái", "exampleSentence": "Her ___ loves to draw.", "iconHint": "small girl with crayon" },
+      { "word": "husband", "pos": "n.", "meaningVi": "chồng", "exampleSentence": "Her ___ cooks breakfast every morning.", "iconHint": "man wearing a wedding ring" },
+      { "word": "wife", "pos": "n.", "meaningVi": "vợ", "exampleSentence": "His ___ works as a doctor.", "iconHint": "woman wearing a wedding ring" },
+      { "word": "baby", "pos": "n.", "meaningVi": "em bé", "exampleSentence": "The ___ is sleeping in the crib.", "iconHint": "sleeping infant" },
+      { "word": "child", "pos": "n.", "meaningVi": "đứa trẻ", "exampleSentence": "Every ___ needs love and care.", "iconHint": "small child playing" },
+      { "word": "grandmother", "pos": "n.", "meaningVi": "bà", "exampleSentence": "My ___ tells wonderful stories.", "iconHint": "elderly woman smiling" },
+      { "word": "grandfather", "pos": "n.", "meaningVi": "ông", "exampleSentence": "My ___ enjoys gardening.", "iconHint": "elderly man with a cane" },
+      { "word": "grandparent", "pos": "n.", "meaningVi": "ông/bà", "exampleSentence": "We visit our ___s every summer.", "iconHint": "elderly couple sitting together" },
+      { "word": "cousin", "pos": "n.", "meaningVi": "anh/chị/em họ", "exampleSentence": "My ___ lives in another city.", "iconHint": "two kids playing together" },
+      { "word": "aunt", "pos": "n.", "meaningVi": "cô, dì, thím", "exampleSentence": "My ___ brought us gifts.", "iconHint": "woman holding a gift box" },
+      { "word": "uncle", "pos": "n.", "meaningVi": "chú, bác, cậu", "exampleSentence": "My ___ took us fishing.", "iconHint": "man holding a fishing rod" },
+      { "word": "family", "pos": "n.", "meaningVi": "gia đình", "exampleSentence": "We eat dinner together as a ___.", "iconHint": "family holding hands" }
+    ]
+  },
+  {
+    "topicId": "kitchen",
+    "topicNameVi": "Nhà bếp",
+    "cefrLevel": "A2",
+    "words": [
+      { "word": "bottle", "pos": "n.", "meaningVi": "cái chai", "exampleSentence": "Please pass me the water ___.", "iconHint": "water bottle" },
+      { "word": "breakfast", "pos": "n.", "meaningVi": "bữa sáng", "exampleSentence": "I always eat ___ at 7 a.m.", "iconHint": "plate with eggs and toast" },
+      { "word": "cook", "pos": "v.", "meaningVi": "nấu ăn", "exampleSentence": "She likes to ___ dinner for her family.", "iconHint": "chef stirring a pot" },
+      { "word": "cup", "pos": "n.", "meaningVi": "cái cốc, tách", "exampleSentence": "He drank a ___ of tea.", "iconHint": "teacup with steam" },
+      { "word": "dinner", "pos": "n.", "meaningVi": "bữa tối", "exampleSentence": "We're having pasta for ___.", "iconHint": "dinner plate on a table" },
+      { "word": "glass", "pos": "n.", "meaningVi": "cái ly (thủy tinh)", "exampleSentence": "Can I have a ___ of water?", "iconHint": "glass of water" },
+      { "word": "kitchen", "pos": "n.", "meaningVi": "nhà bếp", "exampleSentence": "Mom is cooking in the ___.", "iconHint": "kitchen with a stove" },
+      { "word": "lunch", "pos": "n.", "meaningVi": "bữa trưa", "exampleSentence": "We eat ___ at noon.", "iconHint": "packed lunch box" },
+      { "word": "meal", "pos": "n.", "meaningVi": "bữa ăn", "exampleSentence": "That was a delicious ___.", "iconHint": "full dinner plate" },
+      { "word": "boil", "pos": "v.", "meaningVi": "luộc, đun sôi", "exampleSentence": "___ the water before adding the pasta.", "iconHint": "boiling pot with bubbles" },
+      { "word": "bowl", "pos": "n.", "meaningVi": "cái bát, tô", "exampleSentence": "Pour the soup into the ___.", "iconHint": "bowl of soup" },
+      { "word": "fork", "pos": "n.", "meaningVi": "cái nĩa", "exampleSentence": "Use a ___ to eat the salad.", "iconHint": "fork utensil" },
+      { "word": "fridge", "pos": "n.", "meaningVi": "tủ lạnh", "exampleSentence": "Put the milk back in the ___.", "iconHint": "refrigerator" },
+      { "word": "knife", "pos": "n.", "meaningVi": "con dao", "exampleSentence": "Be careful with that sharp ___.", "iconHint": "kitchen knife" },
+      { "word": "oven", "pos": "n.", "meaningVi": "lò nướng", "exampleSentence": "The cake is baking in the ___.", "iconHint": "oven with a cake inside" },
+      { "word": "plate", "pos": "n.", "meaningVi": "cái đĩa", "exampleSentence": "She washed the dirty ___s.", "iconHint": "empty dinner plate" },
+      { "word": "recipe", "pos": "n.", "meaningVi": "công thức nấu ăn", "exampleSentence": "This ___ needs three eggs.", "iconHint": "recipe card with ingredients" },
+      { "word": "spoon", "pos": "n.", "meaningVi": "cái thìa, muỗng", "exampleSentence": "Use a ___ to stir your coffee.", "iconHint": "spoon in a coffee cup" }
+    ]
+  },
+  {
+    "topicId": "school",
+    "topicNameVi": "Trường học",
+    "cefrLevel": "A1",
+    "words": [
+      { "word": "classroom", "pos": "n.", "meaningVi": "lớp học", "exampleSentence": "Our ___ has 25 students.", "iconHint": "classroom with desks and a board" },
+      { "word": "desk", "pos": "n.", "meaningVi": "bàn học", "exampleSentence": "He keeps his books on the ___.", "iconHint": "school desk" },
+      { "word": "dictionary", "pos": "n.", "meaningVi": "từ điển", "exampleSentence": "Look up the word in the ___.", "iconHint": "thick dictionary book" },
+      { "word": "exam", "pos": "n.", "meaningVi": "kỳ thi", "exampleSentence": "I have an ___ tomorrow morning.", "iconHint": "exam paper with a pencil" },
+      { "word": "homework", "pos": "n.", "meaningVi": "bài tập về nhà", "exampleSentence": "I need to finish my ___ tonight.", "iconHint": "notebook with a pencil" },
+      { "word": "learn", "pos": "v.", "meaningVi": "học, tiếp thu", "exampleSentence": "Children ___ languages quickly.", "iconHint": "lightbulb above a head" },
+      { "word": "lesson", "pos": "n.", "meaningVi": "bài học", "exampleSentence": "Today's ___ is about fractions.", "iconHint": "open textbook" },
+      { "word": "library", "pos": "n.", "meaningVi": "thư viện", "exampleSentence": "She borrowed a book from the ___.", "iconHint": "bookshelf building" },
+      { "word": "pencil", "pos": "n.", "meaningVi": "bút chì", "exampleSentence": "Write your name with a ___.", "iconHint": "yellow pencil" },
+      { "word": "school", "pos": "n.", "meaningVi": "trường học", "exampleSentence": "Kids go to ___ every weekday.", "iconHint": "school building" },
+      { "word": "student", "pos": "n.", "meaningVi": "học sinh, sinh viên", "exampleSentence": "Every ___ must bring a notebook.", "iconHint": "student with a backpack" },
+      { "word": "study", "pos": "v.", "meaningVi": "học, ôn tập", "exampleSentence": "I need to ___ for my test.", "iconHint": "person reading a book" },
+      { "word": "subject", "pos": "n.", "meaningVi": "môn học", "exampleSentence": "Math is my favorite ___.", "iconHint": "stack of school subject books" },
+      { "word": "teacher", "pos": "n.", "meaningVi": "giáo viên", "exampleSentence": "Our ___ explains things very clearly.", "iconHint": "teacher at a whiteboard" },
+      { "word": "test", "pos": "n.", "meaningVi": "bài kiểm tra", "exampleSentence": "We have a spelling ___ on Friday.", "iconHint": "test paper with a checkmark" }
+    ]
+  },
+  {
+    "topicId": "animals",
+    "topicNameVi": "Con vật",
+    "cefrLevel": "A1",
+    "words": [
+      { "word": "bird", "pos": "n.", "meaningVi": "con chim", "exampleSentence": "The ___ is singing in the tree.", "iconHint": "small bird on a branch" },
+      { "word": "cat", "pos": "n.", "meaningVi": "con mèo", "exampleSentence": "The ___ is sleeping on the sofa.", "iconHint": "sleeping cat" },
+      { "word": "chicken", "pos": "n.", "meaningVi": "con gà", "exampleSentence": "The farmer feeds the ___s every morning.", "iconHint": "chicken in a farmyard" },
+      { "word": "cow", "pos": "n.", "meaningVi": "con bò", "exampleSentence": "The ___ gives us milk.", "iconHint": "cow grazing in a field" },
+      { "word": "dog", "pos": "n.", "meaningVi": "con chó", "exampleSentence": "My ___ loves to play fetch.", "iconHint": "dog with a ball" },
+      { "word": "elephant", "pos": "n.", "meaningVi": "con voi", "exampleSentence": "The ___ has a very long trunk.", "iconHint": "elephant with big ears" },
+      { "word": "fish", "pos": "n.", "meaningVi": "con cá", "exampleSentence": "We saw many colorful ___ in the tank.", "iconHint": "fish in an aquarium" },
+      { "word": "horse", "pos": "n.", "meaningVi": "con ngựa", "exampleSentence": "She rides her ___ every weekend.", "iconHint": "horse galloping" },
+      { "word": "lion", "pos": "n.", "meaningVi": "sư tử", "exampleSentence": "The ___ is called the king of the jungle.", "iconHint": "lion with a mane" },
+      { "word": "mouse", "pos": "n.", "meaningVi": "con chuột", "exampleSentence": "A tiny ___ ran across the floor.", "iconHint": "small mouse" },
+      { "word": "pig", "pos": "n.", "meaningVi": "con lợn, heo", "exampleSentence": "The ___ rolled around in the mud.", "iconHint": "pig in the mud" },
+      { "word": "sheep", "pos": "n.", "meaningVi": "con cừu", "exampleSentence": "The ___ has soft white wool.", "iconHint": "fluffy sheep" },
+      { "word": "snake", "pos": "n.", "meaningVi": "con rắn", "exampleSentence": "The ___ slithered through the grass.", "iconHint": "snake coiled up" },
+      { "word": "bear", "pos": "n.", "meaningVi": "con gấu", "exampleSentence": "The ___ is looking for honey.", "iconHint": "brown bear standing" },
+      { "word": "frog", "pos": "n.", "meaningVi": "con ếch", "exampleSentence": "The ___ jumped into the pond.", "iconHint": "green frog on a lily pad" },
+      { "word": "monkey", "pos": "n.", "meaningVi": "con khỉ", "exampleSentence": "The ___ swung from branch to branch.", "iconHint": "monkey swinging on a branch" }
+    ]
+  }
+]

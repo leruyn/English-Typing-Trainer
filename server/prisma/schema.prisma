@@ -1,0 +1,156 @@
+// Prisma schema for Active Recall English Typer.
+//
+// Mirrors the domain types defined in packages/shared/src/types.ts:
+// User, Word, UserWordProgress (SRS state), PracticeAttempt, and
+// AssessmentResult (+ its embedded AssessmentAnswer entries).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// CEFR proficiency level for a single vocabulary word.
+enum CefrLevel {
+  A1
+  A2
+  B1
+  B2
+  C1
+  C2
+}
+
+/// Coarse-grained grouping of CefrLevel used for onboarding/track selection.
+enum CefrTrack {
+  beginner
+  intermediate
+  advanced
+}
+
+/// The three practice modes a user can drill a word with.
+enum PracticeMode {
+  visual
+  dictation
+  context
+}
+
+/// A registered user of the app.
+model User {
+  id                  String   @id @default(cuid())
+  email               String   @unique
+  /// bcrypt hash of the user's password. Added because the original schema
+  /// had no way to store credentials, which blocks the required JWT
+  /// register/login flow (server/src/routes/auth.ts).
+  passwordHash        String
+  createdAt           DateTime @default(now())
+  /// Minutes/day committed to during onboarding; drives the daily new-word cap.
+  minutesPerDay       Int
+  /// Optional manual override for the daily new-word cap.
+  newWordCapOverride  Int?
+
+  wordProgress        UserWordProgress[]
+  practiceAttempts    PracticeAttempt[]
+  assessmentResults   AssessmentResult[]
+
+  @@map("users")
+}
+
+/// A single vocabulary word and its associated learning metadata.
+model Word {
+  id               String   @id @default(cuid())
+  text             String
+  cefrLevel        CefrLevel
+  topicId          String
+  topicNameVi      String
+  partOfSpeech     String
+  meaningVi        String
+  exampleSentence  String
+  iconHint         String
+
+  wordProgress     UserWordProgress[]
+  practiceAttempts PracticeAttempt[]
+
+  // A given English word/phrase should only appear once per CEFR level.
+  @@unique([text, cefrLevel])
+  @@index([cefrLevel])
+  @@index([topicId])
+  @@map("words")
+}
+
+/// A single user's spaced-repetition (SRS) progress on a single word.
+/// One row per (userId, wordId) pair.
+model UserWordProgress {
+  id             String    @id @default(cuid())
+  userId         String
+  wordId         String
+  /// Current SRS box (1-5); enforced at the application layer.
+  srsBox         Int       @default(1)
+  timesCorrect   Int       @default(0)
+  timesWrong     Int       @default(0)
+  lastReviewedAt DateTime?
+  /// When this word next becomes due for review; indexed for fast
+  /// "what's due today" queries.
+  nextDueAt      DateTime  @default(now())
+
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  word           Word      @relation(fields: [wordId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, wordId])
+  @@index([userId, nextDueAt])
+  @@index([nextDueAt])
+  @@map("user_word_progress")
+}
+
+/// A single logged attempt at typing a word during a practice session.
+model PracticeAttempt {
+  id              String       @id @default(cuid())
+  userId          String
+  wordId          String
+  mode            PracticeMode
+  wpm             Float
+  accuracyPercent Float
+  timeMs          Int
+  correct         Boolean
+  createdAt       DateTime     @default(now())
+
+  user            User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  word            Word         @relation(fields: [wordId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@index([wordId])
+  @@map("practice_attempts")
+}
+
+/// The outcome of a completed adaptive entrance assessment (5 multiple
+/// choice questions) used to place a new user into a starting track.
+model AssessmentResult {
+  id             String            @id @default(cuid())
+  userId         String
+  suggestedTrack CefrTrack
+  createdAt      DateTime          @default(now())
+
+  user           User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  answers        AssessmentAnswer[]
+
+  @@index([userId])
+  @@map("assessment_results")
+}
+
+/// A single question/answer pair within an adaptive entrance assessment,
+/// forming (in order, via questionIndex) the assessment's difficulty
+/// trajectory.
+model AssessmentAnswer {
+  id                 String           @id @default(cuid())
+  assessmentResultId String
+  questionIndex      Int
+  difficulty         Int
+  correct            Boolean
+
+  assessmentResult   AssessmentResult @relation(fields: [assessmentResultId], references: [id], onDelete: Cascade)
+
+  @@unique([assessmentResultId, questionIndex])
+  @@map("assessment_answers")
+}

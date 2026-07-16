@@ -1,0 +1,37 @@
+# Render Blueprint for the Active Recall English Typer API.
+#
+# Deploys the Express/Prisma server in `server/` (this is a monorepo, so
+# `rootDir` scopes builds/commands to this subdirectory) alongside a managed
+# Postgres database. Apply with `render blueprint launch` or by connecting
+# the repo in the Render dashboard and pointing it at this file.
+#
+# After the first deploy, run the Prisma migration + seed once (e.g. via
+# the Render shell or a one-off job):
+#   npx prisma migrate deploy
+#   npx prisma db seed
+
+databases:
+  - name: art-db
+    databaseName: art
+    plan: starter
+    region: oregon
+
+services:
+  - type: web
+    name: art-server
+    env: node
+    plan: starter
+    region: oregon
+    rootDir: server
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: art-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: NODE_ENV
+        value: production
