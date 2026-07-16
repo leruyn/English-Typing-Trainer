@@ -32,7 +32,9 @@ services:
     # --include=dev is required: NODE_ENV=production (set below) makes plain
     # `npm install` skip devDependencies, but the build needs typescript,
     # @types/*, and prisma's CLI, which all live there.
-    buildCommand: npm install --include=dev && npm run build
+    # packages/shared must be compiled to dist/ first (server imports the
+    # compiled @art/shared, not its TypeScript source) before building server.
+    buildCommand: npm install --include=dev && npm run build -w packages/shared && npm run build
     startCommand: npm start
     healthCheckPath: /health
     envVars:
