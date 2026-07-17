@@ -74,7 +74,9 @@ function RootNavigator() {
   }, [isBootstrapping, isAuthenticated, user, router]);
 
   if (isBootstrapping) {
-    return <View style={{ flex: 1, backgroundColor: colors.cream }} />;
+    // Same navy as the native splash background - see the fontsLoaded gate
+    // in RootLayout below for why.
+    return <View style={{ flex: 1, backgroundColor: colors.ink }} />;
   }
 
   return (
@@ -125,7 +127,10 @@ export default function RootLayout() {
   if (!fontsLoaded && !fontError) {
     // Splash screen is still visible; render nothing (or a bare loading
     // view as a fallback for platforms where the native splash isn't used).
-    return <View style={{ flex: 1, backgroundColor: colors.cream }} />;
+    // Matches the native splash's backgroundColor (app.json's
+    // expo-splash-screen config, colors.ink/#0f172a) so there's no flash of
+    // a different color underneath the splash icon before this mounts.
+    return <View style={{ flex: 1, backgroundColor: colors.ink }} />;
   }
 
   return (
