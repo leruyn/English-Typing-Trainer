@@ -4,24 +4,132 @@
     "topicNameVi": "Học thuật",
     "cefrLevel": "C1",
     "words": [
-      { "word": "hypothesis", "pos": "n.", "meaningVi": "giả thuyết", "exampleSentence": "The researchers tested their ___ in the lab.", "iconHint": "lightbulb with a question mark over a flask" },
-      { "word": "framework", "pos": "n.", "meaningVi": "khung lý thuyết, khuôn khổ", "exampleSentence": "This theory provides a ___ for understanding behavior.", "iconHint": "blueprint grid structure" },
-      { "word": "scholar", "pos": "n.", "meaningVi": "học giả", "exampleSentence": "The ___ published a new paper on linguistics.", "iconHint": "person with a graduation cap and book" },
-      { "word": "thesis", "pos": "n.", "meaningVi": "luận văn, luận điểm", "exampleSentence": "She defended her ___ in front of the committee.", "iconHint": "bound thesis document" },
-      { "word": "discourse", "pos": "n.", "meaningVi": "diễn ngôn, lời trình bày", "exampleSentence": "The article analyzes political ___.", "iconHint": "connected speech bubbles" },
-      { "word": "empirical", "pos": "adj.", "meaningVi": "thực nghiệm", "exampleSentence": "The claim needs ___ evidence to be accepted.", "iconHint": "flask with a checkmark" },
-      { "word": "methodology", "pos": "n.", "meaningVi": "phương pháp luận", "exampleSentence": "The study's ___ was rigorous and transparent.", "iconHint": "flowchart with numbered steps" },
-      { "word": "premise", "pos": "n.", "meaningVi": "tiền đề, luận điểm cơ sở", "exampleSentence": "The argument rests on a false ___.", "iconHint": "foundation blocks under a house" },
-      { "word": "assumption", "pos": "n.", "meaningVi": "giả định", "exampleSentence": "We must question our basic ___s.", "iconHint": "thought bubble with a question mark" },
-      { "word": "derive", "pos": "v.", "meaningVi": "suy ra, bắt nguồn từ", "exampleSentence": "This formula is ___d from Newton's laws.", "iconHint": "arrow flowing from one equation to another" },
-      { "word": "correlation", "pos": "n.", "meaningVi": "mối tương quan", "exampleSentence": "There is a strong ___ between diet and health.", "iconHint": "scatter plot with a trend line" },
-      { "word": "underlying", "pos": "adj.", "meaningVi": "tiềm ẩn, cơ bản", "exampleSentence": "We need to find the ___ cause of the problem.", "iconHint": "iceberg with a hidden base" },
-      { "word": "variable", "pos": "n.", "meaningVi": "biến số", "exampleSentence": "The experiment controlled for several ___s.", "iconHint": "letter x inside a formula box" },
-      { "word": "evident", "pos": "adj.", "meaningVi": "rõ ràng, hiển nhiên", "exampleSentence": "It was ___ that the plan had failed.", "iconHint": "magnifying glass over an obvious clue" },
-      { "word": "implication", "pos": "n.", "meaningVi": "hàm ý, hệ quả", "exampleSentence": "The findings have serious ___s for public policy.", "iconHint": "ripple effect from a dropped stone" },
-      { "word": "interpretation", "pos": "n.", "meaningVi": "sự diễn giải", "exampleSentence": "Critics gave different ___s of the poem.", "iconHint": "book with multiple thought bubbles" },
-      { "word": "significance", "pos": "n.", "meaningVi": "ý nghĩa, tầm quan trọng", "exampleSentence": "The discovery's ___ was not clear at first.", "iconHint": "star highlighting important text" },
-      { "word": "theoretical", "pos": "adj.", "meaningVi": "mang tính lý thuyết", "exampleSentence": "The course focuses on ___ physics.", "iconHint": "chalkboard covered in equations" }
+      {
+        "word": "hypothesis",
+        "pos": "n.",
+        "meaningVi": "giả thuyết",
+        "exampleSentence": "The researchers tested their ___ in the lab.",
+        "iconHint": "lightbulb with a question mark over a flask"
+      },
+      {
+        "word": "framework",
+        "pos": "n.",
+        "meaningVi": "khung lý thuyết, khuôn khổ",
+        "exampleSentence": "This theory provides a ___ for understanding behavior.",
+        "iconHint": "blueprint grid structure"
+      },
+      {
+        "word": "scholar",
+        "pos": "n.",
+        "meaningVi": "học giả",
+        "exampleSentence": "The ___ published a new paper on linguistics.",
+        "iconHint": "person with a graduation cap and book"
+      },
+      {
+        "word": "thesis",
+        "pos": "n.",
+        "meaningVi": "luận văn, luận điểm",
+        "exampleSentence": "She defended her ___ in front of the committee.",
+        "iconHint": "bound thesis document"
+      },
+      {
+        "word": "discourse",
+        "pos": "n.",
+        "meaningVi": "diễn ngôn, lời trình bày",
+        "exampleSentence": "The article analyzes political ___.",
+        "iconHint": "connected speech bubbles"
+      },
+      {
+        "word": "empirical",
+        "pos": "adj.",
+        "meaningVi": "thực nghiệm",
+        "exampleSentence": "The claim needs ___ evidence to be accepted.",
+        "iconHint": "flask with a checkmark"
+      },
+      {
+        "word": "methodology",
+        "pos": "n.",
+        "meaningVi": "phương pháp luận",
+        "exampleSentence": "The study's ___ was rigorous and transparent.",
+        "iconHint": "flowchart with numbered steps"
+      },
+      {
+        "word": "premise",
+        "pos": "n.",
+        "meaningVi": "tiền đề, luận điểm cơ sở",
+        "exampleSentence": "The argument rests on a false ___.",
+        "iconHint": "foundation blocks under a house"
+      },
+      {
+        "word": "assumption",
+        "pos": "n.",
+        "meaningVi": "giả định",
+        "exampleSentence": "We must question our basic ___s.",
+        "iconHint": "thought bubble with a question mark"
+      },
+      {
+        "word": "derive",
+        "pos": "v.",
+        "meaningVi": "suy ra, bắt nguồn từ",
+        "exampleSentence": "This formula is ___d from Newton's laws.",
+        "iconHint": "arrow flowing from one equation to another"
+      },
+      {
+        "word": "correlation",
+        "pos": "n.",
+        "meaningVi": "mối tương quan",
+        "exampleSentence": "There is a strong ___ between diet and health.",
+        "iconHint": "scatter plot with a trend line"
+      },
+      {
+        "word": "underlying",
+        "pos": "adj.",
+        "meaningVi": "tiềm ẩn, cơ bản",
+        "exampleSentence": "We need to find the ___ cause of the problem.",
+        "iconHint": "iceberg with a hidden base"
+      },
+      {
+        "word": "variable",
+        "pos": "n.",
+        "meaningVi": "biến số",
+        "exampleSentence": "The experiment controlled for several ___s.",
+        "iconHint": "letter x inside a formula box"
+      },
+      {
+        "word": "evident",
+        "pos": "adj.",
+        "meaningVi": "rõ ràng, hiển nhiên",
+        "exampleSentence": "It was ___ that the plan had failed.",
+        "iconHint": "magnifying glass over an obvious clue"
+      },
+      {
+        "word": "implication",
+        "pos": "n.",
+        "meaningVi": "hàm ý, hệ quả",
+        "exampleSentence": "The findings have serious ___s for public policy.",
+        "iconHint": "ripple effect from a dropped stone"
+      },
+      {
+        "word": "interpretation",
+        "pos": "n.",
+        "meaningVi": "sự diễn giải",
+        "exampleSentence": "Critics gave different ___s of the poem.",
+        "iconHint": "book with multiple thought bubbles"
+      },
+      {
+        "word": "significance",
+        "pos": "n.",
+        "meaningVi": "ý nghĩa, tầm quan trọng",
+        "exampleSentence": "The discovery's ___ was not clear at first.",
+        "iconHint": "star highlighting important text"
+      },
+      {
+        "word": "theoretical",
+        "pos": "adj.",
+        "meaningVi": "mang tính lý thuyết",
+        "exampleSentence": "The course focuses on ___ physics.",
+        "iconHint": "chalkboard covered in equations"
+      }
     ]
   },
   {
@@ -29,23 +137,125 @@
     "topicNameVi": "Văn phong trang trọng",
     "cefrLevel": "C1",
     "words": [
-      { "word": "consequently", "pos": "adv.", "meaningVi": "do đó, hệ quả là", "exampleSentence": "It rained heavily; ___, the match was cancelled.", "iconHint": "arrow from a rain cloud to a cancelled flag" },
-      { "word": "moreover", "pos": "adv.", "meaningVi": "hơn nữa", "exampleSentence": "The plan is expensive; ___, it is risky.", "iconHint": "plus sign connecting two documents" },
-      { "word": "albeit", "pos": "conj.", "meaningVi": "mặc dù", "exampleSentence": "The project succeeded, ___ slowly.", "iconHint": "checkmark next to a small clock" },
-      { "word": "arguably", "pos": "adv.", "meaningVi": "có thể nói là", "exampleSentence": "This is ___ his best novel.", "iconHint": "scale of justice tipping slightly" },
-      { "word": "commence", "pos": "v.", "meaningVi": "bắt đầu, khởi sự", "exampleSentence": "The ceremony will ___ at noon.", "iconHint": "flag being raised at a starting line" },
-      { "word": "deem", "pos": "v.", "meaningVi": "coi là, cho là", "exampleSentence": "The evidence was ___ed insufficient.", "iconHint": "gavel stamping a document" },
-      { "word": "endeavour", "pos": "n.", "meaningVi": "nỗ lực, sự cố gắng", "exampleSentence": "Their research ___ took five years.", "iconHint": "person pushing a large boulder uphill" },
-      { "word": "facilitate", "pos": "v.", "meaningVi": "tạo điều kiện thuận lợi", "exampleSentence": "The app ___s communication between teams.", "iconHint": "hand connecting two puzzle pieces" },
-      { "word": "thereby", "pos": "adv.", "meaningVi": "do đó, nhờ đó", "exampleSentence": "He passed the exam, ___ qualifying for the scholarship.", "iconHint": "arrow linking cause to result" },
-      { "word": "utilize", "pos": "v.", "meaningVi": "sử dụng, tận dụng", "exampleSentence": "The factory ___s solar energy.", "iconHint": "gear powered by a sun icon" },
-      { "word": "whereby", "pos": "adv.", "meaningVi": "theo đó, nhờ đó mà", "exampleSentence": "They created a system ___ everyone can vote online.", "iconHint": "flowchart looping back with an arrow" },
-      { "word": "comprise", "pos": "v.", "meaningVi": "bao gồm, cấu thành", "exampleSentence": "The committee ___s ten members.", "iconHint": "puzzle pieces forming a circle" },
-      { "word": "undertake", "pos": "v.", "meaningVi": "đảm nhận, tiến hành", "exampleSentence": "The team will ___ a full review.", "iconHint": "person rolling up their sleeves" },
-      { "word": "adhere", "pos": "v.", "meaningVi": "tuân thủ, gắn chặt", "exampleSentence": "All staff must ___ to the new policy.", "iconHint": "sticky note attached to a wall" },
-      { "word": "comply", "pos": "v.", "meaningVi": "tuân theo, tuân thủ", "exampleSentence": "Companies must ___ with safety regulations.", "iconHint": "checklist with a shield" },
-      { "word": "constitute", "pos": "v.", "meaningVi": "cấu thành, tạo nên", "exampleSentence": "These rules ___ the basis of the agreement.", "iconHint": "building blocks forming a foundation" },
-      { "word": "nonetheless", "pos": "adv.", "meaningVi": "tuy nhiên, dù vậy", "exampleSentence": "It was raining; ___, they went hiking.", "iconHint": "umbrella next to hiking boots" }
+      {
+        "word": "consequently",
+        "pos": "adv.",
+        "meaningVi": "do đó, hệ quả là",
+        "exampleSentence": "It rained heavily; ___, the match was cancelled.",
+        "iconHint": "arrow from a rain cloud to a cancelled flag"
+      },
+      {
+        "word": "moreover",
+        "pos": "adv.",
+        "meaningVi": "hơn nữa",
+        "exampleSentence": "The plan is expensive; ___, it is risky.",
+        "iconHint": "plus sign connecting two documents"
+      },
+      {
+        "word": "albeit",
+        "pos": "conj.",
+        "meaningVi": "mặc dù",
+        "exampleSentence": "The project succeeded, ___ slowly.",
+        "iconHint": "checkmark next to a small clock"
+      },
+      {
+        "word": "arguably",
+        "pos": "adv.",
+        "meaningVi": "có thể nói là",
+        "exampleSentence": "This is ___ his best novel.",
+        "iconHint": "scale of justice tipping slightly"
+      },
+      {
+        "word": "commence",
+        "pos": "v.",
+        "meaningVi": "bắt đầu, khởi sự",
+        "exampleSentence": "The ceremony will ___ at noon.",
+        "iconHint": "flag being raised at a starting line"
+      },
+      {
+        "word": "deem",
+        "pos": "v.",
+        "meaningVi": "coi là, cho là",
+        "exampleSentence": "The evidence was ___ed insufficient.",
+        "iconHint": "gavel stamping a document"
+      },
+      {
+        "word": "endeavour",
+        "pos": "n.",
+        "meaningVi": "nỗ lực, sự cố gắng",
+        "exampleSentence": "Their research ___ took five years.",
+        "iconHint": "person pushing a large boulder uphill"
+      },
+      {
+        "word": "facilitate",
+        "pos": "v.",
+        "meaningVi": "tạo điều kiện thuận lợi",
+        "exampleSentence": "The app ___s communication between teams.",
+        "iconHint": "hand connecting two puzzle pieces"
+      },
+      {
+        "word": "thereby",
+        "pos": "adv.",
+        "meaningVi": "do đó, nhờ đó",
+        "exampleSentence": "He passed the exam, ___ qualifying for the scholarship.",
+        "iconHint": "arrow linking cause to result"
+      },
+      {
+        "word": "utilize",
+        "pos": "v.",
+        "meaningVi": "sử dụng, tận dụng",
+        "exampleSentence": "The factory ___s solar energy.",
+        "iconHint": "gear powered by a sun icon"
+      },
+      {
+        "word": "whereby",
+        "pos": "adv.",
+        "meaningVi": "theo đó, nhờ đó mà",
+        "exampleSentence": "They created a system ___ everyone can vote online.",
+        "iconHint": "flowchart looping back with an arrow"
+      },
+      {
+        "word": "comprise",
+        "pos": "v.",
+        "meaningVi": "bao gồm, cấu thành",
+        "exampleSentence": "The committee ___s ten members.",
+        "iconHint": "puzzle pieces forming a circle"
+      },
+      {
+        "word": "undertake",
+        "pos": "v.",
+        "meaningVi": "đảm nhận, tiến hành",
+        "exampleSentence": "The team will ___ a full review.",
+        "iconHint": "person rolling up their sleeves"
+      },
+      {
+        "word": "adhere",
+        "pos": "v.",
+        "meaningVi": "tuân thủ, gắn chặt",
+        "exampleSentence": "All staff must ___ to the new policy.",
+        "iconHint": "sticky note attached to a wall"
+      },
+      {
+        "word": "comply",
+        "pos": "v.",
+        "meaningVi": "tuân theo, tuân thủ",
+        "exampleSentence": "Companies must ___ with safety regulations.",
+        "iconHint": "checklist with a shield"
+      },
+      {
+        "word": "constitute",
+        "pos": "v.",
+        "meaningVi": "cấu thành, tạo nên",
+        "exampleSentence": "These rules ___ the basis of the agreement.",
+        "iconHint": "building blocks forming a foundation"
+      },
+      {
+        "word": "nonetheless",
+        "pos": "adv.",
+        "meaningVi": "tuy nhiên, dù vậy",
+        "exampleSentence": "It was raining; ___, they went hiking.",
+        "iconHint": "umbrella next to hiking boots"
+      }
     ]
   },
   {
@@ -53,22 +263,118 @@
     "topicNameVi": "Collocations nâng cao",
     "cefrLevel": "C1",
     "words": [
-      { "word": "attribute", "pos": "v.", "meaningVi": "quy cho, gán cho", "exampleSentence": "She ___d her success to hard work.", "iconHint": "arrow pointing from a trophy to a person" },
-      { "word": "coincide", "pos": "v.", "meaningVi": "trùng hợp, xảy ra cùng lúc", "exampleSentence": "The meeting ___s with the holiday.", "iconHint": "two overlapping calendar dates" },
-      { "word": "confer", "pos": "v.", "meaningVi": "trao tặng, hội ý", "exampleSentence": "The university will ___ an honorary degree.", "iconHint": "hand placing a medal on a person" },
-      { "word": "correspond", "pos": "v.", "meaningVi": "tương ứng với", "exampleSentence": "The colors on the map ___ to different regions.", "iconHint": "matching puzzle pieces linked by arrows" },
-      { "word": "encompass", "pos": "v.", "meaningVi": "bao gồm, bao quát", "exampleSentence": "The course ___es both theory and practice.", "iconHint": "large circle containing smaller shapes" },
-      { "word": "inherent", "pos": "adj.", "meaningVi": "vốn có, cố hữu", "exampleSentence": "Risk is ___ in any investment.", "iconHint": "seed inside a fruit" },
-      { "word": "invoke", "pos": "v.", "meaningVi": "viện dẫn, cầu viện", "exampleSentence": "The lawyer chose to ___ a new law.", "iconHint": "hand raised holding an open book" },
-      { "word": "profound", "pos": "adj.", "meaningVi": "sâu sắc", "exampleSentence": "The book had a ___ impact on readers.", "iconHint": "ripple reaching deep into water" },
-      { "word": "trigger", "pos": "v.", "meaningVi": "gây ra, kích hoạt", "exampleSentence": "Stress can ___ the illness.", "iconHint": "one domino falling into another" },
-      { "word": "undermine", "pos": "v.", "meaningVi": "làm suy yếu, phá hoại ngầm", "exampleSentence": "Constant criticism can ___ someone's confidence.", "iconHint": "crack forming under a pillar" },
-      { "word": "yield", "pos": "v.", "meaningVi": "mang lại, sinh ra kết quả", "exampleSentence": "The new method ___ed better results.", "iconHint": "plant sprouting fruit from a seed" },
-      { "word": "prompt", "pos": "v.", "meaningVi": "thúc đẩy, khiến cho", "exampleSentence": "The scandal ___ed a government investigation.", "iconHint": "finger pressing a large red button" },
-      { "word": "reinforce", "pos": "v.", "meaningVi": "củng cố, tăng cường", "exampleSentence": "Practice will ___ what you learned.", "iconHint": "steel beams supporting a wall" },
-      { "word": "integral", "pos": "adj.", "meaningVi": "thiết yếu, không thể tách rời", "exampleSentence": "Trust is ___ to any relationship.", "iconHint": "puzzle piece locked into the center" },
-      { "word": "manifest", "pos": "v.", "meaningVi": "biểu hiện, thể hiện rõ", "exampleSentence": "Her anxiety ___ed as trouble sleeping.", "iconHint": "shadow becoming a solid figure" },
-      { "word": "substantial", "pos": "adj.", "meaningVi": "đáng kể, to lớn", "exampleSentence": "They made ___ progress this quarter.", "iconHint": "bar chart with one very tall bar" }
+      {
+        "word": "attribute",
+        "pos": "v.",
+        "meaningVi": "quy cho, gán cho",
+        "exampleSentence": "She ___d her success to hard work.",
+        "iconHint": "arrow pointing from a trophy to a person"
+      },
+      {
+        "word": "coincide",
+        "pos": "v.",
+        "meaningVi": "trùng hợp, xảy ra cùng lúc",
+        "exampleSentence": "The meeting ___s with the holiday.",
+        "iconHint": "two overlapping calendar dates"
+      },
+      {
+        "word": "confer",
+        "pos": "v.",
+        "meaningVi": "trao tặng, hội ý",
+        "exampleSentence": "The university will ___ an honorary degree.",
+        "iconHint": "hand placing a medal on a person"
+      },
+      {
+        "word": "correspond",
+        "pos": "v.",
+        "meaningVi": "tương ứng với",
+        "exampleSentence": "The colors on the map ___ to different regions.",
+        "iconHint": "matching puzzle pieces linked by arrows"
+      },
+      {
+        "word": "encompass",
+        "pos": "v.",
+        "meaningVi": "bao gồm, bao quát",
+        "exampleSentence": "The course ___es both theory and practice.",
+        "iconHint": "large circle containing smaller shapes"
+      },
+      {
+        "word": "inherent",
+        "pos": "adj.",
+        "meaningVi": "vốn có, cố hữu",
+        "exampleSentence": "Risk is ___ in any investment.",
+        "iconHint": "seed inside a fruit"
+      },
+      {
+        "word": "invoke",
+        "pos": "v.",
+        "meaningVi": "viện dẫn, cầu viện",
+        "exampleSentence": "The lawyer chose to ___ a new law.",
+        "iconHint": "hand raised holding an open book"
+      },
+      {
+        "word": "profound",
+        "pos": "adj.",
+        "meaningVi": "sâu sắc",
+        "exampleSentence": "The book had a ___ impact on readers.",
+        "iconHint": "ripple reaching deep into water"
+      },
+      {
+        "word": "trigger",
+        "pos": "v.",
+        "meaningVi": "gây ra, kích hoạt",
+        "exampleSentence": "Stress can ___ the illness.",
+        "iconHint": "one domino falling into another"
+      },
+      {
+        "word": "undermine",
+        "pos": "v.",
+        "meaningVi": "làm suy yếu, phá hoại ngầm",
+        "exampleSentence": "Constant criticism can ___ someone's confidence.",
+        "iconHint": "crack forming under a pillar"
+      },
+      {
+        "word": "yield",
+        "pos": "v.",
+        "meaningVi": "mang lại, sinh ra kết quả",
+        "exampleSentence": "The new method ___ed better results.",
+        "iconHint": "plant sprouting fruit from a seed"
+      },
+      {
+        "word": "prompt",
+        "pos": "v.",
+        "meaningVi": "thúc đẩy, khiến cho",
+        "exampleSentence": "The scandal ___ed a government investigation.",
+        "iconHint": "finger pressing a large red button"
+      },
+      {
+        "word": "reinforce",
+        "pos": "v.",
+        "meaningVi": "củng cố, tăng cường",
+        "exampleSentence": "Practice will ___ what you learned.",
+        "iconHint": "steel beams supporting a wall"
+      },
+      {
+        "word": "integral",
+        "pos": "adj.",
+        "meaningVi": "thiết yếu, không thể tách rời",
+        "exampleSentence": "Trust is ___ to any relationship.",
+        "iconHint": "puzzle piece locked into the center"
+      },
+      {
+        "word": "manifest",
+        "pos": "v.",
+        "meaningVi": "biểu hiện, thể hiện rõ",
+        "exampleSentence": "Her anxiety ___ed as trouble sleeping.",
+        "iconHint": "shadow becoming a solid figure"
+      },
+      {
+        "word": "substantial",
+        "pos": "adj.",
+        "meaningVi": "đáng kể, to lớn",
+        "exampleSentence": "They made ___ progress this quarter.",
+        "iconHint": "bar chart with one very tall bar"
+      }
     ]
   },
   {
@@ -76,24 +382,265 @@
     "topicNameVi": "Từ vựng học thuật cao cấp",
     "cefrLevel": "C2",
     "words": [
-      { "word": "ubiquitous", "pos": "adj.", "meaningVi": "có mặt khắp nơi", "exampleSentence": "Smartphones have become ___ in modern life.", "iconHint": "the same icon repeated everywhere on a map" },
-      { "word": "aesthetic", "pos": "adj.", "meaningVi": "thẩm mỹ", "exampleSentence": "The building's ___ appeal draws many tourists.", "iconHint": "picture frame with a paintbrush" },
-      { "word": "sophisticated", "pos": "adj.", "meaningVi": "tinh vi, phức tạp, sành điệu", "exampleSentence": "The software uses a ___ algorithm.", "iconHint": "layered gears within gears" },
-      { "word": "ephemeral", "pos": "adj.", "meaningVi": "phù du, ngắn ngủi", "exampleSentence": "Fame on social media can be ___.", "iconHint": "soap bubble popping" },
-      { "word": "meticulous", "pos": "adj.", "meaningVi": "tỉ mỉ, cẩn thận", "exampleSentence": "She kept ___ records of every transaction.", "iconHint": "magnifying glass over a neat checklist" },
-      { "word": "ambiguous", "pos": "adj.", "meaningVi": "mơ hồ, không rõ ràng", "exampleSentence": "His answer was ___ and confused everyone.", "iconHint": "fork in a foggy road" },
-      { "word": "paradigm", "pos": "n.", "meaningVi": "hệ hình, mô hình mẫu", "exampleSentence": "The discovery caused a ___ shift in physics.", "iconHint": "old model swapped for a new model with an arrow" },
-      { "word": "resilience", "pos": "n.", "meaningVi": "khả năng phục hồi, kiên cường", "exampleSentence": "Her ___ helped her recover from the setback.", "iconHint": "bent spring bouncing back" },
-      { "word": "discrepancy", "pos": "n.", "meaningVi": "sự khác biệt, mâu thuẫn (số liệu)", "exampleSentence": "There is a ___ between the two reports.", "iconHint": "two mismatched puzzle pieces" },
-      { "word": "nuance", "pos": "n.", "meaningVi": "sắc thái tinh tế", "exampleSentence": "A good translator captures every ___ of meaning.", "iconHint": "color gradient swatch" },
-      { "word": "pragmatic", "pos": "adj.", "meaningVi": "thực dụng, thực tế", "exampleSentence": "We need a ___ solution, not an idealistic one.", "iconHint": "toolbox with a wrench" },
-      { "word": "cognizant", "pos": "adj.", "meaningVi": "nhận thức được, ý thức được", "exampleSentence": "She was fully ___ of the risks involved.", "iconHint": "open eye with a lightbulb" },
-      { "word": "esoteric", "pos": "adj.", "meaningVi": "khó hiểu, bí truyền (chỉ ít người biết)", "exampleSentence": "The lecture was full of ___ references.", "iconHint": "locked book with a small key" },
-      { "word": "arbitrary", "pos": "adj.", "meaningVi": "tùy tiện, võ đoán", "exampleSentence": "The decision seemed completely ___.", "iconHint": "dice being rolled" },
-      { "word": "conducive", "pos": "adj.", "meaningVi": "thuận lợi, tạo điều kiện cho", "exampleSentence": "A quiet room is ___ to studying.", "iconHint": "plant growing under a sunbeam" },
-      { "word": "juxtaposition", "pos": "n.", "meaningVi": "sự đặt cạnh nhau để so sánh", "exampleSentence": "The film uses ___ of past and present scenes.", "iconHint": "two contrasting images side by side" },
-      { "word": "innate", "pos": "adj.", "meaningVi": "bẩm sinh, vốn có", "exampleSentence": "Curiosity is ___ in young children.", "iconHint": "seed already containing a tiny sprout" },
-      { "word": "quintessential", "pos": "adj.", "meaningVi": "điển hình nhất, tiêu biểu nhất", "exampleSentence": "Paris is the ___ romantic city.", "iconHint": "gold star on an iconic landmark" }
+      {
+        "word": "ubiquitous",
+        "pos": "adj.",
+        "meaningVi": "có mặt khắp nơi",
+        "exampleSentence": "Smartphones have become ___ in modern life.",
+        "iconHint": "the same icon repeated everywhere on a map"
+      },
+      {
+        "word": "aesthetic",
+        "pos": "adj.",
+        "meaningVi": "thẩm mỹ",
+        "exampleSentence": "The building's ___ appeal draws many tourists.",
+        "iconHint": "picture frame with a paintbrush"
+      },
+      {
+        "word": "sophisticated",
+        "pos": "adj.",
+        "meaningVi": "tinh vi, phức tạp, sành điệu",
+        "exampleSentence": "The software uses a ___ algorithm.",
+        "iconHint": "layered gears within gears"
+      },
+      {
+        "word": "ephemeral",
+        "pos": "adj.",
+        "meaningVi": "phù du, ngắn ngủi",
+        "exampleSentence": "Fame on social media can be ___.",
+        "iconHint": "soap bubble popping"
+      },
+      {
+        "word": "meticulous",
+        "pos": "adj.",
+        "meaningVi": "tỉ mỉ, cẩn thận",
+        "exampleSentence": "She kept ___ records of every transaction.",
+        "iconHint": "magnifying glass over a neat checklist"
+      },
+      {
+        "word": "ambiguous",
+        "pos": "adj.",
+        "meaningVi": "mơ hồ, không rõ ràng",
+        "exampleSentence": "His answer was ___ and confused everyone.",
+        "iconHint": "fork in a foggy road"
+      },
+      {
+        "word": "paradigm",
+        "pos": "n.",
+        "meaningVi": "hệ hình, mô hình mẫu",
+        "exampleSentence": "The discovery caused a ___ shift in physics.",
+        "iconHint": "old model swapped for a new model with an arrow"
+      },
+      {
+        "word": "resilience",
+        "pos": "n.",
+        "meaningVi": "khả năng phục hồi, kiên cường",
+        "exampleSentence": "Her ___ helped her recover from the setback.",
+        "iconHint": "bent spring bouncing back"
+      },
+      {
+        "word": "discrepancy",
+        "pos": "n.",
+        "meaningVi": "sự khác biệt, mâu thuẫn (số liệu)",
+        "exampleSentence": "There is a ___ between the two reports.",
+        "iconHint": "two mismatched puzzle pieces"
+      },
+      {
+        "word": "nuance",
+        "pos": "n.",
+        "meaningVi": "sắc thái tinh tế",
+        "exampleSentence": "A good translator captures every ___ of meaning.",
+        "iconHint": "color gradient swatch"
+      },
+      {
+        "word": "pragmatic",
+        "pos": "adj.",
+        "meaningVi": "thực dụng, thực tế",
+        "exampleSentence": "We need a ___ solution, not an idealistic one.",
+        "iconHint": "toolbox with a wrench"
+      },
+      {
+        "word": "cognizant",
+        "pos": "adj.",
+        "meaningVi": "nhận thức được, ý thức được",
+        "exampleSentence": "She was fully ___ of the risks involved.",
+        "iconHint": "open eye with a lightbulb"
+      },
+      {
+        "word": "esoteric",
+        "pos": "adj.",
+        "meaningVi": "khó hiểu, bí truyền (chỉ ít người biết)",
+        "exampleSentence": "The lecture was full of ___ references.",
+        "iconHint": "locked book with a small key"
+      },
+      {
+        "word": "arbitrary",
+        "pos": "adj.",
+        "meaningVi": "tùy tiện, võ đoán",
+        "exampleSentence": "The decision seemed completely ___.",
+        "iconHint": "dice being rolled"
+      },
+      {
+        "word": "conducive",
+        "pos": "adj.",
+        "meaningVi": "thuận lợi, tạo điều kiện cho",
+        "exampleSentence": "A quiet room is ___ to studying.",
+        "iconHint": "plant growing under a sunbeam"
+      },
+      {
+        "word": "juxtaposition",
+        "pos": "n.",
+        "meaningVi": "sự đặt cạnh nhau để so sánh",
+        "exampleSentence": "The film uses ___ of past and present scenes.",
+        "iconHint": "two contrasting images side by side"
+      },
+      {
+        "word": "innate",
+        "pos": "adj.",
+        "meaningVi": "bẩm sinh, vốn có",
+        "exampleSentence": "Curiosity is ___ in young children.",
+        "iconHint": "seed already containing a tiny sprout"
+      },
+      {
+        "word": "quintessential",
+        "pos": "adj.",
+        "meaningVi": "điển hình nhất, tiêu biểu nhất",
+        "exampleSentence": "Paris is the ___ romantic city.",
+        "iconHint": "gold star on an iconic landmark"
+      }
+    ]
+  },
+  {
+    "topicId": "academic-research-c1",
+    "topicNameVi": "Học thuật & Nghiên cứu nâng cao",
+    "cefrLevel": "C1",
+    "words": [
+      {
+        "word": "aspiration",
+        "pos": "n.",
+        "meaningVi": "khát vọng, hoài bão",
+        "exampleSentence": "Her greatest ___ is to become a surgeon.",
+        "iconHint": "person reaching toward a rising star"
+      },
+      {
+        "word": "assertion",
+        "pos": "n.",
+        "meaningVi": "sự khẳng định, tuyên bố",
+        "exampleSentence": "He made a bold ___ without any real evidence.",
+        "iconHint": "speech bubble with an exclamation mark"
+      },
+      {
+        "word": "attain",
+        "pos": "v.",
+        "meaningVi": "đạt được",
+        "exampleSentence": "It took years of hard work to ___ such a senior position.",
+        "iconHint": "hand reaching a flag at a summit"
+      },
+      {
+        "word": "autonomy",
+        "pos": "n.",
+        "meaningVi": "quyền tự chủ",
+        "exampleSentence": "The region was granted greater ___ over its own laws.",
+        "iconHint": "key unlocking a small gate"
+      },
+      {
+        "word": "authentic",
+        "pos": "adj.",
+        "meaningVi": "chân thực, xác thực",
+        "exampleSentence": "The museum only displays ___ historical artefacts.",
+        "iconHint": "stamp of approval with a checkmark"
+      },
+      {
+        "word": "arbitrary",
+        "pos": "adj.",
+        "meaningVi": "tùy tiện, ngẫu nhiên",
+        "exampleSentence": "The rule seemed completely ___ and unfair.",
+        "iconHint": "dice with a question mark"
+      },
+      {
+        "word": "justification",
+        "pos": "n.",
+        "meaningVi": "sự biện minh, lý do chính đáng",
+        "exampleSentence": "He offered no ___ for arriving so late.",
+        "iconHint": "scale balancing two arguments"
+      },
+      {
+        "word": "contradiction",
+        "pos": "n.",
+        "meaningVi": "sự mâu thuẫn",
+        "exampleSentence": "There is a clear ___ between his two statements.",
+        "iconHint": "two arrows pointing in opposite directions"
+      },
+      {
+        "word": "consistency",
+        "pos": "n.",
+        "meaningVi": "tính nhất quán",
+        "exampleSentence": "The judges praised the athlete's ___ across every round.",
+        "iconHint": "row of identical matching blocks"
+      },
+      {
+        "word": "distinction",
+        "pos": "n.",
+        "meaningVi": "sự phân biệt, khác biệt rõ rệt",
+        "exampleSentence": "There's an important ___ between the two theories.",
+        "iconHint": "two separated circles with a dividing line"
+      },
+      {
+        "word": "presumably",
+        "pos": "adv.",
+        "meaningVi": "có lẽ, giả định là",
+        "exampleSentence": "___, the meeting will be rescheduled due to the storm.",
+        "iconHint": "thought bubble with a question mark"
+      },
+      {
+        "word": "capability",
+        "pos": "n.",
+        "meaningVi": "năng lực, khả năng",
+        "exampleSentence": "The new software has the ___ to process huge datasets.",
+        "iconHint": "gear turning inside a lightbulb"
+      },
+      {
+        "word": "complexity",
+        "pos": "n.",
+        "meaningVi": "tính phức tạp",
+        "exampleSentence": "The ___ of the legal system confuses many people.",
+        "iconHint": "tangled maze pattern"
+      },
+      {
+        "word": "cognitive",
+        "pos": "adj.",
+        "meaningVi": "thuộc về nhận thức",
+        "exampleSentence": "The study focuses on the ___ development of young children.",
+        "iconHint": "brain with connected nodes"
+      },
+      {
+        "word": "analogy",
+        "pos": "n.",
+        "meaningVi": "phép loại suy, sự so sánh",
+        "exampleSentence": "The teacher used a simple ___ to explain gravity.",
+        "iconHint": "two matching puzzle pieces"
+      },
+      {
+        "word": "competence",
+        "pos": "n.",
+        "meaningVi": "năng lực chuyên môn",
+        "exampleSentence": "Her technical ___ impressed the entire interview panel.",
+        "iconHint": "certificate with a checkmark ribbon"
+      },
+      {
+        "word": "articulate",
+        "pos": "v.",
+        "meaningVi": "diễn đạt rõ ràng",
+        "exampleSentence": "It took her a while to ___ exactly what she meant.",
+        "iconHint": "speech bubble with clear bold text"
+      },
+      {
+        "word": "clarity",
+        "pos": "n.",
+        "meaningVi": "sự rõ ràng, minh bạch",
+        "exampleSentence": "The professor explained the concept with great ___.",
+        "iconHint": "clear glass with light shining through"
+      }
     ]
   }
 ]
