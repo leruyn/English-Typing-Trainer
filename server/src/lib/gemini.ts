@@ -72,6 +72,26 @@ export function getEnvInt(name: string, fallback: number): number {
 }
 
 /**
+ * Builds a short instruction telling the model roughly how much room it
+ * has, derived from the actual `maxOutputTokens` for this call - rather
+ * than each route hardcoding its own "2 câu"/"4-5 câu" guess disconnected
+ * from the real budget. Gemini otherwise has no idea it's about to get cut
+ * off mid-generation, so a request that runs long (a rambling example, an
+ * unusually detailed answer) can end up truncated mid-sentence even with a
+ * generous token limit.
+ *
+ * The token->word ratio is deliberately conservative (Vietnamese text
+ * tokenizes less efficiently than English - diacritics/multi-syllable
+ * words split into more sub-word tokens), so this under-promises on space
+ * rather than over-promising: better the model wraps up a little early
+ * than get cut off.
+ */
+function buildLengthGuard(maxOutputTokens: number): string {
+  const approxWordBudget = Math.max(20, Math.round(maxOutputTokens * 0.45));
+  return `\n\n(Giới hạn kỹ thuật: phản hồi sẽ bị CẮT CỤT nếu vượt quá khoảng ${approxWordBudget} từ. Tự canh độ dài để kết thúc trọn vẹn - không bỏ dở câu hay bỏ dở cấu trúc - trong giới hạn này; thà ngắn gọn hơn là bị cắt giữa chừng.)`;
+}
+
+/**
  * Sends a single-turn prompt to Gemini and returns the model's raw text
  * response. Throws `GeminiError` (a 503 `HttpError`) on any failure -
  * network error, non-2xx response, safety block, or an empty/missing
@@ -80,6 +100,7 @@ export function getEnvInt(name: string, fallback: number): number {
  */
 export async function generateGeminiText(prompt: string, options: GenerateOptions = {}): Promise<string> {
   const { temperature = 0.7, maxOutputTokens = 1024 } = options;
+  const promptWithBudget = `${prompt}${buildLengthGuard(maxOutputTokens)}`;
   const model = getModel();
   const url = `${API_BASE}/${model}:generateContent?key=${getApiKey()}`;
 
@@ -89,7 +110,7 @@ export async function generateGeminiText(prompt: string, options: GenerateOption
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
+        contents: [{ parts: [{ text: promptWithBudget }] }],
         generationConfig: { temperature, maxOutputTokens },
       }),
     });
