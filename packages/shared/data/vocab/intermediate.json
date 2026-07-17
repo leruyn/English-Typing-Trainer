@@ -1202,5 +1202,537 @@
         "iconHint": "checkmark inside a glowing star"
       }
     ]
+  },
+  {
+    "topicId": "money-shopping-b1",
+    "topicNameVi": "Tiền bạc & Mua sắm",
+    "cefrLevel": "B1",
+    "words": [
+      {
+        "word": "account",
+        "pos": "n.",
+        "meaningVi": "tài khoản",
+        "exampleSentence": "She opened a savings ___ at the bank.",
+        "iconHint": "bank card beside a coin stack"
+      },
+      {
+        "word": "afford",
+        "pos": "v.",
+        "meaningVi": "đủ khả năng chi trả",
+        "exampleSentence": "We can't ___ a holiday this year.",
+        "iconHint": "wallet with a small price tag"
+      },
+      {
+        "word": "agreement",
+        "pos": "n.",
+        "meaningVi": "thỏa thuận, hợp đồng",
+        "exampleSentence": "Both companies signed the ___ yesterday.",
+        "iconHint": "two hands shaking over paper"
+      },
+      {
+        "word": "application",
+        "pos": "n.",
+        "meaningVi": "đơn xin, hồ sơ",
+        "exampleSentence": "He submitted a loan ___ to the bank.",
+        "iconHint": "document with a pen"
+      },
+      {
+        "word": "appointment",
+        "pos": "n.",
+        "meaningVi": "cuộc hẹn",
+        "exampleSentence": "I have an ___ with the bank manager at ten.",
+        "iconHint": "calendar with a clock icon"
+      },
+      {
+        "word": "bank",
+        "pos": "n.",
+        "meaningVi": "ngân hàng",
+        "exampleSentence": "She went to the ___ to withdraw some cash.",
+        "iconHint": "building with a dollar sign"
+      },
+      {
+        "word": "benefit",
+        "pos": "v.",
+        "meaningVi": "được lợi, hưởng lợi",
+        "exampleSentence": "Everyone will ___ from the new discount policy.",
+        "iconHint": "hand receiving a small gift"
+      },
+      {
+        "word": "coin",
+        "pos": "n.",
+        "meaningVi": "đồng xu",
+        "exampleSentence": "He found an old ___ under the sofa.",
+        "iconHint": "round gold coin"
+      },
+      {
+        "word": "currency",
+        "pos": "n.",
+        "meaningVi": "tiền tệ",
+        "exampleSentence": "You'll need to exchange your ___ before the trip.",
+        "iconHint": "stack of banknotes and coins"
+      },
+      {
+        "word": "discount",
+        "pos": "n.",
+        "meaningVi": "giảm giá",
+        "exampleSentence": "The shop offers a ten percent ___ today.",
+        "iconHint": "price tag with a percent sign"
+      },
+      {
+        "word": "receipt",
+        "pos": "n.",
+        "meaningVi": "hóa đơn, biên lai",
+        "exampleSentence": "Please keep your ___ in case you need a refund.",
+        "iconHint": "paper receipt with a checkmark"
+      },
+      {
+        "word": "worth",
+        "pos": "adj.",
+        "meaningVi": "đáng giá, có giá trị",
+        "exampleSentence": "This old painting is ___ a lot of money.",
+        "iconHint": "gem on a small scale"
+      },
+      {
+        "word": "donate",
+        "pos": "v.",
+        "meaningVi": "quyên góp, ủng hộ",
+        "exampleSentence": "They decided to ___ some money to the hospital.",
+        "iconHint": "hand placing a coin into a heart-shaped box"
+      },
+      {
+        "word": "invest",
+        "pos": "v.",
+        "meaningVi": "đầu tư",
+        "exampleSentence": "She plans to ___ her savings in a small business.",
+        "iconHint": "coin growing into a small plant"
+      },
+      {
+        "word": "loss",
+        "pos": "n.",
+        "meaningVi": "sự thua lỗ, mất mát",
+        "exampleSentence": "The company reported a big ___ last quarter.",
+        "iconHint": "downward arrow beside a coin"
+      },
+      {
+        "word": "luxury",
+        "pos": "n.",
+        "meaningVi": "sự xa xỉ",
+        "exampleSentence": "A holiday abroad is a ___ they rarely afford.",
+        "iconHint": "sparkling diamond"
+      },
+      {
+        "word": "payment",
+        "pos": "n.",
+        "meaningVi": "khoản thanh toán",
+        "exampleSentence": "The final ___ for the car is due next week.",
+        "iconHint": "hand handing over cash"
+      },
+      {
+        "word": "profit",
+        "pos": "n.",
+        "meaningVi": "lợi nhuận",
+        "exampleSentence": "The shop made a good ___ this summer.",
+        "iconHint": "upward arrow beside a coin stack"
+      }
+    ]
+  },
+  {
+    "topicId": "media-entertainment-b1",
+    "topicNameVi": "Truyền thông & Giải trí",
+    "cefrLevel": "B1",
+    "words": [
+      {
+        "word": "achievement",
+        "pos": "n.",
+        "meaningVi": "thành tựu",
+        "exampleSentence": "Winning the award was a great ___ for her.",
+        "iconHint": "trophy with a small ribbon"
+      },
+      {
+        "word": "act",
+        "pos": "n.",
+        "meaningVi": "màn diễn, hành động",
+        "exampleSentence": "The comedian's ___ made the whole audience laugh.",
+        "iconHint": "stage curtain with a spotlight"
+      },
+      {
+        "word": "ad",
+        "pos": "n.",
+        "meaningVi": "quảng cáo",
+        "exampleSentence": "There was an ___ for the new phone on TV.",
+        "iconHint": "TV screen with a megaphone"
+      },
+      {
+        "word": "album",
+        "pos": "n.",
+        "meaningVi": "album (nhạc, ảnh)",
+        "exampleSentence": "The band released their new ___ last week.",
+        "iconHint": "vinyl record disc"
+      },
+      {
+        "word": "announce",
+        "pos": "v.",
+        "meaningVi": "thông báo, công bố",
+        "exampleSentence": "The teacher will ___ the exam results tomorrow.",
+        "iconHint": "megaphone with sound waves"
+      },
+      {
+        "word": "announcement",
+        "pos": "n.",
+        "meaningVi": "lời thông báo",
+        "exampleSentence": "There was an important ___ over the airport speakers.",
+        "iconHint": "speaker icon with a message bubble"
+      },
+      {
+        "word": "atmosphere",
+        "pos": "n.",
+        "meaningVi": "bầu không khí",
+        "exampleSentence": "The restaurant has a cosy, relaxed ___.",
+        "iconHint": "warm glowing room with soft light"
+      },
+      {
+        "word": "attraction",
+        "pos": "n.",
+        "meaningVi": "điểm thu hút, sức hút",
+        "exampleSentence": "The old castle is the town's main tourist ___.",
+        "iconHint": "star above a landmark"
+      },
+      {
+        "word": "award",
+        "pos": "v.",
+        "meaningVi": "trao (giải thưởng)",
+        "exampleSentence": "They will ___ the prize to the best young writer.",
+        "iconHint": "hand presenting a medal"
+      },
+      {
+        "word": "battle",
+        "pos": "n.",
+        "meaningVi": "trận chiến",
+        "exampleSentence": "The film tells the story of a historic ___.",
+        "iconHint": "crossed swords"
+      },
+      {
+        "word": "celebration",
+        "pos": "n.",
+        "meaningVi": "lễ kỷ niệm, sự ăn mừng",
+        "exampleSentence": "The whole town joined the New Year ___.",
+        "iconHint": "confetti and balloons"
+      },
+      {
+        "word": "ceremony",
+        "pos": "n.",
+        "meaningVi": "buổi lễ",
+        "exampleSentence": "The graduation ___ took place in the main hall.",
+        "iconHint": "podium with a ribbon"
+      },
+      {
+        "word": "challenge",
+        "pos": "n.",
+        "meaningVi": "thử thách",
+        "exampleSentence": "Learning a new language is a fun ___.",
+        "iconHint": "mountain with a small flag on top"
+      },
+      {
+        "word": "champion",
+        "pos": "n.",
+        "meaningVi": "nhà vô địch",
+        "exampleSentence": "She became the national swimming ___ this year.",
+        "iconHint": "trophy with a star"
+      },
+      {
+        "word": "channel",
+        "pos": "n.",
+        "meaningVi": "kênh (truyền hình)",
+        "exampleSentence": "He changed the ___ to watch the news.",
+        "iconHint": "TV remote with signal waves"
+      },
+      {
+        "word": "chapter",
+        "pos": "n.",
+        "meaningVi": "chương (sách)",
+        "exampleSentence": "I finished the first ___ of the novel last night.",
+        "iconHint": "open book with a bookmark"
+      },
+      {
+        "word": "coach",
+        "pos": "v.",
+        "meaningVi": "huấn luyện",
+        "exampleSentence": "She used to ___ the school's football team.",
+        "iconHint": "whistle beside a clipboard"
+      },
+      {
+        "word": "collection",
+        "pos": "n.",
+        "meaningVi": "bộ sưu tập",
+        "exampleSentence": "He has a large ___ of old vinyl records.",
+        "iconHint": "row of stacked boxes"
+      }
+    ]
+  },
+  {
+    "topicId": "business-finance-b2",
+    "topicNameVi": "Kinh doanh & Tài chính",
+    "cefrLevel": "B2",
+    "words": [
+      {
+        "word": "accountant",
+        "pos": "n.",
+        "meaningVi": "kế toán viên",
+        "exampleSentence": "The company hired a new ___ to manage its budget.",
+        "iconHint": "calculator beside a stack of papers"
+      },
+      {
+        "word": "administration",
+        "pos": "n.",
+        "meaningVi": "công tác quản lý, hành chính",
+        "exampleSentence": "She works in the ___ department of the hospital.",
+        "iconHint": "office desk with files"
+      },
+      {
+        "word": "agency",
+        "pos": "n.",
+        "meaningVi": "công ty, đại lý",
+        "exampleSentence": "They booked their trip through a travel ___.",
+        "iconHint": "building with a small signboard"
+      },
+      {
+        "word": "agenda",
+        "pos": "n.",
+        "meaningVi": "chương trình nghị sự",
+        "exampleSentence": "The first item on the ___ is the budget report.",
+        "iconHint": "clipboard with a checklist"
+      },
+      {
+        "word": "applicant",
+        "pos": "n.",
+        "meaningVi": "người nộp đơn ứng tuyển",
+        "exampleSentence": "Only three ___s were invited for an interview.",
+        "iconHint": "resume with a magnifying glass"
+      },
+      {
+        "word": "approval",
+        "pos": "n.",
+        "meaningVi": "sự chấp thuận, phê duyệt",
+        "exampleSentence": "The project needs management's ___ before starting.",
+        "iconHint": "document with a green checkmark"
+      },
+      {
+        "word": "approve",
+        "pos": "v.",
+        "meaningVi": "phê duyệt, chấp thuận",
+        "exampleSentence": "The board will ___ the new plan next week.",
+        "iconHint": "hand giving a thumbs up over paper"
+      },
+      {
+        "word": "asset",
+        "pos": "n.",
+        "meaningVi": "tài sản",
+        "exampleSentence": "Property is the company's most valuable ___.",
+        "iconHint": "building icon inside a briefcase"
+      },
+      {
+        "word": "auction",
+        "pos": "n.",
+        "meaningVi": "cuộc đấu giá",
+        "exampleSentence": "The painting sold for a high price at ___.",
+        "iconHint": "gavel beside a raised hand"
+      },
+      {
+        "word": "bargain",
+        "pos": "n.",
+        "meaningVi": "món hời, sự mặc cả",
+        "exampleSentence": "She found a real ___ at the weekend market.",
+        "iconHint": "price tag with a percent off symbol"
+      },
+      {
+        "word": "booking",
+        "pos": "n.",
+        "meaningVi": "việc đặt chỗ",
+        "exampleSentence": "We made a hotel ___ for next Friday.",
+        "iconHint": "calendar with a hotel key icon"
+      },
+      {
+        "word": "budget",
+        "pos": "n.",
+        "meaningVi": "ngân sách",
+        "exampleSentence": "The team must stay within this year's ___.",
+        "iconHint": "wallet beside a pie chart"
+      },
+      {
+        "word": "capacity",
+        "pos": "n.",
+        "meaningVi": "sức chứa, năng suất",
+        "exampleSentence": "The stadium has a seating ___ of 50,000.",
+        "iconHint": "container filling up with liquid"
+      },
+      {
+        "word": "entrepreneur",
+        "pos": "n.",
+        "meaningVi": "doanh nhân khởi nghiệp",
+        "exampleSentence": "The young ___ started her business from her bedroom.",
+        "iconHint": "lightbulb above a briefcase"
+      },
+      {
+        "word": "investment",
+        "pos": "n.",
+        "meaningVi": "khoản đầu tư",
+        "exampleSentence": "Buying this equipment was a smart ___.",
+        "iconHint": "coin growing into a small tree"
+      },
+      {
+        "word": "investor",
+        "pos": "n.",
+        "meaningVi": "nhà đầu tư",
+        "exampleSentence": "Several ___s backed the new tech startup.",
+        "iconHint": "hand placing a coin into a jar"
+      },
+      {
+        "word": "revenue",
+        "pos": "n.",
+        "meaningVi": "doanh thu",
+        "exampleSentence": "Online sales boosted the company's ___ this year.",
+        "iconHint": "upward chart bar with a coin"
+      },
+      {
+        "word": "stock",
+        "pos": "n.",
+        "meaningVi": "cổ phiếu",
+        "exampleSentence": "He bought ___ in a growing energy company.",
+        "iconHint": "rising line chart with a certificate"
+      }
+    ]
+  },
+  {
+    "topicId": "environment-science-b2",
+    "topicNameVi": "Môi trường & Khoa học",
+    "cefrLevel": "B2",
+    "words": [
+      {
+        "word": "carbon",
+        "pos": "n.",
+        "meaningVi": "các-bon",
+        "exampleSentence": "Cars produce a large amount of ___ dioxide.",
+        "iconHint": "smokestack with grey clouds"
+      },
+      {
+        "word": "conservation",
+        "pos": "n.",
+        "meaningVi": "sự bảo tồn",
+        "exampleSentence": "The group works on the ___ of endangered animals.",
+        "iconHint": "hands cupping a small plant"
+      },
+      {
+        "word": "emission",
+        "pos": "n.",
+        "meaningVi": "khí thải",
+        "exampleSentence": "New laws aim to reduce car ___s in the city.",
+        "iconHint": "exhaust pipe releasing smoke"
+      },
+      {
+        "word": "greenhouse",
+        "pos": "n.",
+        "meaningVi": "hiệu ứng nhà kính (khí quyển)",
+        "exampleSentence": "Scientists study the ___ effect on global temperatures.",
+        "iconHint": "glass dome trapping sunlight"
+      },
+      {
+        "word": "habitat",
+        "pos": "n.",
+        "meaningVi": "môi trường sống",
+        "exampleSentence": "Deforestation destroys the natural ___ of many species.",
+        "iconHint": "tree with small animals around it"
+      },
+      {
+        "word": "species",
+        "pos": "n.",
+        "meaningVi": "loài (sinh vật)",
+        "exampleSentence": "This ___ of frog is found only in this forest.",
+        "iconHint": "silhouette of a frog and a bird"
+      },
+      {
+        "word": "sustainable",
+        "pos": "adj.",
+        "meaningVi": "bền vững",
+        "exampleSentence": "The company switched to more ___ packaging.",
+        "iconHint": "recycling arrows around a leaf"
+      },
+      {
+        "word": "absorb",
+        "pos": "v.",
+        "meaningVi": "hấp thụ",
+        "exampleSentence": "Plants ___ carbon dioxide from the air.",
+        "iconHint": "leaf pulling in small arrows"
+      },
+      {
+        "word": "acid",
+        "pos": "n.",
+        "meaningVi": "a-xít",
+        "exampleSentence": "___ rain can damage buildings and forests.",
+        "iconHint": "droplet with a warning symbol"
+      },
+      {
+        "word": "agriculture",
+        "pos": "n.",
+        "meaningVi": "nông nghiệp",
+        "exampleSentence": "___ is the main industry in this region.",
+        "iconHint": "field with rows of crops"
+      },
+      {
+        "word": "aircraft",
+        "pos": "n.",
+        "meaningVi": "máy bay, phi cơ",
+        "exampleSentence": "The new ___ uses less fuel than older models.",
+        "iconHint": "airplane silhouette"
+      },
+      {
+        "word": "bacteria",
+        "pos": "n.",
+        "meaningVi": "vi khuẩn",
+        "exampleSentence": "Washing your hands kills harmful ___.",
+        "iconHint": "cluster of tiny microbe shapes"
+      },
+      {
+        "word": "biological",
+        "pos": "adj.",
+        "meaningVi": "thuộc về sinh học",
+        "exampleSentence": "The scientist studies the ___ effects of pollution.",
+        "iconHint": "DNA double helix"
+      },
+      {
+        "word": "calculate",
+        "pos": "v.",
+        "meaningVi": "tính toán",
+        "exampleSentence": "Engineers ___ the bridge's exact weight limit.",
+        "iconHint": "calculator with numbers"
+      },
+      {
+        "word": "cancer",
+        "pos": "n.",
+        "meaningVi": "bệnh ung thư",
+        "exampleSentence": "Researchers are working on a new ___ treatment.",
+        "iconHint": "ribbon symbol"
+      },
+      {
+        "word": "drought",
+        "pos": "n.",
+        "meaningVi": "hạn hán",
+        "exampleSentence": "The long ___ badly damaged this year's harvest.",
+        "iconHint": "cracked dry ground"
+      },
+      {
+        "word": "fossil",
+        "pos": "n.",
+        "meaningVi": "hóa thạch, nhiên liệu hóa thạch",
+        "exampleSentence": "Burning ___ fuels releases greenhouse gases.",
+        "iconHint": "coal and oil drop icons"
+      },
+      {
+        "word": "solar",
+        "pos": "adj.",
+        "meaningVi": "thuộc năng lượng mặt trời",
+        "exampleSentence": "They installed ___ panels on the roof.",
+        "iconHint": "sun above solar panel"
+      }
+    ]
   }
 ]

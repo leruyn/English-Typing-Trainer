@@ -761,5 +761,404 @@
         "iconHint": "hourglass with a calm face"
       }
     ]
+  },
+  {
+    "topicId": "food-drinks-a1",
+    "topicNameVi": "Đồ ăn & Thức uống",
+    "cefrLevel": "A1",
+    "words": [
+      {
+        "word": "bread",
+        "pos": "n.",
+        "meaningVi": "bánh mì",
+        "exampleSentence": "She buys fresh ___ from the bakery every morning.",
+        "iconHint": "loaf of bread"
+      },
+      {
+        "word": "rice",
+        "pos": "n.",
+        "meaningVi": "cơm, gạo",
+        "exampleSentence": "We eat ___ with almost every meal.",
+        "iconHint": "bowl of steamed rice"
+      },
+      {
+        "word": "meat",
+        "pos": "n.",
+        "meaningVi": "thịt",
+        "exampleSentence": "He doesn't eat ___; he's a vegetarian.",
+        "iconHint": "cut of meat on a plate"
+      },
+      {
+        "word": "potato",
+        "pos": "n.",
+        "meaningVi": "khoai tây",
+        "exampleSentence": "She peeled a ___ to make soup.",
+        "iconHint": "brown potato with small eyes"
+      },
+      {
+        "word": "vegetable",
+        "pos": "n.",
+        "meaningVi": "rau củ",
+        "exampleSentence": "Eating more ___s is good for your health.",
+        "iconHint": "carrot and broccoli"
+      },
+      {
+        "word": "fruit",
+        "pos": "n.",
+        "meaningVi": "trái cây",
+        "exampleSentence": "She packed some ___ for a healthy snack.",
+        "iconHint": "apple and banana"
+      },
+      {
+        "word": "egg",
+        "pos": "n.",
+        "meaningVi": "quả trứng",
+        "exampleSentence": "He fried an ___ for breakfast.",
+        "iconHint": "single fried egg"
+      },
+      {
+        "word": "milk",
+        "pos": "n.",
+        "meaningVi": "sữa",
+        "exampleSentence": "The baby drinks warm ___ before bed.",
+        "iconHint": "glass of milk"
+      },
+      {
+        "word": "cheese",
+        "pos": "n.",
+        "meaningVi": "phô mai",
+        "exampleSentence": "This sandwich has ham and ___ inside.",
+        "iconHint": "wedge of cheese"
+      },
+      {
+        "word": "butter",
+        "pos": "n.",
+        "meaningVi": "bơ",
+        "exampleSentence": "She spread ___ on her toast.",
+        "iconHint": "pat of butter on bread"
+      },
+      {
+        "word": "sugar",
+        "pos": "n.",
+        "meaningVi": "đường",
+        "exampleSentence": "He takes one spoon of ___ in his coffee.",
+        "iconHint": "spoon with sugar cubes"
+      },
+      {
+        "word": "salt",
+        "pos": "n.",
+        "meaningVi": "muối",
+        "exampleSentence": "Add a little ___ to the soup for taste.",
+        "iconHint": "salt shaker"
+      },
+      {
+        "word": "coffee",
+        "pos": "n.",
+        "meaningVi": "cà phê",
+        "exampleSentence": "She drinks a cup of ___ every morning.",
+        "iconHint": "steaming coffee cup"
+      },
+      {
+        "word": "tea",
+        "pos": "n.",
+        "meaningVi": "trà",
+        "exampleSentence": "Would you like a cup of ___?",
+        "iconHint": "teacup with a tea bag"
+      },
+      {
+        "word": "juice",
+        "pos": "n.",
+        "meaningVi": "nước ép",
+        "exampleSentence": "He squeezed fresh orange ___ for breakfast.",
+        "iconHint": "glass of orange juice"
+      },
+      {
+        "word": "water",
+        "pos": "n.",
+        "meaningVi": "nước",
+        "exampleSentence": "Drink plenty of ___ during the summer.",
+        "iconHint": "glass filled with water"
+      },
+      {
+        "word": "soup",
+        "pos": "n.",
+        "meaningVi": "súp, canh",
+        "exampleSentence": "She made vegetable ___ for lunch.",
+        "iconHint": "bowl of soup with steam"
+      },
+      {
+        "word": "sandwich",
+        "pos": "n.",
+        "meaningVi": "bánh mì kẹp",
+        "exampleSentence": "He made a cheese ___ for his lunch box.",
+        "iconHint": "layered sandwich"
+      }
+    ]
+  },
+  {
+    "topicId": "weather-time-a1",
+    "topicNameVi": "Thời tiết & Thời gian",
+    "cefrLevel": "A1",
+    "words": [
+      {
+        "word": "spring",
+        "pos": "n.",
+        "meaningVi": "mùa xuân",
+        "exampleSentence": "Flowers begin to bloom in ___.",
+        "iconHint": "flower blooming with a sun"
+      },
+      {
+        "word": "summer",
+        "pos": "n.",
+        "meaningVi": "mùa hè",
+        "exampleSentence": "We go swimming at the beach every ___.",
+        "iconHint": "sun with a beach umbrella"
+      },
+      {
+        "word": "autumn",
+        "pos": "n.",
+        "meaningVi": "mùa thu",
+        "exampleSentence": "The leaves turn orange and fall in ___.",
+        "iconHint": "falling orange leaf"
+      },
+      {
+        "word": "winter",
+        "pos": "n.",
+        "meaningVi": "mùa đông",
+        "exampleSentence": "It often snows here in ___.",
+        "iconHint": "snowflake"
+      },
+      {
+        "word": "snow",
+        "pos": "n.",
+        "meaningVi": "tuyết",
+        "exampleSentence": "The children played happily in the ___.",
+        "iconHint": "small snowman"
+      },
+      {
+        "word": "rain",
+        "pos": "n.",
+        "meaningVi": "mưa",
+        "exampleSentence": "Take an umbrella, there's ___ today.",
+        "iconHint": "cloud with raindrops"
+      },
+      {
+        "word": "sun",
+        "pos": "n.",
+        "meaningVi": "mặt trời",
+        "exampleSentence": "The ___ was shining brightly all day.",
+        "iconHint": "bright yellow sun"
+      },
+      {
+        "word": "hour",
+        "pos": "n.",
+        "meaningVi": "giờ (đồng hồ)",
+        "exampleSentence": "The meeting lasted about an ___.",
+        "iconHint": "clock face"
+      },
+      {
+        "word": "week",
+        "pos": "n.",
+        "meaningVi": "tuần",
+        "exampleSentence": "I'll see you again next ___.",
+        "iconHint": "calendar with seven boxes"
+      },
+      {
+        "word": "month",
+        "pos": "n.",
+        "meaningVi": "tháng",
+        "exampleSentence": "She was born in the ___ of May.",
+        "iconHint": "calendar page"
+      },
+      {
+        "word": "year",
+        "pos": "n.",
+        "meaningVi": "năm",
+        "exampleSentence": "We visit our grandparents once a ___.",
+        "iconHint": "calendar with twelve months"
+      },
+      {
+        "word": "today",
+        "pos": "adv.",
+        "meaningVi": "hôm nay",
+        "exampleSentence": "What time does the shop close ___?",
+        "iconHint": "calendar page marked with a star"
+      },
+      {
+        "word": "tomorrow",
+        "pos": "adv.",
+        "meaningVi": "ngày mai",
+        "exampleSentence": "We will start the trip early ___ morning.",
+        "iconHint": "sun rising over a calendar"
+      },
+      {
+        "word": "yesterday",
+        "pos": "adv.",
+        "meaningVi": "hôm qua",
+        "exampleSentence": "It rained heavily ___ afternoon.",
+        "iconHint": "calendar page with an arrow pointing back"
+      },
+      {
+        "word": "day",
+        "pos": "n.",
+        "meaningVi": "ngày",
+        "exampleSentence": "It was a long but happy ___.",
+        "iconHint": "sun over a single square"
+      },
+      {
+        "word": "morning",
+        "pos": "n.",
+        "meaningVi": "buổi sáng",
+        "exampleSentence": "She goes jogging every ___ before work.",
+        "iconHint": "sun rising over hills"
+      },
+      {
+        "word": "evening",
+        "pos": "n.",
+        "meaningVi": "buổi tối",
+        "exampleSentence": "We usually eat dinner in the ___.",
+        "iconHint": "sunset over hills"
+      },
+      {
+        "word": "weekend",
+        "pos": "n.",
+        "meaningVi": "cuối tuần",
+        "exampleSentence": "What are your plans for the ___?",
+        "iconHint": "calendar with two highlighted days"
+      }
+    ]
+  },
+  {
+    "topicId": "transport-a2",
+    "topicNameVi": "Giao thông & Đi lại",
+    "cefrLevel": "A2",
+    "words": [
+      {
+        "word": "platform",
+        "pos": "n.",
+        "meaningVi": "sân ga",
+        "exampleSentence": "The train to London leaves from ___ four.",
+        "iconHint": "train station platform with a number sign"
+      },
+      {
+        "word": "passenger",
+        "pos": "n.",
+        "meaningVi": "hành khách",
+        "exampleSentence": "The bus can carry up to fifty ___s.",
+        "iconHint": "person sitting with a small bag"
+      },
+      {
+        "word": "vehicle",
+        "pos": "n.",
+        "meaningVi": "phương tiện, xe cộ",
+        "exampleSentence": "Only one ___ is allowed to park here.",
+        "iconHint": "generic car outline"
+      },
+      {
+        "word": "engine",
+        "pos": "n.",
+        "meaningVi": "động cơ",
+        "exampleSentence": "The mechanic checked the car's ___ for problems.",
+        "iconHint": "gear inside a car hood"
+      },
+      {
+        "word": "wheel",
+        "pos": "n.",
+        "meaningVi": "bánh xe",
+        "exampleSentence": "One of the bicycle's ___s needs air.",
+        "iconHint": "round wheel with spokes"
+      },
+      {
+        "word": "petrol",
+        "pos": "n.",
+        "meaningVi": "xăng",
+        "exampleSentence": "We need to stop and buy more ___.",
+        "iconHint": "fuel pump nozzle"
+      },
+      {
+        "word": "route",
+        "pos": "n.",
+        "meaningVi": "tuyến đường",
+        "exampleSentence": "This ___ takes you through the city centre.",
+        "iconHint": "dotted path on a map"
+      },
+      {
+        "word": "direction",
+        "pos": "n.",
+        "meaningVi": "hướng đi",
+        "exampleSentence": "Can you tell me which ___ the station is?",
+        "iconHint": "arrow sign pointing forward"
+      },
+      {
+        "word": "distance",
+        "pos": "n.",
+        "meaningVi": "khoảng cách",
+        "exampleSentence": "The ___ between the two cities is short.",
+        "iconHint": "ruler stretching between two dots"
+      },
+      {
+        "word": "speed",
+        "pos": "n.",
+        "meaningVi": "tốc độ",
+        "exampleSentence": "The train travels at a very high ___.",
+        "iconHint": "speedometer needle"
+      },
+      {
+        "word": "board",
+        "pos": "n.",
+        "meaningVi": "sự lên (tàu, xe, máy bay)",
+        "exampleSentence": "Passengers must ___ the plane by gate seven.",
+        "iconHint": "person stepping onto a plane ramp"
+      },
+      {
+        "word": "motorcycle",
+        "pos": "n.",
+        "meaningVi": "xe máy",
+        "exampleSentence": "He rides his ___ to work every day.",
+        "iconHint": "motorbike with two wheels"
+      },
+      {
+        "word": "truck",
+        "pos": "n.",
+        "meaningVi": "xe tải",
+        "exampleSentence": "A large ___ delivered the furniture.",
+        "iconHint": "delivery truck"
+      },
+      {
+        "word": "van",
+        "pos": "n.",
+        "meaningVi": "xe van",
+        "exampleSentence": "The bakery uses a small ___ for deliveries.",
+        "iconHint": "boxy delivery van"
+      },
+      {
+        "word": "underground",
+        "pos": "adj.",
+        "meaningVi": "ngầm (dưới lòng đất)",
+        "exampleSentence": "We took the ___ train to the museum.",
+        "iconHint": "subway sign with an arrow down"
+      },
+      {
+        "word": "sail",
+        "pos": "v.",
+        "meaningVi": "đi thuyền, giương buồm",
+        "exampleSentence": "They plan to ___ across the bay this weekend.",
+        "iconHint": "sailboat with wind in its sail"
+      },
+      {
+        "word": "pilot",
+        "pos": "n.",
+        "meaningVi": "phi công",
+        "exampleSentence": "The ___ announced the plane's altitude.",
+        "iconHint": "pilot cap with wings badge"
+      },
+      {
+        "word": "seat",
+        "pos": "n.",
+        "meaningVi": "chỗ ngồi",
+        "exampleSentence": "Please fasten your seatbelt in your ___.",
+        "iconHint": "airplane seat with armrests"
+      }
+    ]
   }
 ]

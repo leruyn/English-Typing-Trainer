@@ -642,5 +642,138 @@
         "iconHint": "clear glass with light shining through"
       }
     ]
+  },
+  {
+    "topicId": "economy-business-c1",
+    "topicNameVi": "Kinh tế & Kinh doanh nâng cao",
+    "cefrLevel": "C1",
+    "words": [
+      {
+        "word": "capitalism",
+        "pos": "n.",
+        "meaningVi": "chủ nghĩa tư bản",
+        "exampleSentence": "The book explores the history of modern ___.",
+        "iconHint": "factory beside a rising coin stack"
+      },
+      {
+        "word": "capitalist",
+        "pos": "adj.",
+        "meaningVi": "thuộc về tư bản",
+        "exampleSentence": "Most ___ economies rely on free markets.",
+        "iconHint": "briefcase with a dollar sign"
+      },
+      {
+        "word": "commodity",
+        "pos": "n.",
+        "meaningVi": "hàng hóa (nguyên liệu)",
+        "exampleSentence": "Oil is one of the world's most traded ___ies.",
+        "iconHint": "barrel beside a scale"
+      },
+      {
+        "word": "deficit",
+        "pos": "n.",
+        "meaningVi": "thâm hụt (ngân sách)",
+        "exampleSentence": "The government must address the growing budget ___.",
+        "iconHint": "downward arrow beside a coin"
+      },
+      {
+        "word": "monopoly",
+        "pos": "n.",
+        "meaningVi": "sự độc quyền",
+        "exampleSentence": "The company held a near ___ on the local market.",
+        "iconHint": "single crown above several small icons"
+      },
+      {
+        "word": "subsidy",
+        "pos": "n.",
+        "meaningVi": "khoản trợ cấp",
+        "exampleSentence": "Farmers rely on government ___ to survive bad harvests.",
+        "iconHint": "hand giving a coin to a plant"
+      },
+      {
+        "word": "surplus",
+        "pos": "n.",
+        "meaningVi": "thặng dư",
+        "exampleSentence": "The country reported a trade ___ this year.",
+        "iconHint": "upward arrow beside a full basket"
+      },
+      {
+        "word": "inequality",
+        "pos": "n.",
+        "meaningVi": "sự bất bình đẳng",
+        "exampleSentence": "The report highlights growing income ___ in the region.",
+        "iconHint": "uneven scale with two sides"
+      },
+      {
+        "word": "prosperity",
+        "pos": "n.",
+        "meaningVi": "sự thịnh vượng",
+        "exampleSentence": "The new trade deal is expected to bring economic ___.",
+        "iconHint": "rising sun over a city skyline"
+      },
+      {
+        "word": "regulatory",
+        "pos": "adj.",
+        "meaningVi": "thuộc về quản lý, điều tiết",
+        "exampleSentence": "The bank must follow strict ___ requirements.",
+        "iconHint": "gavel beside a document"
+      },
+      {
+        "word": "stimulus",
+        "pos": "n.",
+        "meaningVi": "gói kích thích (kinh tế)",
+        "exampleSentence": "The government announced a new economic ___ package.",
+        "iconHint": "arrow injecting energy into a chart"
+      },
+      {
+        "word": "enterprise",
+        "pos": "n.",
+        "meaningVi": "doanh nghiệp, sự nghiệp kinh doanh",
+        "exampleSentence": "She runs a small family ___ selling handmade goods.",
+        "iconHint": "small storefront with a flag"
+      },
+      {
+        "word": "expenditure",
+        "pos": "n.",
+        "meaningVi": "chi tiêu",
+        "exampleSentence": "Public ___ on healthcare rose again this year.",
+        "iconHint": "outgoing arrow from a wallet"
+      },
+      {
+        "word": "formulate",
+        "pos": "v.",
+        "meaningVi": "hình thành, xây dựng (kế hoạch)",
+        "exampleSentence": "The committee will ___ a new strategy next month.",
+        "iconHint": "gears forming a lightbulb"
+      },
+      {
+        "word": "franchise",
+        "pos": "n.",
+        "meaningVi": "quyền kinh doanh nhượng quyền",
+        "exampleSentence": "He opened a coffee shop ___ downtown.",
+        "iconHint": "storefront with a repeating pattern icon"
+      },
+      {
+        "word": "governance",
+        "pos": "n.",
+        "meaningVi": "công tác quản trị",
+        "exampleSentence": "Good corporate ___ builds investor trust.",
+        "iconHint": "hands supporting a small building"
+      },
+      {
+        "word": "integration",
+        "pos": "n.",
+        "meaningVi": "sự hội nhập, tích hợp",
+        "exampleSentence": "Economic ___ between the two countries increased trade.",
+        "iconHint": "two puzzle pieces joining"
+      },
+      {
+        "word": "institutional",
+        "pos": "adj.",
+        "meaningVi": "thuộc về thể chế, tổ chức",
+        "exampleSentence": "The reform requires major ___ changes in government.",
+        "iconHint": "columned building with a checkmark"
+      }
+    ]
   }
 ]
