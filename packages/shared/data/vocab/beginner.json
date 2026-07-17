@@ -3155,5 +3155,1601 @@
         "iconHint": "magnifying glass over a small creature"
       }
     ]
+  },
+  {
+    "topicId": "common-nouns-a1-4",
+    "topicNameVi": "Danh từ thông dụng A1 (phần 4)",
+    "cefrLevel": "A1",
+    "words": [
+      {
+        "word": "apple",
+        "pos": "n.",
+        "meaningVi": "quả táo",
+        "exampleSentence": "She ate a red ___ for breakfast.",
+        "iconHint": "red apple with a leaf"
+      },
+      {
+        "word": "banana",
+        "pos": "n.",
+        "meaningVi": "quả chuối",
+        "exampleSentence": "He packed a ___ in his lunch box.",
+        "iconHint": "yellow curved banana"
+      },
+      {
+        "word": "bank",
+        "pos": "n.",
+        "meaningVi": "ngân hàng",
+        "exampleSentence": "I need to go to the ___ to withdraw money.",
+        "iconHint": "building with a dollar sign"
+      },
+      {
+        "word": "bath",
+        "pos": "n.",
+        "meaningVi": "bồn tắm",
+        "exampleSentence": "She takes a warm ___ every evening.",
+        "iconHint": "bathtub with bubbles"
+      },
+      {
+        "word": "bed",
+        "pos": "n.",
+        "meaningVi": "giường",
+        "exampleSentence": "The cat is sleeping on the ___.",
+        "iconHint": "bed with a pillow"
+      },
+      {
+        "word": "bedroom",
+        "pos": "n.",
+        "meaningVi": "phòng ngủ",
+        "exampleSentence": "His ___ is upstairs next to the bathroom.",
+        "iconHint": "bed inside a room outline"
+      },
+      {
+        "word": "beer",
+        "pos": "n.",
+        "meaningVi": "bia",
+        "exampleSentence": "He ordered a cold ___ at the pub.",
+        "iconHint": "mug with foam on top"
+      },
+      {
+        "word": "bike",
+        "pos": "n.",
+        "meaningVi": "xe đạp",
+        "exampleSentence": "She rides her ___ to school every day.",
+        "iconHint": "bicycle with two wheels"
+      },
+      {
+        "word": "bill",
+        "pos": "n.",
+        "meaningVi": "hóa đơn",
+        "exampleSentence": "Can I have the ___, please?",
+        "iconHint": "receipt with a dollar sign"
+      },
+      {
+        "word": "birthday",
+        "pos": "n.",
+        "meaningVi": "sinh nhật",
+        "exampleSentence": "We are planning a party for her ___.",
+        "iconHint": "cake with candles"
+      },
+      {
+        "word": "bottle",
+        "pos": "n.",
+        "meaningVi": "chai",
+        "exampleSentence": "He filled the ___ with fresh water.",
+        "iconHint": "bottle with a cap"
+      },
+      {
+        "word": "boyfriend",
+        "pos": "n.",
+        "meaningVi": "bạn trai",
+        "exampleSentence": "She introduced her ___ to her parents.",
+        "iconHint": "two figures holding hands"
+      },
+      {
+        "word": "breakfast",
+        "pos": "n.",
+        "meaningVi": "bữa sáng",
+        "exampleSentence": "We usually eat ___ at seven o'clock.",
+        "iconHint": "plate with eggs and toast"
+      },
+      {
+        "word": "business",
+        "pos": "n.",
+        "meaningVi": "công việc kinh doanh",
+        "exampleSentence": "She started her own ___ last year.",
+        "iconHint": "briefcase with a chart"
+      },
+      {
+        "word": "capital",
+        "pos": "n.",
+        "meaningVi": "thủ đô",
+        "exampleSentence": "Paris is the ___ of France.",
+        "iconHint": "star marking a city on a map"
+      },
+      {
+        "word": "card",
+        "pos": "n.",
+        "meaningVi": "thẻ, tấm thiệp",
+        "exampleSentence": "He sent her a birthday ___ in the post.",
+        "iconHint": "envelope with a decorated card"
+      },
+      {
+        "word": "career",
+        "pos": "n.",
+        "meaningVi": "sự nghiệp",
+        "exampleSentence": "She is planning a ___ in medicine.",
+        "iconHint": "ladder rising toward a star"
+      },
+      {
+        "word": "carrot",
+        "pos": "n.",
+        "meaningVi": "cà rốt",
+        "exampleSentence": "Rabbits love to eat ___s.",
+        "iconHint": "orange carrot with green top"
+      }
+    ]
+  },
+  {
+    "topicId": "common-nouns-a1-5",
+    "topicNameVi": "Danh từ thông dụng A1 (phần 5)",
+    "cefrLevel": "A1",
+    "words": [
+      {
+        "word": "centre",
+        "pos": "n.",
+        "meaningVi": "trung tâm",
+        "exampleSentence": "The shopping ___ is very crowded today.",
+        "iconHint": "target with a dot in the middle"
+      },
+      {
+        "word": "century",
+        "pos": "n.",
+        "meaningVi": "thế kỷ",
+        "exampleSentence": "This castle was built in the fifteenth ___.",
+        "iconHint": "clock with a large 100"
+      },
+      {
+        "word": "chart",
+        "pos": "n.",
+        "meaningVi": "biểu đồ",
+        "exampleSentence": "The ___ shows sales going up this month.",
+        "iconHint": "bar graph rising"
+      },
+      {
+        "word": "chocolate",
+        "pos": "n.",
+        "meaningVi": "sô-cô-la",
+        "exampleSentence": "She gave him a box of ___ for his birthday.",
+        "iconHint": "chocolate bar with squares"
+      },
+      {
+        "word": "class",
+        "pos": "n.",
+        "meaningVi": "lớp học",
+        "exampleSentence": "Our English ___ starts at nine o'clock.",
+        "iconHint": "rows of desks facing a board"
+      },
+      {
+        "word": "clothes",
+        "pos": "n.",
+        "meaningVi": "quần áo",
+        "exampleSentence": "He needs to buy new ___ for winter.",
+        "iconHint": "hanger with a shirt"
+      },
+      {
+        "word": "club",
+        "pos": "n.",
+        "meaningVi": "câu lạc bộ",
+        "exampleSentence": "She joined the tennis ___ this summer.",
+        "iconHint": "group of people with a badge"
+      },
+      {
+        "word": "company",
+        "pos": "n.",
+        "meaningVi": "công ty",
+        "exampleSentence": "He works for a large technology ___.",
+        "iconHint": "office building with windows"
+      },
+      {
+        "word": "computer",
+        "pos": "n.",
+        "meaningVi": "máy tính",
+        "exampleSentence": "I use my ___ for work every day.",
+        "iconHint": "laptop screen"
+      },
+      {
+        "word": "concert",
+        "pos": "n.",
+        "meaningVi": "buổi hòa nhạc",
+        "exampleSentence": "We are going to a rock ___ tonight.",
+        "iconHint": "microphone with music notes"
+      },
+      {
+        "word": "conversation",
+        "pos": "n.",
+        "meaningVi": "cuộc trò chuyện",
+        "exampleSentence": "We had a long ___ about our plans.",
+        "iconHint": "two speech bubbles"
+      },
+      {
+        "word": "cost",
+        "pos": "n.",
+        "meaningVi": "chi phí",
+        "exampleSentence": "The ___ of the trip was higher than expected.",
+        "iconHint": "price tag with coins"
+      },
+      {
+        "word": "country",
+        "pos": "n.",
+        "meaningVi": "quốc gia, đất nước",
+        "exampleSentence": "She has visited many ___s in Europe.",
+        "iconHint": "flag on a map outline"
+      },
+      {
+        "word": "course",
+        "pos": "n.",
+        "meaningVi": "khóa học",
+        "exampleSentence": "He is taking a cooking ___ this term.",
+        "iconHint": "open book with a graduation cap"
+      },
+      {
+        "word": "cream",
+        "pos": "n.",
+        "meaningVi": "kem",
+        "exampleSentence": "She put some ___ on her sunburn.",
+        "iconHint": "cream tube with a swirl"
+      },
+      {
+        "word": "culture",
+        "pos": "n.",
+        "meaningVi": "văn hóa",
+        "exampleSentence": "Learning the local ___ helped her settle in.",
+        "iconHint": "globe with a mask icon"
+      },
+      {
+        "word": "cup",
+        "pos": "n.",
+        "meaningVi": "cốc, chén",
+        "exampleSentence": "He drinks a ___ of tea every morning.",
+        "iconHint": "mug with steam"
+      },
+      {
+        "word": "customer",
+        "pos": "n.",
+        "meaningVi": "khách hàng",
+        "exampleSentence": "The shop always treats its ___s well.",
+        "iconHint": "person with a shopping bag"
+      }
+    ]
+  },
+  {
+    "topicId": "common-nouns-a1-6",
+    "topicNameVi": "Danh từ thông dụng A1 (phần 6)",
+    "cefrLevel": "A1",
+    "words": [
+      {
+        "word": "email",
+        "pos": "n.",
+        "meaningVi": "thư điện tử",
+        "exampleSentence": "I sent you an ___ this morning.",
+        "iconHint": "envelope with an @ symbol"
+      },
+      {
+        "word": "event",
+        "pos": "n.",
+        "meaningVi": "sự kiện",
+        "exampleSentence": "The wedding was a wonderful ___.",
+        "iconHint": "calendar with a star"
+      },
+      {
+        "word": "eye",
+        "pos": "n.",
+        "meaningVi": "mắt",
+        "exampleSentence": "She has bright blue ___s.",
+        "iconHint": "single eye with lashes"
+      },
+      {
+        "word": "face",
+        "pos": "n.",
+        "meaningVi": "khuôn mặt",
+        "exampleSentence": "He washed his ___ before going to bed.",
+        "iconHint": "simple face outline"
+      },
+      {
+        "word": "fact",
+        "pos": "n.",
+        "meaningVi": "sự thật",
+        "exampleSentence": "It's a ___ that the earth is round.",
+        "iconHint": "checkmark beside a lightbulb"
+      },
+      {
+        "word": "farm",
+        "pos": "n.",
+        "meaningVi": "trang trại",
+        "exampleSentence": "They grow vegetables on their family ___.",
+        "iconHint": "barn with a fence"
+      },
+      {
+        "word": "farmer",
+        "pos": "n.",
+        "meaningVi": "nông dân",
+        "exampleSentence": "The ___ woke up early to feed the animals.",
+        "iconHint": "person with a straw hat and hoe"
+      },
+      {
+        "word": "festival",
+        "pos": "n.",
+        "meaningVi": "lễ hội",
+        "exampleSentence": "The music ___ lasts for three days.",
+        "iconHint": "flags and a stage"
+      },
+      {
+        "word": "film",
+        "pos": "n.",
+        "meaningVi": "bộ phim",
+        "exampleSentence": "We watched a scary ___ last night.",
+        "iconHint": "film reel"
+      },
+      {
+        "word": "fire",
+        "pos": "n.",
+        "meaningVi": "lửa, hỏa hoạn",
+        "exampleSentence": "They sat around the ___ telling stories.",
+        "iconHint": "flame with sparks"
+      },
+      {
+        "word": "flat",
+        "pos": "n.",
+        "meaningVi": "căn hộ",
+        "exampleSentence": "They rent a small ___ in the city centre.",
+        "iconHint": "building with a single window lit"
+      },
+      {
+        "word": "flight",
+        "pos": "n.",
+        "meaningVi": "chuyến bay",
+        "exampleSentence": "Our ___ leaves at six in the morning.",
+        "iconHint": "airplane with a dotted path"
+      },
+      {
+        "word": "floor",
+        "pos": "n.",
+        "meaningVi": "sàn nhà, tầng",
+        "exampleSentence": "The office is on the third ___.",
+        "iconHint": "tiled floor pattern"
+      },
+      {
+        "word": "flower",
+        "pos": "n.",
+        "meaningVi": "hoa",
+        "exampleSentence": "She picked a ___ from the garden.",
+        "iconHint": "petal flower with a stem"
+      },
+      {
+        "word": "food",
+        "pos": "n.",
+        "meaningVi": "thức ăn",
+        "exampleSentence": "The restaurant serves delicious local ___.",
+        "iconHint": "plate with a fork and knife"
+      },
+      {
+        "word": "foot",
+        "pos": "n.",
+        "meaningVi": "bàn chân",
+        "exampleSentence": "He hurt his ___ while playing football.",
+        "iconHint": "footprint outline"
+      },
+      {
+        "word": "football",
+        "pos": "n.",
+        "meaningVi": "bóng đá",
+        "exampleSentence": "The boys play ___ in the park every weekend.",
+        "iconHint": "soccer ball"
+      },
+      {
+        "word": "form",
+        "pos": "n.",
+        "meaningVi": "biểu mẫu, hình dạng",
+        "exampleSentence": "Please fill in this ___ with your details.",
+        "iconHint": "clipboard with lines"
+      }
+    ]
+  },
+  {
+    "topicId": "common-nouns-a1-7",
+    "topicNameVi": "Danh từ thông dụng A1 (phần 7)",
+    "cefrLevel": "A1",
+    "words": [
+      {
+        "word": "friend",
+        "pos": "n.",
+        "meaningVi": "bạn bè",
+        "exampleSentence": "She met her best ___ at university.",
+        "iconHint": "two figures side by side"
+      },
+      {
+        "word": "front",
+        "pos": "n.",
+        "meaningVi": "phía trước",
+        "exampleSentence": "Please wait at the ___ of the queue.",
+        "iconHint": "arrow pointing forward"
+      },
+      {
+        "word": "fun",
+        "pos": "n.",
+        "meaningVi": "niềm vui",
+        "exampleSentence": "The trip to the beach was so much ___.",
+        "iconHint": "smiling face with sparkles"
+      },
+      {
+        "word": "future",
+        "pos": "n.",
+        "meaningVi": "tương lai",
+        "exampleSentence": "She is excited about her ___ career.",
+        "iconHint": "arrow pointing toward a rising sun"
+      },
+      {
+        "word": "game",
+        "pos": "n.",
+        "meaningVi": "trò chơi",
+        "exampleSentence": "The children played a board ___ all afternoon.",
+        "iconHint": "dice and a game piece"
+      },
+      {
+        "word": "garden",
+        "pos": "n.",
+        "meaningVi": "khu vườn",
+        "exampleSentence": "He grows tomatoes in his ___.",
+        "iconHint": "flowers and a small fence"
+      },
+      {
+        "word": "geography",
+        "pos": "n.",
+        "meaningVi": "địa lý",
+        "exampleSentence": "We are learning about mountains in ___ class.",
+        "iconHint": "globe with a compass"
+      },
+      {
+        "word": "girl",
+        "pos": "n.",
+        "meaningVi": "cô gái",
+        "exampleSentence": "The little ___ was playing with her dolls.",
+        "iconHint": "small girl figure"
+      },
+      {
+        "word": "girlfriend",
+        "pos": "n.",
+        "meaningVi": "bạn gái",
+        "exampleSentence": "He introduced his ___ to his friends.",
+        "iconHint": "two figures holding hands"
+      },
+      {
+        "word": "glass",
+        "pos": "n.",
+        "meaningVi": "ly, cốc thủy tinh",
+        "exampleSentence": "She poured a ___ of orange juice.",
+        "iconHint": "glass cup with liquid"
+      },
+      {
+        "word": "group",
+        "pos": "n.",
+        "meaningVi": "nhóm",
+        "exampleSentence": "The students worked together in a small ___.",
+        "iconHint": "three circles overlapping"
+      },
+      {
+        "word": "guitar",
+        "pos": "n.",
+        "meaningVi": "đàn ghi-ta",
+        "exampleSentence": "He learned to play the ___ last summer.",
+        "iconHint": "guitar with strings"
+      },
+      {
+        "word": "gym",
+        "pos": "n.",
+        "meaningVi": "phòng tập thể dục",
+        "exampleSentence": "She goes to the ___ three times a week.",
+        "iconHint": "dumbbell icon"
+      },
+      {
+        "word": "hair",
+        "pos": "n.",
+        "meaningVi": "tóc",
+        "exampleSentence": "Her ___ is long and curly.",
+        "iconHint": "flowing hair strands"
+      },
+      {
+        "word": "half",
+        "pos": "n.",
+        "meaningVi": "một nửa",
+        "exampleSentence": "He ate ___ of the sandwich.",
+        "iconHint": "circle split into two"
+      },
+      {
+        "word": "hand",
+        "pos": "n.",
+        "meaningVi": "bàn tay",
+        "exampleSentence": "She waved her ___ to say goodbye.",
+        "iconHint": "open palm outline"
+      },
+      {
+        "word": "head",
+        "pos": "n.",
+        "meaningVi": "đầu",
+        "exampleSentence": "He wore a hat on his ___.",
+        "iconHint": "simple head silhouette"
+      },
+      {
+        "word": "health",
+        "pos": "n.",
+        "meaningVi": "sức khỏe",
+        "exampleSentence": "Good ___ starts with a balanced diet.",
+        "iconHint": "heart with a plus sign"
+      }
+    ]
+  },
+  {
+    "topicId": "common-adjectives-a1-3",
+    "topicNameVi": "Tính từ thông dụng A1 (phần 3)",
+    "cefrLevel": "A1",
+    "words": [
+      {
+        "word": "black",
+        "pos": "adj.",
+        "meaningVi": "màu đen",
+        "exampleSentence": "She wore a ___ dress to the party.",
+        "iconHint": "dark filled circle"
+      },
+      {
+        "word": "blue",
+        "pos": "adj.",
+        "meaningVi": "màu xanh dương",
+        "exampleSentence": "The sky was clear and ___ today.",
+        "iconHint": "blue circle"
+      },
+      {
+        "word": "brown",
+        "pos": "adj.",
+        "meaningVi": "màu nâu",
+        "exampleSentence": "He has short ___ hair.",
+        "iconHint": "brown circle"
+      },
+      {
+        "word": "cold",
+        "pos": "adj.",
+        "meaningVi": "lạnh",
+        "exampleSentence": "It's very ___ outside this morning.",
+        "iconHint": "snowflake icon"
+      },
+      {
+        "word": "complete",
+        "pos": "adj.",
+        "meaningVi": "hoàn chỉnh, đầy đủ",
+        "exampleSentence": "The set of dishes is now ___.",
+        "iconHint": "checklist fully ticked"
+      },
+      {
+        "word": "correct",
+        "pos": "adj.",
+        "meaningVi": "đúng, chính xác",
+        "exampleSentence": "Your answer to the question was ___.",
+        "iconHint": "green checkmark"
+      },
+      {
+        "word": "early",
+        "pos": "adj.",
+        "meaningVi": "sớm",
+        "exampleSentence": "She caught an ___ train to work.",
+        "iconHint": "sunrise with a clock"
+      },
+      {
+        "word": "fast",
+        "pos": "adj.",
+        "meaningVi": "nhanh",
+        "exampleSentence": "He is a very ___ runner.",
+        "iconHint": "running figure with speed lines"
+      },
+      {
+        "word": "favourite",
+        "pos": "adj.",
+        "meaningVi": "yêu thích nhất",
+        "exampleSentence": "Pizza is my ___ food.",
+        "iconHint": "star beside a heart"
+      },
+      {
+        "word": "good",
+        "pos": "adj.",
+        "meaningVi": "tốt",
+        "exampleSentence": "She got a ___ grade on her test.",
+        "iconHint": "thumbs up"
+      },
+      {
+        "word": "great",
+        "pos": "adj.",
+        "meaningVi": "tuyệt vời",
+        "exampleSentence": "We had a ___ time at the concert.",
+        "iconHint": "star burst"
+      },
+      {
+        "word": "green",
+        "pos": "adj.",
+        "meaningVi": "màu xanh lá",
+        "exampleSentence": "The leaves turn ___ in the spring.",
+        "iconHint": "green leaf"
+      },
+      {
+        "word": "grey",
+        "pos": "adj.",
+        "meaningVi": "màu xám",
+        "exampleSentence": "The sky looked ___ before the storm.",
+        "iconHint": "grey cloud"
+      },
+      {
+        "word": "happy",
+        "pos": "adj.",
+        "meaningVi": "vui vẻ, hạnh phúc",
+        "exampleSentence": "She felt ___ when she saw her old friend.",
+        "iconHint": "smiling face"
+      },
+      {
+        "word": "hard",
+        "pos": "adj.",
+        "meaningVi": "khó, cứng",
+        "exampleSentence": "This maths problem is really ___.",
+        "iconHint": "rock icon"
+      },
+      {
+        "word": "healthy",
+        "pos": "adj.",
+        "meaningVi": "khỏe mạnh, lành mạnh",
+        "exampleSentence": "Eating vegetables keeps you ___.",
+        "iconHint": "apple with a heartbeat line"
+      },
+      {
+        "word": "high",
+        "pos": "adj.",
+        "meaningVi": "cao",
+        "exampleSentence": "The mountain has a very ___ peak.",
+        "iconHint": "upward arrow above a mountain"
+      },
+      {
+        "word": "hot",
+        "pos": "adj.",
+        "meaningVi": "nóng",
+        "exampleSentence": "Be careful, the soup is still ___.",
+        "iconHint": "steaming bowl"
+      }
+    ]
+  },
+  {
+    "topicId": "common-verbs-a1-3",
+    "topicNameVi": "Động từ thông dụng A1 (phần 3)",
+    "cefrLevel": "A1",
+    "words": [
+      {
+        "word": "call",
+        "pos": "v.",
+        "meaningVi": "gọi điện, gọi tên",
+        "exampleSentence": "I will ___ you when I arrive.",
+        "iconHint": "phone with sound waves"
+      },
+      {
+        "word": "change",
+        "pos": "v.",
+        "meaningVi": "thay đổi",
+        "exampleSentence": "She decided to ___ her hairstyle.",
+        "iconHint": "arrow looping into a new shape"
+      },
+      {
+        "word": "cook",
+        "pos": "v.",
+        "meaningVi": "nấu ăn",
+        "exampleSentence": "He likes to ___ dinner for his family.",
+        "iconHint": "pot with steam rising"
+      },
+      {
+        "word": "dance",
+        "pos": "v.",
+        "meaningVi": "nhảy múa",
+        "exampleSentence": "They love to ___ at weddings.",
+        "iconHint": "figure with raised arms mid-motion"
+      },
+      {
+        "word": "design",
+        "pos": "v.",
+        "meaningVi": "thiết kế",
+        "exampleSentence": "She will ___ the new company logo.",
+        "iconHint": "pencil drawing a shape"
+      },
+      {
+        "word": "drink",
+        "pos": "v.",
+        "meaningVi": "uống",
+        "exampleSentence": "Please ___ plenty of water every day.",
+        "iconHint": "cup with a straw"
+      },
+      {
+        "word": "end",
+        "pos": "v.",
+        "meaningVi": "kết thúc",
+        "exampleSentence": "The meeting will ___ at five o'clock.",
+        "iconHint": "checkered flag"
+      },
+      {
+        "word": "exercise",
+        "pos": "v.",
+        "meaningVi": "tập thể dục",
+        "exampleSentence": "She likes to ___ every morning before work.",
+        "iconHint": "figure stretching"
+      },
+      {
+        "word": "get",
+        "pos": "v.",
+        "meaningVi": "lấy, nhận được",
+        "exampleSentence": "Can you ___ me a glass of water?",
+        "iconHint": "hand reaching for an object"
+      },
+      {
+        "word": "give",
+        "pos": "v.",
+        "meaningVi": "cho, tặng",
+        "exampleSentence": "He will ___ her a present tomorrow.",
+        "iconHint": "hand offering a gift box"
+      },
+      {
+        "word": "go",
+        "pos": "v.",
+        "meaningVi": "đi",
+        "exampleSentence": "We usually ___ to the park on Sundays.",
+        "iconHint": "arrow pointing forward with footsteps"
+      },
+      {
+        "word": "guess",
+        "pos": "v.",
+        "meaningVi": "đoán",
+        "exampleSentence": "Can you ___ how old she is?",
+        "iconHint": "thought bubble with a question mark"
+      },
+      {
+        "word": "happen",
+        "pos": "v.",
+        "meaningVi": "xảy ra",
+        "exampleSentence": "Nobody knows what will ___ next.",
+        "iconHint": "burst of small stars"
+      },
+      {
+        "word": "hate",
+        "pos": "v.",
+        "meaningVi": "ghét",
+        "exampleSentence": "She really ___s waiting in long queues.",
+        "iconHint": "frowning face with an X"
+      },
+      {
+        "word": "have",
+        "pos": "v.",
+        "meaningVi": "có",
+        "exampleSentence": "They ___ two children and a dog.",
+        "iconHint": "hand holding a small object"
+      },
+      {
+        "word": "hear",
+        "pos": "v.",
+        "meaningVi": "nghe thấy",
+        "exampleSentence": "Did you ___ the news this morning?",
+        "iconHint": "ear with sound waves"
+      },
+      {
+        "word": "help",
+        "pos": "v.",
+        "meaningVi": "giúp đỡ",
+        "exampleSentence": "Could you ___ me carry these bags?",
+        "iconHint": "two hands joining"
+      },
+      {
+        "word": "hope",
+        "pos": "v.",
+        "meaningVi": "hy vọng",
+        "exampleSentence": "I ___ you feel better soon.",
+        "iconHint": "hands clasped with a small star"
+      }
+    ]
+  },
+  {
+    "topicId": "common-nouns-a2-4",
+    "topicNameVi": "Danh từ thông dụng A2 (phần 4)",
+    "cefrLevel": "A2",
+    "words": [
+      {
+        "word": "advertisement",
+        "pos": "n.",
+        "meaningVi": "quảng cáo",
+        "exampleSentence": "She saw an ___ for the new phone on TV.",
+        "iconHint": "megaphone with a price tag"
+      },
+      {
+        "word": "app",
+        "pos": "n.",
+        "meaningVi": "ứng dụng",
+        "exampleSentence": "He downloaded a new ___ to track his runs.",
+        "iconHint": "phone screen with icons"
+      },
+      {
+        "word": "arrangement",
+        "pos": "n.",
+        "meaningVi": "sự sắp xếp",
+        "exampleSentence": "They made an ___ to meet at noon.",
+        "iconHint": "calendar with a handshake"
+      },
+      {
+        "word": "assistant",
+        "pos": "n.",
+        "meaningVi": "trợ lý",
+        "exampleSentence": "Her ___ scheduled all the meetings for the week.",
+        "iconHint": "person with a clipboard"
+      },
+      {
+        "word": "attack",
+        "pos": "n.",
+        "meaningVi": "cuộc tấn công",
+        "exampleSentence": "The village suffered a sudden ___.",
+        "iconHint": "shield with a warning mark"
+      },
+      {
+        "word": "attention",
+        "pos": "n.",
+        "meaningVi": "sự chú ý",
+        "exampleSentence": "Please pay ___ during the safety demonstration.",
+        "iconHint": "eye with a spotlight"
+      },
+      {
+        "word": "award",
+        "pos": "n.",
+        "meaningVi": "giải thưởng",
+        "exampleSentence": "She received an ___ for her research.",
+        "iconHint": "trophy with a star"
+      },
+      {
+        "word": "basketball",
+        "pos": "n.",
+        "meaningVi": "bóng rổ",
+        "exampleSentence": "He plays ___ every weekend with his friends.",
+        "iconHint": "basketball with a hoop"
+      },
+      {
+        "word": "bean",
+        "pos": "n.",
+        "meaningVi": "hạt đậu",
+        "exampleSentence": "We added some ___s to the soup.",
+        "iconHint": "small oval bean pod"
+      },
+      {
+        "word": "bear",
+        "pos": "n.",
+        "meaningVi": "con gấu",
+        "exampleSentence": "They saw a ___ near the campsite.",
+        "iconHint": "bear silhouette"
+      },
+      {
+        "word": "beef",
+        "pos": "n.",
+        "meaningVi": "thịt bò",
+        "exampleSentence": "She cooked ___ stew for dinner.",
+        "iconHint": "meat cut icon"
+      },
+      {
+        "word": "behaviour",
+        "pos": "n.",
+        "meaningVi": "hành vi",
+        "exampleSentence": "The teacher praised his good ___ in class.",
+        "iconHint": "figure with a checkmark above"
+      },
+      {
+        "word": "benefit",
+        "pos": "n.",
+        "meaningVi": "lợi ích",
+        "exampleSentence": "Regular sleep has many health ___s.",
+        "iconHint": "heart with an upward arrow"
+      },
+      {
+        "word": "biology",
+        "pos": "n.",
+        "meaningVi": "sinh học",
+        "exampleSentence": "She is studying ___ at university.",
+        "iconHint": "leaf beside a DNA strand"
+      },
+      {
+        "word": "birth",
+        "pos": "n.",
+        "meaningVi": "sự sinh ra",
+        "exampleSentence": "The baby's ___ was announced in the newspaper.",
+        "iconHint": "small star burst above a cradle"
+      },
+      {
+        "word": "biscuit",
+        "pos": "n.",
+        "meaningVi": "bánh quy",
+        "exampleSentence": "He dipped a ___ into his tea.",
+        "iconHint": "round cookie with dots"
+      },
+      {
+        "word": "blood",
+        "pos": "n.",
+        "meaningVi": "máu",
+        "exampleSentence": "The nurse took a sample of his ___.",
+        "iconHint": "single red droplet"
+      },
+      {
+        "word": "bone",
+        "pos": "n.",
+        "meaningVi": "xương",
+        "exampleSentence": "The dog buried its ___ in the garden.",
+        "iconHint": "bone shape"
+      }
+    ]
+  },
+  {
+    "topicId": "common-nouns-a2-5",
+    "topicNameVi": "Danh từ thông dụng A2 (phần 5)",
+    "cefrLevel": "A2",
+    "words": [
+      {
+        "word": "boss",
+        "pos": "n.",
+        "meaningVi": "sếp, ông chủ",
+        "exampleSentence": "Her ___ gave her a new project to lead.",
+        "iconHint": "person behind a desk"
+      },
+      {
+        "word": "bottom",
+        "pos": "n.",
+        "meaningVi": "đáy, phần dưới",
+        "exampleSentence": "The keys fell to the ___ of the bag.",
+        "iconHint": "downward arrow to a base line"
+      },
+      {
+        "word": "brain",
+        "pos": "n.",
+        "meaningVi": "não bộ",
+        "exampleSentence": "Reading helps keep your ___ active.",
+        "iconHint": "brain outline with sparks"
+      },
+      {
+        "word": "bridge",
+        "pos": "n.",
+        "meaningVi": "cây cầu",
+        "exampleSentence": "They crossed the old stone ___ into town.",
+        "iconHint": "arched bridge over water"
+      },
+      {
+        "word": "businessman",
+        "pos": "n.",
+        "meaningVi": "doanh nhân",
+        "exampleSentence": "The ___ signed the contract this morning.",
+        "iconHint": "person in a suit with a briefcase"
+      },
+      {
+        "word": "camp",
+        "pos": "n.",
+        "meaningVi": "trại",
+        "exampleSentence": "The scouts set up ___ near the lake.",
+        "iconHint": "tent with a small flag"
+      },
+      {
+        "word": "camping",
+        "pos": "n.",
+        "meaningVi": "cắm trại",
+        "exampleSentence": "We are going ___ in the mountains this weekend.",
+        "iconHint": "tent beside a campfire"
+      },
+      {
+        "word": "carpet",
+        "pos": "n.",
+        "meaningVi": "thảm",
+        "exampleSentence": "The living room has a soft red ___.",
+        "iconHint": "rectangular patterned rug"
+      },
+      {
+        "word": "cartoon",
+        "pos": "n.",
+        "meaningVi": "phim hoạt hình",
+        "exampleSentence": "The children love watching ___s on Saturday morning.",
+        "iconHint": "smiling animated character"
+      },
+      {
+        "word": "case",
+        "pos": "n.",
+        "meaningVi": "trường hợp, vụ việc",
+        "exampleSentence": "In this ___, we need more evidence.",
+        "iconHint": "folder with a magnifying glass"
+      },
+      {
+        "word": "cash",
+        "pos": "n.",
+        "meaningVi": "tiền mặt",
+        "exampleSentence": "He paid for the meal in ___.",
+        "iconHint": "banknotes and coins"
+      },
+      {
+        "word": "castle",
+        "pos": "n.",
+        "meaningVi": "lâu đài",
+        "exampleSentence": "The old ___ stands on top of the hill.",
+        "iconHint": "castle with towers and a flag"
+      },
+      {
+        "word": "celebrity",
+        "pos": "n.",
+        "meaningVi": "người nổi tiếng",
+        "exampleSentence": "The magazine featured an interview with a ___.",
+        "iconHint": "star above a silhouette"
+      },
+      {
+        "word": "chance",
+        "pos": "n.",
+        "meaningVi": "cơ hội, khả năng",
+        "exampleSentence": "This is a great ___ to improve your English.",
+        "iconHint": "open door with a light beam"
+      },
+      {
+        "word": "character",
+        "pos": "n.",
+        "meaningVi": "nhân vật, tính cách",
+        "exampleSentence": "The main ___ in the story is very brave.",
+        "iconHint": "theatre mask"
+      },
+      {
+        "word": "charity",
+        "pos": "n.",
+        "meaningVi": "tổ chức từ thiện",
+        "exampleSentence": "She volunteers for a local ___ every weekend.",
+        "iconHint": "heart inside cupped hands"
+      },
+      {
+        "word": "chef",
+        "pos": "n.",
+        "meaningVi": "đầu bếp",
+        "exampleSentence": "The ___ prepared a special dish for the guests.",
+        "iconHint": "chef's hat with a spoon"
+      },
+      {
+        "word": "chemistry",
+        "pos": "n.",
+        "meaningVi": "hóa học",
+        "exampleSentence": "He enjoys mixing chemicals in ___ class.",
+        "iconHint": "test tube with bubbles"
+      }
+    ]
+  },
+  {
+    "topicId": "common-nouns-a2-6",
+    "topicNameVi": "Danh từ thông dụng A2 (phần 6)",
+    "cefrLevel": "A2",
+    "words": [
+      {
+        "word": "choice",
+        "pos": "n.",
+        "meaningVi": "sự lựa chọn",
+        "exampleSentence": "You have a difficult ___ to make.",
+        "iconHint": "two arrows pointing in different directions"
+      },
+      {
+        "word": "church",
+        "pos": "n.",
+        "meaningVi": "nhà thờ",
+        "exampleSentence": "They got married in a small village ___.",
+        "iconHint": "building with a cross on top"
+      },
+      {
+        "word": "circle",
+        "pos": "n.",
+        "meaningVi": "hình tròn",
+        "exampleSentence": "Draw a ___ around the correct answer.",
+        "iconHint": "simple round shape"
+      },
+      {
+        "word": "climate",
+        "pos": "n.",
+        "meaningVi": "khí hậu",
+        "exampleSentence": "The island has a warm, tropical ___.",
+        "iconHint": "sun above a thermometer"
+      },
+      {
+        "word": "clothing",
+        "pos": "n.",
+        "meaningVi": "trang phục, quần áo",
+        "exampleSentence": "The shop sells winter ___ at a discount.",
+        "iconHint": "folded shirt icon"
+      },
+      {
+        "word": "cloud",
+        "pos": "n.",
+        "meaningVi": "đám mây",
+        "exampleSentence": "A dark ___ covered the sky before the rain.",
+        "iconHint": "fluffy cloud shape"
+      },
+      {
+        "word": "coach",
+        "pos": "n.",
+        "meaningVi": "huấn luyện viên",
+        "exampleSentence": "Our football ___ trains us every Tuesday.",
+        "iconHint": "person with a whistle"
+      },
+      {
+        "word": "coast",
+        "pos": "n.",
+        "meaningVi": "bờ biển",
+        "exampleSentence": "They spent the weekend on the ___.",
+        "iconHint": "wavy shoreline with a wave"
+      },
+      {
+        "word": "code",
+        "pos": "n.",
+        "meaningVi": "mã, mật mã",
+        "exampleSentence": "You need a special ___ to enter the building.",
+        "iconHint": "keypad with numbers"
+      },
+      {
+        "word": "colleague",
+        "pos": "n.",
+        "meaningVi": "đồng nghiệp",
+        "exampleSentence": "She had lunch with a ___ from work.",
+        "iconHint": "two figures with matching badges"
+      },
+      {
+        "word": "column",
+        "pos": "n.",
+        "meaningVi": "cột (báo, số liệu)",
+        "exampleSentence": "He writes a weekly ___ for the newspaper.",
+        "iconHint": "vertical bar in a table"
+      },
+      {
+        "word": "comedy",
+        "pos": "n.",
+        "meaningVi": "phim/kịch hài",
+        "exampleSentence": "We watched a funny ___ at the cinema.",
+        "iconHint": "laughing mask"
+      },
+      {
+        "word": "community",
+        "pos": "n.",
+        "meaningVi": "cộng đồng",
+        "exampleSentence": "The local ___ organised a street party.",
+        "iconHint": "group of houses connected by lines"
+      },
+      {
+        "word": "competition",
+        "pos": "n.",
+        "meaningVi": "cuộc thi",
+        "exampleSentence": "She entered a baking ___ last month.",
+        "iconHint": "trophy with two stars"
+      },
+      {
+        "word": "condition",
+        "pos": "n.",
+        "meaningVi": "điều kiện, tình trạng",
+        "exampleSentence": "The car is in excellent ___.",
+        "iconHint": "gauge showing a good level"
+      },
+      {
+        "word": "conference",
+        "pos": "n.",
+        "meaningVi": "hội nghị",
+        "exampleSentence": "He is attending a business ___ in London.",
+        "iconHint": "podium with an audience"
+      },
+      {
+        "word": "continent",
+        "pos": "n.",
+        "meaningVi": "lục địa",
+        "exampleSentence": "Africa is the second largest ___.",
+        "iconHint": "world map with a highlighted shape"
+      },
+      {
+        "word": "control",
+        "pos": "n.",
+        "meaningVi": "sự kiểm soát",
+        "exampleSentence": "The pilot lost ___ of the plane briefly.",
+        "iconHint": "steering wheel with a hand"
+      }
+    ]
+  },
+  {
+    "topicId": "common-nouns-a2-7",
+    "topicNameVi": "Danh từ thông dụng A2 (phần 7)",
+    "cefrLevel": "A2",
+    "words": [
+      {
+        "word": "cooker",
+        "pos": "n.",
+        "meaningVi": "bếp nấu ăn",
+        "exampleSentence": "She put the pot on the ___ to boil.",
+        "iconHint": "stove with a pot on top"
+      },
+      {
+        "word": "corner",
+        "pos": "n.",
+        "meaningVi": "góc",
+        "exampleSentence": "The shop is on the ___ of the street.",
+        "iconHint": "right-angle corner mark"
+      },
+      {
+        "word": "couple",
+        "pos": "n.",
+        "meaningVi": "cặp đôi",
+        "exampleSentence": "The young ___ walked hand in hand.",
+        "iconHint": "two figures side by side"
+      },
+      {
+        "word": "credit",
+        "pos": "n.",
+        "meaningVi": "tín dụng, sự công nhận",
+        "exampleSentence": "She paid for the trip using ___.",
+        "iconHint": "card with a small star"
+      },
+      {
+        "word": "crime",
+        "pos": "n.",
+        "meaningVi": "tội phạm",
+        "exampleSentence": "The city has seen a rise in ___ this year.",
+        "iconHint": "handcuffs icon"
+      },
+      {
+        "word": "criminal",
+        "pos": "n.",
+        "meaningVi": "tội phạm (người)",
+        "exampleSentence": "The ___ was arrested outside the bank.",
+        "iconHint": "figure behind bars"
+      },
+      {
+        "word": "crowd",
+        "pos": "n.",
+        "meaningVi": "đám đông",
+        "exampleSentence": "A large ___ gathered to watch the parade.",
+        "iconHint": "group of overlapping figures"
+      },
+      {
+        "word": "cupboard",
+        "pos": "n.",
+        "meaningVi": "tủ chén, tủ bếp",
+        "exampleSentence": "She keeps the plates in the kitchen ___.",
+        "iconHint": "cabinet with shelves"
+      },
+      {
+        "word": "danger",
+        "pos": "n.",
+        "meaningVi": "sự nguy hiểm",
+        "exampleSentence": "The sign warned of ___ ahead.",
+        "iconHint": "warning triangle"
+      },
+      {
+        "word": "dark",
+        "pos": "n.",
+        "meaningVi": "bóng tối",
+        "exampleSentence": "She was afraid of the ___ as a child.",
+        "iconHint": "crescent moon on black background"
+      },
+      {
+        "word": "data",
+        "pos": "n.",
+        "meaningVi": "dữ liệu",
+        "exampleSentence": "The scientists collected ___ for their study.",
+        "iconHint": "stacked bar chart"
+      },
+      {
+        "word": "death",
+        "pos": "n.",
+        "meaningVi": "cái chết",
+        "exampleSentence": "The news of his ___ shocked everyone.",
+        "iconHint": "tombstone icon"
+      },
+      {
+        "word": "decision",
+        "pos": "n.",
+        "meaningVi": "quyết định",
+        "exampleSentence": "She made the right ___ to leave early.",
+        "iconHint": "fork in the road"
+      },
+      {
+        "word": "degree",
+        "pos": "n.",
+        "meaningVi": "bằng cấp, độ",
+        "exampleSentence": "He earned a ___ in engineering.",
+        "iconHint": "graduation cap with a diploma"
+      },
+      {
+        "word": "dentist",
+        "pos": "n.",
+        "meaningVi": "nha sĩ",
+        "exampleSentence": "I have an appointment with the ___ tomorrow.",
+        "iconHint": "tooth with a small mirror tool"
+      },
+      {
+        "word": "department",
+        "pos": "n.",
+        "meaningVi": "bộ phận, phòng ban",
+        "exampleSentence": "She works in the marketing ___.",
+        "iconHint": "office door with a sign"
+      },
+      {
+        "word": "desert",
+        "pos": "n.",
+        "meaningVi": "sa mạc",
+        "exampleSentence": "Very little rain falls in the ___.",
+        "iconHint": "sand dunes with a cactus"
+      },
+      {
+        "word": "designer",
+        "pos": "n.",
+        "meaningVi": "nhà thiết kế",
+        "exampleSentence": "The fashion ___ showed her new collection.",
+        "iconHint": "figure with a sketchbook"
+      }
+    ]
+  },
+  {
+    "topicId": "common-adjectives-a2-2",
+    "topicNameVi": "Tính từ thông dụng A2 (phần 2)",
+    "cefrLevel": "A2",
+    "words": [
+      {
+        "word": "adult",
+        "pos": "adj.",
+        "meaningVi": "thuộc về người lớn",
+        "exampleSentence": "The film is for ___ audiences only.",
+        "iconHint": "tall figure icon"
+      },
+      {
+        "word": "alone",
+        "pos": "adj.",
+        "meaningVi": "một mình",
+        "exampleSentence": "She prefers to travel ___ sometimes.",
+        "iconHint": "single figure with space around it"
+      },
+      {
+        "word": "average",
+        "pos": "adj.",
+        "meaningVi": "trung bình",
+        "exampleSentence": "His grades were about ___ this term.",
+        "iconHint": "middle bar in a chart"
+      },
+      {
+        "word": "back",
+        "pos": "adj.",
+        "meaningVi": "phía sau",
+        "exampleSentence": "Please use the ___ door to enter.",
+        "iconHint": "arrow pointing backward"
+      },
+      {
+        "word": "blank",
+        "pos": "adj.",
+        "meaningVi": "để trống",
+        "exampleSentence": "Leave this line ___ if it doesn't apply.",
+        "iconHint": "empty rectangle"
+      },
+      {
+        "word": "empty",
+        "pos": "adj.",
+        "meaningVi": "trống rỗng",
+        "exampleSentence": "The bottle was completely ___ by the end of the trip.",
+        "iconHint": "outlined glass with nothing inside"
+      },
+      {
+        "word": "close",
+        "pos": "adj.",
+        "meaningVi": "gần gũi, gần",
+        "exampleSentence": "They live ___ to the train station.",
+        "iconHint": "two dots near each other"
+      },
+      {
+        "word": "closed",
+        "pos": "adj.",
+        "meaningVi": "đã đóng cửa",
+        "exampleSentence": "The shop is ___ on Sundays.",
+        "iconHint": "locked door icon"
+      },
+      {
+        "word": "connected",
+        "pos": "adj.",
+        "meaningVi": "được kết nối",
+        "exampleSentence": "All the computers are ___ to the same network.",
+        "iconHint": "linked circles"
+      },
+      {
+        "word": "crazy",
+        "pos": "adj.",
+        "meaningVi": "điên rồ",
+        "exampleSentence": "It was a ___ idea, but it worked.",
+        "iconHint": "swirl above a head"
+      },
+      {
+        "word": "creative",
+        "pos": "adj.",
+        "meaningVi": "sáng tạo",
+        "exampleSentence": "She has a very ___ approach to design.",
+        "iconHint": "lightbulb with colourful sparks"
+      },
+      {
+        "word": "crowded",
+        "pos": "adj.",
+        "meaningVi": "đông đúc",
+        "exampleSentence": "The train was too ___ to find a seat.",
+        "iconHint": "many overlapping figures"
+      },
+      {
+        "word": "curly",
+        "pos": "adj.",
+        "meaningVi": "xoăn (tóc)",
+        "exampleSentence": "Her ___ hair bounced as she walked.",
+        "iconHint": "spiral hair strand"
+      },
+      {
+        "word": "daily",
+        "pos": "adj.",
+        "meaningVi": "hằng ngày",
+        "exampleSentence": "Reading is part of her ___ routine.",
+        "iconHint": "sun rising over a calendar"
+      },
+      {
+        "word": "dead",
+        "pos": "adj.",
+        "meaningVi": "đã chết",
+        "exampleSentence": "The ___ battery needed to be replaced.",
+        "iconHint": "flat line on a battery icon"
+      },
+      {
+        "word": "deep",
+        "pos": "adj.",
+        "meaningVi": "sâu",
+        "exampleSentence": "The lake is surprisingly ___ near the middle.",
+        "iconHint": "downward arrow into water"
+      },
+      {
+        "word": "digital",
+        "pos": "adj.",
+        "meaningVi": "kỹ thuật số",
+        "exampleSentence": "Most photos today are stored in ___ form.",
+        "iconHint": "screen with binary code"
+      },
+      {
+        "word": "direct",
+        "pos": "adj.",
+        "meaningVi": "trực tiếp",
+        "exampleSentence": "There is a ___ flight to Tokyo.",
+        "iconHint": "straight arrow between two points"
+      }
+    ]
+  },
+  {
+    "topicId": "common-verbs-a2-3",
+    "topicNameVi": "Động từ thông dụng A2 (phần 3)",
+    "cefrLevel": "A2",
+    "words": [
+      {
+        "word": "earn",
+        "pos": "v.",
+        "meaningVi": "kiếm được (tiền)",
+        "exampleSentence": "She ___s a good salary at her new job.",
+        "iconHint": "coin dropping into an open hand"
+      },
+      {
+        "word": "employ",
+        "pos": "v.",
+        "meaningVi": "thuê, tuyển dụng",
+        "exampleSentence": "The factory ___s over two hundred workers.",
+        "iconHint": "handshake with a briefcase"
+      },
+      {
+        "word": "enter",
+        "pos": "v.",
+        "meaningVi": "đi vào, nhập vào",
+        "exampleSentence": "Please ___ your password to continue.",
+        "iconHint": "arrow moving through a doorway"
+      },
+      {
+        "word": "exist",
+        "pos": "v.",
+        "meaningVi": "tồn tại",
+        "exampleSentence": "Many rare species still ___ in this forest.",
+        "iconHint": "small flag on a map"
+      },
+      {
+        "word": "expect",
+        "pos": "v.",
+        "meaningVi": "mong đợi",
+        "exampleSentence": "We ___ the results by Friday.",
+        "iconHint": "eye looking toward a clock"
+      },
+      {
+        "word": "express",
+        "pos": "v.",
+        "meaningVi": "bày tỏ, diễn đạt",
+        "exampleSentence": "She struggled to ___ her feelings in words.",
+        "iconHint": "speech bubble with a heart"
+      },
+      {
+        "word": "fail",
+        "pos": "v.",
+        "meaningVi": "thất bại, trượt",
+        "exampleSentence": "He was disappointed to ___ the driving test.",
+        "iconHint": "X mark over a certificate"
+      },
+      {
+        "word": "feed",
+        "pos": "v.",
+        "meaningVi": "cho ăn",
+        "exampleSentence": "It's my turn to ___ the dog tonight.",
+        "iconHint": "bowl with food and a paw"
+      },
+      {
+        "word": "fight",
+        "pos": "v.",
+        "meaningVi": "chiến đấu, tranh cãi",
+        "exampleSentence": "The two brothers began to ___ over the toy.",
+        "iconHint": "two fists facing each other"
+      },
+      {
+        "word": "fix",
+        "pos": "v.",
+        "meaningVi": "sửa chữa",
+        "exampleSentence": "He can ___ the leaking tap this afternoon.",
+        "iconHint": "wrench over a pipe"
+      },
+      {
+        "word": "focus",
+        "pos": "v.",
+        "meaningVi": "tập trung",
+        "exampleSentence": "Try to ___ on one task at a time.",
+        "iconHint": "camera lens focusing"
+      },
+      {
+        "word": "greet",
+        "pos": "v.",
+        "meaningVi": "chào hỏi",
+        "exampleSentence": "She smiled and ___ed her guests at the door.",
+        "iconHint": "waving hand at a doorway"
+      },
+      {
+        "word": "guide",
+        "pos": "v.",
+        "meaningVi": "hướng dẫn",
+        "exampleSentence": "The instructor will ___ you through the process.",
+        "iconHint": "arrow leading along a path"
+      },
+      {
+        "word": "hide",
+        "pos": "v.",
+        "meaningVi": "trốn, giấu",
+        "exampleSentence": "The children decided to ___ behind the sofa.",
+        "iconHint": "figure peeking from behind an object"
+      },
+      {
+        "word": "hit",
+        "pos": "v.",
+        "meaningVi": "đánh, va chạm",
+        "exampleSentence": "The ball ___ the window and broke it.",
+        "iconHint": "impact burst icon"
+      },
+      {
+        "word": "hold",
+        "pos": "v.",
+        "meaningVi": "cầm, giữ",
+        "exampleSentence": "Can you ___ my bag for a moment?",
+        "iconHint": "hand gripping an object"
+      },
+      {
+        "word": "identify",
+        "pos": "v.",
+        "meaningVi": "nhận dạng, xác định",
+        "exampleSentence": "Police managed to ___ the suspect quickly.",
+        "iconHint": "magnifying glass over a face"
+      },
+      {
+        "word": "increase",
+        "pos": "v.",
+        "meaningVi": "tăng lên",
+        "exampleSentence": "The company plans to ___ prices next month.",
+        "iconHint": "upward arrow on a bar chart"
+      }
+    ]
   }
 ]
