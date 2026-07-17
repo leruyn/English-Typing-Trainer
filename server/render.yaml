@@ -38,6 +38,15 @@ services:
     # already inside server/ (due to rootDir), where npm's workspace-target
     # flags don't resolve sibling workspaces - a plain relative path does.
     buildCommand: npm install --include=dev && npm --prefix ../packages/shared run build && npm run build
+    # Free-tier instances don't support the interactive Shell (or one-off
+    # jobs), so the schema push and the (idempotent, upsert-based) vocab
+    # seed run automatically before every deploy instead of via a manual
+    # command. No prisma/migrations/ directory exists yet (this project
+    # hasn't adopted migration history), so `db push` is used instead of
+    # `migrate deploy` - it syncs the DB schema straight from schema.prisma.
+    # --accept-data-loss is safe here: the DB starts empty and every later
+    # schema change is additive (new optional columns/tables), not lossy.
+    preDeployCommand: npx prisma db push --accept-data-loss --skip-generate && npm run prisma:seed
     startCommand: npm start
     healthCheckPath: /health
     envVars:
