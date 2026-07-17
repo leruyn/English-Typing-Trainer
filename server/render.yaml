@@ -72,3 +72,12 @@ services:
       # DEFAULT_MODEL in gemini.ts).
       - key: GEMINI_MODEL
         sync: false
+      # Optional per-route maxOutputTokens overrides (see getEnvInt in
+      # gemini.ts) - tune response length without a code change/redeploy.
+      # Defaults: explain=800, coaching=500, assessment=500.
+      - key: GEMINI_EXPLAIN_MAX_TOKENS
+        sync: false
+      - key: GEMINI_COACHING_MAX_TOKENS
+        sync: false
+      - key: GEMINI_ASSESSMENT_MAX_TOKENS
+        sync: false

@@ -10,8 +10,13 @@ import { Router } from 'express';
 import { z } from 'zod';
 import { requireAuth } from '../middleware/auth';
 import { HttpError } from '../lib/errors';
-import { generateGeminiText } from '../lib/gemini';
+import { generateGeminiText, getEnvInt } from '../lib/gemini';
 import { explainLimiter } from '../middleware/rateLimit';
+
+// Was a hardcoded 400 - too tight for a "4-5 câu" Vietnamese answer, often
+// got cut off mid-sentence. Raised to 800; overridable via
+// GEMINI_EXPLAIN_MAX_TOKENS in Render's Environment tab without a redeploy.
+const EXPLAIN_MAX_OUTPUT_TOKENS = getEnvInt('GEMINI_EXPLAIN_MAX_TOKENS', 800);
 
 const router = Router();
 
@@ -43,7 +48,10 @@ router.post('/explain', requireAuth, explainLimiter, async (req, res, next) => {
       .filter(Boolean)
       .join('\n');
 
-    const answer = await generateGeminiText(prompt, { temperature: 0.6, maxOutputTokens: 400 });
+    const answer = await generateGeminiText(prompt, {
+      temperature: 0.6,
+      maxOutputTokens: EXPLAIN_MAX_OUTPUT_TOKENS,
+    });
     res.json({ answer });
   } catch (err) {
     next(err);

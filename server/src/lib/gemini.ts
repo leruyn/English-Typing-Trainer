@@ -57,6 +57,21 @@ function getModel(): string {
 }
 
 /**
+ * Reads an integer override from an env var (e.g. a per-route
+ * `maxOutputTokens` budget), falling back to `fallback` if the var is
+ * unset, empty, or not a valid positive integer. Lets ops tune response
+ * length per feature (`GEMINI_EXPLAIN_MAX_TOKENS`, etc. - see callers in
+ * routes/ai.ts, routes/stats.ts, routes/assessment.ts) from Render's
+ * Environment tab without a code change/redeploy.
+ */
+export function getEnvInt(name: string, fallback: number): number {
+  const raw = process.env[name]?.trim();
+  if (!raw) return fallback;
+  const parsed = Number.parseInt(raw, 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
+
+/**
  * Sends a single-turn prompt to Gemini and returns the model's raw text
  * response. Throws `GeminiError` (a 503 `HttpError`) on any failure -
  * network error, non-2xx response, safety block, or an empty/missing

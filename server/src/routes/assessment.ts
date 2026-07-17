@@ -14,8 +14,13 @@ import { assessmentAnswerSchema } from '@art/shared';
 import { requireAuth } from '../middleware/auth';
 import { prisma } from '../lib/prisma';
 import { HttpError } from '../lib/errors';
-import { generateGeminiJson, GeminiError } from '../lib/gemini';
+import { generateGeminiJson, GeminiError, getEnvInt } from '../lib/gemini';
 import { assessmentQuestionLimiter } from '../middleware/rateLimit';
+
+// Structured JSON (prompt + 4 options), so needs less headroom than a
+// free-text answer, but still raised slightly from 400 to reduce the odds
+// of a truncated/invalid JSON tail. Overridable via GEMINI_ASSESSMENT_MAX_TOKENS.
+const ASSESSMENT_MAX_OUTPUT_TOKENS = getEnvInt('GEMINI_ASSESSMENT_MAX_TOKENS', 500);
 
 const router = Router();
 
@@ -158,7 +163,10 @@ router.post('/question', assessmentQuestionLimiter, async (req, res, next) => {
       .filter(Boolean)
       .join('\n');
 
-    const generated = await generateGeminiJson<unknown>(prompt, { temperature: 0.9, maxOutputTokens: 400 });
+    const generated = await generateGeminiJson<unknown>(prompt, {
+      temperature: 0.9,
+      maxOutputTokens: ASSESSMENT_MAX_OUTPUT_TOKENS,
+    });
 
     if (!isValidGeneratedQuestion(generated)) {
       throw new GeminiError('Gemini returned a malformed question');

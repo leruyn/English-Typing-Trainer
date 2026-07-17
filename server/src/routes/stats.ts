@@ -8,8 +8,12 @@
 import { Router } from 'express';
 import { requireAuth } from '../middleware/auth';
 import { prisma } from '../lib/prisma';
-import { generateGeminiText } from '../lib/gemini';
+import { generateGeminiText, getEnvInt } from '../lib/gemini';
 import { coachingLimiter } from '../middleware/rateLimit';
+
+// Was a hardcoded 300 - tight for "2-3 câu" plus a concrete improvement
+// point. Raised to 500; overridable via GEMINI_COACHING_MAX_TOKENS.
+const COACHING_MAX_OUTPUT_TOKENS = getEnvInt('GEMINI_COACHING_MAX_TOKENS', 500);
 
 const router = Router();
 
@@ -246,7 +250,10 @@ router.get('/coaching', requireAuth, coachingLimiter, async (req, res, next) => 
       'Yêu cầu: giọng văn động viên nhưng thẳng thắn, chỉ ra CỤ THỂ một điểm cần cải thiện nếu có (ví dụ nhóm hộp nào đang yếu, xu hướng có đang đi xuống không), không dùng markdown, không chào hỏi mở đầu, đi thẳng vào nhận xét.',
     ].join('\n');
 
-    const message = await generateGeminiText(prompt, { temperature: 0.6, maxOutputTokens: 300 });
+    const message = await generateGeminiText(prompt, {
+      temperature: 0.6,
+      maxOutputTokens: COACHING_MAX_OUTPUT_TOKENS,
+    });
 
     await prisma.user.update({
       where: { id: userId },
