@@ -14,12 +14,47 @@ import { assessmentAnswerSchema } from '@art/shared';
 import { requireAuth } from '../middleware/auth';
 import { prisma } from '../lib/prisma';
 import { HttpError } from '../lib/errors';
+import { generateGeminiJson, GeminiError } from '../lib/gemini';
 
 const router = Router();
 
 const submitAssessmentSchema = z.object({
   answers: z.array(assessmentAnswerSchema).length(5),
 });
+
+const MIN_DIFFICULTY = 1;
+const MAX_DIFFICULTY = 6;
+const MAX_EXCLUDE_PROMPTS = 30;
+
+const generateQuestionSchema = z.object({
+  difficulty: z.number().int().min(MIN_DIFFICULTY).max(MAX_DIFFICULTY),
+  // Prompts already asked this session, so Gemini doesn't repeat one - the
+  // client sends its running list; capped defensively since this comes
+  // from an unauthenticated caller (see the route below).
+  excludePrompts: z.array(z.string()).max(MAX_EXCLUDE_PROMPTS).optional().default([]),
+});
+
+interface GeneratedQuestion {
+  prompt: string;
+  options: string[];
+  correctIndex: number;
+}
+
+function isValidGeneratedQuestion(value: unknown): value is GeneratedQuestion {
+  if (typeof value !== 'object' || value === null) return false;
+  const q = value as Record<string, unknown>;
+  return (
+    typeof q.prompt === 'string' &&
+    q.prompt.trim().length > 0 &&
+    Array.isArray(q.options) &&
+    q.options.length === 4 &&
+    q.options.every((o) => typeof o === 'string' && o.trim().length > 0) &&
+    typeof q.correctIndex === 'number' &&
+    Number.isInteger(q.correctIndex) &&
+    q.correctIndex >= 0 &&
+    q.correctIndex <= 3
+  );
+}
 
 /**
  * Heuristic used to bucket a completed assessment into a suggested starting
@@ -74,6 +109,70 @@ export function suggestTrack(answers: AssessmentAnswer[]): CefrTrack {
   }
   return 'advanced';
 }
+
+const CEFR_BY_DIFFICULTY: Record<number, string> = {
+  1: 'A1',
+  2: 'A2',
+  3: 'B1',
+  4: 'B2',
+  5: 'C1',
+  6: 'C2',
+};
+
+/**
+ * POST /assessment/question — generates one adaptive-assessment multiple-
+ * choice question at the requested difficulty via Gemini, replacing the
+ * small hardcoded 18-question bank the client used to draw from (see the
+ * TODO that used to live in `app/(onboarding)/assessment.tsx`).
+ *
+ * Deliberately NOT behind `requireAuth`: this runs during first-time
+ * onboarding, before an account exists (the assessment happens before
+ * `account.tsx` creates the user and a token is issued) - the question
+ * itself carries no user-specific data, so there's nothing to protect here.
+ *
+ * Falls back to letting the client use its local static question bank on
+ * any failure (bad Gemini output, network error, etc.) via the 503 that
+ * `generateGeminiJson`/`GeminiError` throws - the entrance assessment must
+ * never be blocked by an AI outage.
+ */
+router.post('/question', async (req, res, next) => {
+  try {
+    const parsed = generateQuestionSchema.safeParse(req.body);
+    if (!parsed.success) {
+      throw new HttpError(400, parsed.error.issues.map((i) => i.message).join(', '));
+    }
+    const { difficulty, excludePrompts } = parsed.data;
+    const cefrLevel = CEFR_BY_DIFFICULTY[difficulty] ?? 'A1';
+
+    const prompt = [
+      `Tạo một câu hỏi trắc nghiệm tiếng Anh cho bài khảo sát trình độ CEFR, đúng mức độ ${cefrLevel}.`,
+      'Câu hỏi phải kiểm tra nghĩa hoặc cách dùng một từ vựng tiếng Anh, hỏi bằng tiếng Việt, có đúng 4 phương án trả lời bằng tiếng Việt (hoặc tiếng Anh nếu phù hợp), chỉ một đáp án đúng.',
+      excludePrompts.length > 0
+        ? `Không được trùng hoặc quá giống các câu hỏi đã dùng: ${excludePrompts.join(' | ')}`
+        : '',
+      'Trả về JSON đúng theo cấu trúc sau, không thêm gì khác:',
+      '{"prompt": "...", "options": ["...", "...", "...", "..."], "correctIndex": 0}',
+      'Trong đó correctIndex là chỉ số (0-3) của đáp án đúng trong mảng options.',
+    ]
+      .filter(Boolean)
+      .join('\n');
+
+    const generated = await generateGeminiJson<unknown>(prompt, { temperature: 0.9, maxOutputTokens: 400 });
+
+    if (!isValidGeneratedQuestion(generated)) {
+      throw new GeminiError('Gemini returned a malformed question');
+    }
+
+    res.json({
+      prompt: generated.prompt,
+      options: generated.options,
+      correctIndex: generated.correctIndex,
+      difficulty,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
 
 router.post('/', requireAuth, async (req, res, next) => {
   try {

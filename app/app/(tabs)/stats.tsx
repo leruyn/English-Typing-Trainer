@@ -1,11 +1,11 @@
-import { ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Flame, Zap } from "lucide-react-native";
+import { Flame, Sparkles, Zap } from "lucide-react-native";
 
 import { colors } from "../../src/theme";
 import MasteryRing from "../../src/components/MasteryRing";
 import SrsBoxList from "../../src/components/SrsBoxList";
-import { useStatsQuery } from "../../src/api/hooks";
+import { useCoachingQuery, useStatsQuery } from "../../src/api/hooks";
 
 const HEATMAP_COLUMNS = 12;
 const HEATMAP_ROWS = 7;
@@ -71,6 +71,7 @@ function WeeklyBarChart({ values }: { values: number[] }) {
 export default function StatsScreen() {
   const insets = useSafeAreaInsets();
   const { data: stats } = useStatsQuery();
+  const { data: coaching, isLoading: coachingLoading } = useCoachingQuery();
 
   const masteryPercent = stats?.masteryPercent ?? 0;
   const streakDays = stats?.currentStreak ?? 0;
@@ -131,6 +132,39 @@ export default function StatsScreen() {
           </Text>
         </View>
       </View>
+
+      {/* AI coaching note (Gemini) - hidden entirely while loading or on
+          failure (e.g. Gemini outage) rather than showing an error state;
+          this is a nice-to-have insight, not something the screen depends on. */}
+      {coachingLoading ? (
+        <View
+          className="mt-4 flex-row items-center gap-3 rounded-3xl bg-white px-5 py-4"
+          style={{ borderWidth: 1, borderColor: colors.border }}
+        >
+          <ActivityIndicator color={colors.indigo} size="small" />
+          <Text className="text-xs text-ink/40" style={{ fontFamily: "PlusJakartaSans_500Medium" }}>
+            AI đang phân tích tiến trình của bạn...
+          </Text>
+        </View>
+      ) : coaching?.message ? (
+        <View
+          className="mt-4 rounded-3xl px-5 py-4"
+          style={{ backgroundColor: colors.indigo100, borderWidth: 1, borderColor: colors.indigo100 }}
+        >
+          <View className="flex-row items-center gap-1.5">
+            <Sparkles size={14} color={colors.indigo600} />
+            <Text
+              className="text-[11px]"
+              style={{ fontFamily: "PlusJakartaSans_700Bold", color: colors.indigo600, textTransform: "uppercase", letterSpacing: 0.4 }}
+            >
+              Nhận xét từ AI
+            </Text>
+          </View>
+          <Text className="mt-1.5 text-sm text-ink" style={{ fontFamily: "PlusJakartaSans_500Medium", lineHeight: 20 }}>
+            {coaching.message}
+          </Text>
+        </View>
+      ) : null}
 
       {/* 5 SRS memory boxes */}
       <Text

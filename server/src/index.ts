@@ -9,6 +9,7 @@ import wordsRouter from './routes/words';
 import progressRouter from './routes/progress';
 import assessmentRouter from './routes/assessment';
 import statsRouter from './routes/stats';
+import aiRouter from './routes/ai';
 import { HttpError } from './lib/errors';
 
 const app = express();
@@ -25,6 +26,7 @@ app.use('/words', wordsRouter);
 app.use('/progress', progressRouter);
 app.use('/assessment', assessmentRouter);
 app.use('/stats', statsRouter);
+app.use('/ai', aiRouter);
 
 // Unmatched routes.
 app.use((req: Request, res: Response) => {

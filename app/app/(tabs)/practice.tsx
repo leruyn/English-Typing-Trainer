@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ActivityIndicator, Pressable, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import * as Speech from "expo-speech";
 import Animated, { useAnimatedStyle, useSharedValue, withSequence, withTiming } from "react-native-reanimated";
-import { BookOpen, Clock, Ear, Eye, Target, Volume2, Zap } from "lucide-react-native";
+import { BookOpen, Clock, Ear, Eye, Sparkles, Target, Volume2, Zap } from "lucide-react-native";
 
 import type { PracticeMode } from "@art/shared";
 import { colors } from "../../src/theme";
@@ -11,7 +11,7 @@ import Mascot, { type MascotState } from "../../src/components/Mascot";
 import StarBurst, { type StarBurstHandle } from "../../src/components/StarBurst";
 import VirtualKeyboard from "../../src/components/VirtualKeyboard";
 import { usePracticeQueue } from "../../src/practice/usePracticeQueue";
-import { useProgressQuery, useSubmitAttempt } from "../../src/api/hooks";
+import { useExplainWord, useProgressQuery, useSubmitAttempt } from "../../src/api/hooks";
 import { getSrsBoxMeta } from "../../src/srs";
 
 const MODES: Array<{ key: PracticeMode; label: string; icon: typeof Eye }> = [
@@ -28,6 +28,7 @@ export default function PracticeScreen() {
   const { queue, isLoading } = usePracticeQueue();
   const submitAttempt = useSubmitAttempt();
   const { data: progressData } = useProgressQuery();
+  const explainWord = useExplainWord();
 
   const [mode, setMode] = useState<PracticeMode>(initialMode);
   const [wordIndex, setWordIndex] = useState(0);
@@ -39,6 +40,8 @@ export default function PracticeScreen() {
   const [mascotState, setMascotState] = useState<MascotState>("neutral");
   const [hasSpoken, setHasSpoken] = useState(false);
   const [wordComplete, setWordComplete] = useState(false);
+  const [aiPanelOpen, setAiPanelOpen] = useState(false);
+  const [aiQuestion, setAiQuestion] = useState("");
 
   const starBurstRef = useRef<StarBurstHandle>(null);
   const shakeX = useSharedValue(0);
@@ -65,6 +68,12 @@ export default function PracticeScreen() {
     setHasSpoken(false);
     wordStartTimeRef.current = Date.now();
     wordWrongCountRef.current = 0;
+    // Close/reset the AI panel too - an answer about the previous word
+    // shouldn't linger once we've moved on to a new one.
+    setAiPanelOpen(false);
+    setAiQuestion("");
+    explainWord.reset();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wordIndex, currentWord?.id]);
 
   useEffect(() => {
@@ -145,6 +154,17 @@ export default function PracticeScreen() {
     setTypedCount((c) => Math.max(0, c - 1));
   }
 
+  function handleAskAi() {
+    const question = aiQuestion.trim();
+    if (!question || !currentWord) return;
+    explainWord.mutate({
+      word: currentWord.text,
+      meaningVi: currentWord.meaningVi,
+      exampleSentence: currentWord.exampleSentence,
+      question,
+    });
+  }
+
   function speakWord() {
     if (!currentWord) return;
     setHasSpoken(true);
@@ -207,15 +227,88 @@ export default function PracticeScreen() {
         style={{ flex: 1, minHeight: 0 }}
         contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 24 }}
       >
-        {/* SRS box chip */}
-        <View
-          className="mb-3 mt-1 flex-row items-center self-start rounded-full px-3 py-1.5"
-          style={{ backgroundColor: boxMeta.bg }}
-        >
-          <Text style={{ fontFamily: "Outfit_700Bold", fontSize: 11, color: boxMeta.fg }}>
-            📦 Hộp {currentBox} · {boxMeta.label}
-          </Text>
+        {/* SRS box chip + AI tutor toggle */}
+        <View className="mb-3 mt-1 flex-row items-center justify-between">
+          <View
+            className="flex-row items-center self-start rounded-full px-3 py-1.5"
+            style={{ backgroundColor: boxMeta.bg }}
+          >
+            <Text style={{ fontFamily: "Outfit_700Bold", fontSize: 11, color: boxMeta.fg }}>
+              📦 Hộp {currentBox} · {boxMeta.label}
+            </Text>
+          </View>
+
+          <Pressable
+            onPress={() => setAiPanelOpen((open) => !open)}
+            className="flex-row items-center gap-1 rounded-full px-3 py-1.5"
+            style={{ backgroundColor: aiPanelOpen ? colors.indigo : colors.indigo100 }}
+          >
+            <Sparkles size={12} color={aiPanelOpen ? "white" : colors.indigo600} />
+            <Text
+              style={{
+                fontFamily: "Outfit_700Bold",
+                fontSize: 11,
+                color: aiPanelOpen ? "white" : colors.indigo600,
+              }}
+            >
+              Hỏi AI
+            </Text>
+          </Pressable>
         </View>
+
+        {/* AI vocabulary tutor panel (Gemini) - ask a free-text question
+            about the word currently being practiced. */}
+        {aiPanelOpen && (
+          <View
+            className="mb-3 rounded-2xl bg-white px-4 py-3"
+            style={{ borderWidth: 1, borderColor: colors.indigo100 }}
+          >
+            <View className="flex-row items-center gap-2">
+              <TextInput
+                value={aiQuestion}
+                onChangeText={setAiQuestion}
+                placeholder={`Hỏi gì đó về "${currentWord.text}"...`}
+                placeholderTextColor="#94a3b8"
+                style={{ flex: 1, fontFamily: "PlusJakartaSans", fontSize: 13, color: colors.ink }}
+                onSubmitEditing={handleAskAi}
+                returnKeyType="send"
+              />
+              <Pressable
+                onPress={handleAskAi}
+                disabled={explainWord.isPending || aiQuestion.trim().length === 0}
+                className="rounded-full px-3 py-1.5"
+                style={{
+                  backgroundColor: colors.indigo,
+                  opacity: explainWord.isPending || aiQuestion.trim().length === 0 ? 0.5 : 1,
+                }}
+              >
+                <Text style={{ fontFamily: "Outfit_700Bold", fontSize: 11, color: "white" }}>Gửi</Text>
+              </Pressable>
+            </View>
+
+            {explainWord.isPending && (
+              <View className="mt-3 flex-row items-center gap-2">
+                <ActivityIndicator size="small" color={colors.indigo} />
+                <Text className="text-xs text-ink/40" style={{ fontFamily: "PlusJakartaSans_500Medium" }}>
+                  AI đang trả lời...
+                </Text>
+              </View>
+            )}
+            {explainWord.isError && (
+              <Text className="mt-3 text-xs" style={{ fontFamily: "PlusJakartaSans_500Medium", color: colors.rose }}>
+                AI hiện không phản hồi được, thử lại sau nhé.
+              </Text>
+            )}
+            {explainWord.data?.answer && (
+              <Text
+                className="mt-3 text-sm text-ink"
+                style={{ fontFamily: "PlusJakartaSans", lineHeight: 19 }}
+              >
+                {explainWord.data.answer}
+              </Text>
+            )}
+          </View>
+        )}
 
         {/* Stats row */}
         <View className="flex-row gap-3">

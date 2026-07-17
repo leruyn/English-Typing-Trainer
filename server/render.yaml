@@ -60,3 +60,15 @@ services:
         generateValue: true
       - key: NODE_ENV
         value: production
+      # Gemini API key for the AI features (/stats/coaching,
+      # /assessment/question, /ai/explain - see server/src/lib/gemini.ts).
+      # `sync: false` marks this as a secret Render won't try to fill in
+      # from this file - paste the real key in the dashboard's Environment
+      # tab after first deploy. Without it, those three routes 503 but
+      # every other endpoint keeps working normally.
+      - key: GEMINI_API_KEY
+        sync: false
+      # Optional override; defaults to gemini-3.5-flash if unset (see
+      # DEFAULT_MODEL in gemini.ts).
+      - key: GEMINI_MODEL
+        sync: false

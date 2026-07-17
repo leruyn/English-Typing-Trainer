@@ -11,12 +11,15 @@ import { enqueueAttempt, flushAttemptQueue } from "../offline/attemptQueue";
 import { fetchWithOfflineCache } from "./offlineCache";
 import { ApiError } from "./client";
 import {
+  explainWord,
+  fetchCoachingMessage,
   fetchProgress,
   fetchStats,
   fetchWords,
   fetchWordTopics,
   submitAssessment,
   submitAttempt,
+  type ExplainWordParams,
   type FetchWordsParams,
   type SubmitAttemptParams,
 } from "./endpoints";
@@ -153,8 +156,35 @@ export function useSubmitAttempt() {
   });
 }
 
+/**
+ * Gemini-generated personalized coaching note (see `fetchCoachingMessage`).
+ * Deliberately not run through `fetchWithOfflineCache` - unlike words/
+ * progress/stats, there's no value in surfacing a stale AI note from a
+ * past session if this request fails, so it just quietly stays absent
+ * (the Stats screen hides the card entirely on error/loading, see
+ * `app/(tabs)/stats.tsx`). Only one retry - an AI call that's going to
+ * fail usually fails fast, no need to hammer it.
+ */
+export function useCoachingQuery() {
+  const { isAuthenticated } = useAuth();
+  return useQuery({
+    queryKey: ["coaching"],
+    queryFn: fetchCoachingMessage,
+    enabled: isAuthenticated,
+    staleTime: 30 * 60 * 1000,
+    retry: 1,
+  });
+}
+
 export function useSubmitAssessment() {
   return useMutation({
     mutationFn: (answers: AssessmentAnswer[]) => submitAssessment(answers),
+  });
+}
+
+/** AI vocabulary tutor (Gemini) - see `explainWord` / `POST /ai/explain`. */
+export function useExplainWord() {
+  return useMutation({
+    mutationFn: (params: ExplainWordParams) => explainWord(params),
   });
 }

@@ -170,3 +170,53 @@ export function submitAssessment(
 export function fetchStats(): Promise<StatsResponse> {
   return apiFetch<StatsResponse>("/stats");
 }
+
+/**
+ * AI-generated (Gemini) personalized note derived from the same numbers
+ * `fetchStats` returns - see `server/src/routes/stats.ts`'s `/stats/coaching`.
+ * Kept as its own request (not a field returned by `fetchStats`) so the
+ * Stats screen can render its charts immediately and let this slower call
+ * fill in afterward.
+ */
+export function fetchCoachingMessage(): Promise<{ message: string }> {
+  return apiFetch<{ message: string }>("/stats/coaching");
+}
+
+// --- ai -----------------------------------------------------------
+
+export interface ExplainWordParams {
+  word: string;
+  meaningVi: string;
+  exampleSentence: string;
+  question: string;
+}
+
+/** AI vocabulary tutor - see `server/src/routes/ai.ts`'s `POST /ai/explain`. */
+export function explainWord(params: ExplainWordParams): Promise<{ answer: string }> {
+  return apiFetch<{ answer: string }>("/ai/explain", { method: "POST", body: params });
+}
+
+export interface GeneratedAssessmentQuestion {
+  prompt: string;
+  options: string[];
+  correctIndex: number;
+  difficulty: number;
+}
+
+/**
+ * Requests one AI-generated adaptive-assessment question at the given
+ * difficulty - see `server/src/routes/assessment.ts`'s
+ * `POST /assessment/question`. Callers should fall back to the local
+ * static question bank on failure (this can 503 if Gemini is unavailable
+ * or returns malformed JSON) since the entrance assessment must not be
+ * blocked by an AI outage.
+ */
+export function generateAssessmentQuestion(params: {
+  difficulty: number;
+  excludePrompts: string[];
+}): Promise<GeneratedAssessmentQuestion> {
+  return apiFetch<GeneratedAssessmentQuestion>("/assessment/question", {
+    method: "POST",
+    body: params,
+  });
+}

@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { Pressable, Text, View } from "react-native";
+import { useEffect, useState } from "react";
+import { ActivityIndicator, Pressable, Text, View } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import Animated, { useAnimatedStyle, withSpring } from "react-native-reanimated";
 import { Check, X } from "lucide-react-native";
@@ -7,16 +7,14 @@ import Svg, { Circle, Polyline } from "react-native-svg";
 
 import { colors } from "../../src/theme";
 import type { AssessmentAnswer, CefrTrack } from "@art/shared";
-import { submitAssessment } from "../../src/api/endpoints";
+import { generateAssessmentQuestion, submitAssessment } from "../../src/api/endpoints";
 
 /**
  * Small hardcoded question bank spanning 6 difficulty tiers (roughly
- * mirroring A1-C2). A real backend-driven adaptive item bank is future
- * work — see TODO below.
- *
- * TODO(backend): replace this hardcoded bank with questions served (and
- * ideally generated/curated) from the server, so item difficulty can be
- * calibrated from real user data instead of guessed here.
+ * mirroring A1-C2). Used as the fallback when the AI-generated question
+ * endpoint (`POST /assessment/question`, Gemini-backed - see
+ * `server/src/routes/assessment.ts`) is unavailable, so a Gemini outage
+ * never blocks the entrance assessment.
  */
 interface Question {
   difficulty: number; // 1 (easiest) - 6 (hardest)
@@ -136,13 +134,42 @@ export default function AssessmentScreen() {
   const [answers, setAnswers] = useState<AssessmentAnswer[]>([]);
   const [selected, setSelected] = useState<number | null>(null);
   const [askedPrompts, setAskedPrompts] = useState<Set<string>>(new Set());
+  const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
+  const [loadingQuestion, setLoadingQuestion] = useState(true);
 
-  const currentQuestion = useMemo(
-    () => pickQuestion(difficulty, askedPrompts),
-    // Only re-pick when we advance to a new question index.
+  // Fetch (or fall back to) one question whenever we advance to a new
+  // question index. `difficulty` is intentionally not in the dependency
+  // array - it's updated in the same batch as `questionIndex` right before
+  // this runs (see handleAnswer), so by the time this effect body executes
+  // it already reads the current value; re-running on both would double-fetch.
+  useEffect(() => {
+    let cancelled = false;
+    setLoadingQuestion(true);
+
+    generateAssessmentQuestion({ difficulty, excludePrompts: Array.from(askedPrompts) })
+      .then((q) => {
+        if (cancelled) return;
+        setCurrentQuestion({
+          difficulty: q.difficulty,
+          prompt: q.prompt,
+          options: q.options,
+          correctIndex: q.correctIndex,
+        });
+      })
+      .catch(() => {
+        // Gemini unavailable/malformed output - fall back to the local
+        // static bank so the assessment never gets stuck.
+        if (!cancelled) setCurrentQuestion(pickQuestion(difficulty, askedPrompts));
+      })
+      .finally(() => {
+        if (!cancelled) setLoadingQuestion(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [questionIndex],
-  );
+  }, [questionIndex]);
 
   const badgeStyle = useAnimatedStyle(() => ({
     transform: [
@@ -156,7 +183,7 @@ export default function AssessmentScreen() {
   }));
 
   function handleAnswer(optionIndex: number) {
-    if (selected !== null) return;
+    if (selected !== null || !currentQuestion) return;
     setSelected(optionIndex);
     const correct = optionIndex === currentQuestion.correctIndex;
     const nextTrajectory = [...trajectory, currentQuestion.difficulty];
@@ -280,67 +307,78 @@ export default function AssessmentScreen() {
 
       {/* Question card */}
       <View className="mt-6 flex-1">
-        <View
-          className="rounded-3xl bg-white p-6"
-          style={{
-            shadowColor: colors.ink,
-            shadowOpacity: 0.06,
-            shadowRadius: 10,
-            shadowOffset: { width: 0, height: 4 },
-          }}
-        >
-          <Text
-            className="text-center text-xl text-ink"
-            style={{ fontFamily: "Outfit_600SemiBold" }}
-          >
-            {currentQuestion.prompt}
-          </Text>
-        </View>
-
-        {/* 2x2 answer grid */}
-        <View className="mt-6 flex-row flex-wrap gap-3">
-          {currentQuestion.options.map((option, i) => {
-            const isSelected = selected === i;
-            const isCorrectOption = i === currentQuestion.correctIndex;
-            const showResult = selected !== null;
-
-            let bg = "bg-white";
-            let borderColor = "#eee7da";
-            if (showResult && isCorrectOption) {
-              bg = "bg-emerald-50";
-              borderColor = colors.emerald500;
-            } else if (showResult && isSelected && !isCorrectOption) {
-              bg = "bg-rose-50";
-              borderColor = "#fb7185";
-            }
-
-            return (
-              <Pressable
-                key={option}
-                onPress={() => handleAnswer(i)}
-                className={`${bg} basis-[47%] grow items-center justify-center rounded-2xl px-3 py-5`}
-                style={{ borderWidth: 1.5, borderColor, minHeight: 84 }}
+        {loadingQuestion || !currentQuestion ? (
+          <View className="mt-10 items-center">
+            <ActivityIndicator color={colors.emerald500} />
+            <Text className="mt-3 text-xs text-ink/40" style={{ fontFamily: "Outfit_500Medium" }}>
+              Đang tạo câu hỏi...
+            </Text>
+          </View>
+        ) : (
+          <>
+            <View
+              className="rounded-3xl bg-white p-6"
+              style={{
+                shadowColor: colors.ink,
+                shadowOpacity: 0.06,
+                shadowRadius: 10,
+                shadowOffset: { width: 0, height: 4 },
+              }}
+            >
+              <Text
+                className="text-center text-xl text-ink"
+                style={{ fontFamily: "Outfit_600SemiBold" }}
               >
-                <Text
-                  className="text-center text-sm text-ink"
-                  style={{ fontFamily: "Outfit_500Medium" }}
-                >
-                  {option}
-                </Text>
-                {showResult && isCorrectOption && (
-                  <View className="mt-1">
-                    <Check size={16} color={colors.emerald500} />
-                  </View>
-                )}
-                {showResult && isSelected && !isCorrectOption && (
-                  <View className="mt-1">
-                    <X size={16} color="#e11d48" />
-                  </View>
-                )}
-              </Pressable>
-            );
-          })}
-        </View>
+                {currentQuestion.prompt}
+              </Text>
+            </View>
+
+            {/* 2x2 answer grid */}
+            <View className="mt-6 flex-row flex-wrap gap-3">
+              {currentQuestion.options.map((option, i) => {
+                const isSelected = selected === i;
+                const isCorrectOption = i === currentQuestion.correctIndex;
+                const showResult = selected !== null;
+
+                let bg = "bg-white";
+                let borderColor = "#eee7da";
+                if (showResult && isCorrectOption) {
+                  bg = "bg-emerald-50";
+                  borderColor = colors.emerald500;
+                } else if (showResult && isSelected && !isCorrectOption) {
+                  bg = "bg-rose-50";
+                  borderColor = "#fb7185";
+                }
+
+                return (
+                  <Pressable
+                    key={option}
+                    onPress={() => handleAnswer(i)}
+                    className={`${bg} basis-[47%] grow items-center justify-center rounded-2xl px-3 py-5`}
+                    style={{ borderWidth: 1.5, borderColor, minHeight: 84 }}
+                  >
+                    <Text
+                      className="text-center text-sm text-ink"
+                      style={{ fontFamily: "Outfit_500Medium" }}
+                    >
+                      {option}
+                    </Text>
+                    {showResult && isCorrectOption && (
+                      <View className="mt-1">
+                        <Check size={16} color={colors.emerald500} />
+                      </View>
+                    )}
+                    {showResult && isSelected && !isCorrectOption && (
+                      <View className="mt-1">
+                        <X size={16} color="#e11d48" />
+                      </View>
+                    )}
+                  </Pressable>
+                );
+              })}
+            </View>
+          </>
+        )}
       </View>
 
       <Text
