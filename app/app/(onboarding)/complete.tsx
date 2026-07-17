@@ -29,11 +29,14 @@ export default function OnboardingCompleteScreen() {
     trajectory: trajectoryParam,
     track: trackParam,
     answers: answersParam,
+    retake: retakeParam,
   } = useLocalSearchParams<{
     trajectory?: string;
     track?: string;
     answers?: string;
+    retake?: string;
   }>();
+  const isRetake = retakeParam === "1";
 
   let trajectory: number[] = [];
   try {
@@ -168,10 +171,12 @@ export default function OnboardingCompleteScreen() {
 
       <Pressable
         onPress={() =>
-          router.push({
-            pathname: "/(onboarding)/pace",
-            params: { track: suggestedTrack, answers: answersParam ?? "" },
-          })
+          isRetake
+            ? router.replace("/(tabs)/home")
+            : router.push({
+                pathname: "/(onboarding)/pace",
+                params: { track: suggestedTrack, answers: answersParam ?? "" },
+              })
         }
         className="items-center rounded-2xl bg-emerald-500 py-4"
         style={{
@@ -185,7 +190,7 @@ export default function OnboardingCompleteScreen() {
           className="text-base text-white"
           style={{ fontFamily: "Outfit_600SemiBold" }}
         >
-          Tiếp tục
+          {isRetake ? "Về trang chủ" : "Tiếp tục"}
         </Text>
       </Pressable>
     </View>

@@ -46,6 +46,25 @@ export default function TimeAttackScreen() {
   const wordStartTimeRef = useRef(Date.now());
   const wordWrongCountRef = useRef(0);
 
+  // "+3s" / "-1s" floating toast, matching the mockup's feedback badge.
+  const [toast, setToast] = useState<{ text: string; positive: boolean } | null>(null);
+  const toastOpacity = useSharedValue(0);
+  const toastY = useSharedValue(-6);
+  const toastTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function showToast(text: string, positive: boolean) {
+    setToast({ text, positive });
+    toastOpacity.value = withSequence(withTiming(1, { duration: 120 }), withTiming(1, { duration: 500 }), withTiming(0, { duration: 300 }));
+    toastY.value = withSequence(withTiming(0, { duration: 150 }), withTiming(0, { duration: 500 }), withTiming(-6, { duration: 300 }));
+    if (toastTimeout.current) clearTimeout(toastTimeout.current);
+    toastTimeout.current = setTimeout(() => setToast(null), 950);
+  }
+
+  const toastStyle = useAnimatedStyle(() => ({
+    opacity: toastOpacity.value,
+    transform: [{ translateY: toastY.value }],
+  }));
+
   const currentWordEntry = queue.length > 0 ? queue[wordIndex % queue.length] : null;
   const currentWord = currentWordEntry?.text ?? "";
 
@@ -63,6 +82,7 @@ export default function TimeAttackScreen() {
   useEffect(() => {
     return () => {
       if (sadTimeout.current) clearTimeout(sadTimeout.current);
+      if (toastTimeout.current) clearTimeout(toastTimeout.current);
     };
   }, []);
 
@@ -99,6 +119,7 @@ export default function TimeAttackScreen() {
         setSecondsLeft((s) => Math.min(ROUND_SECONDS + 60, s + CORRECT_WORD_BONUS_SECONDS));
         setMascotState("happy");
         starBurstRef.current?.burst();
+        showToast(`+${CORRECT_WORD_BONUS_SECONDS}s`, true);
 
         // Time Attack's fast-paced typing is the same skill practice.tsx
         // measures, so completed words feed the same SRS/XP pipeline -
@@ -127,6 +148,7 @@ export default function TimeAttackScreen() {
       wordWrongCountRef.current += 1;
       setSecondsLeft((s) => Math.max(0, s - WRONG_CHAR_PENALTY_SECONDS));
       setMascotState("sad");
+      showToast(`-${WRONG_CHAR_PENALTY_SECONDS}s`, false);
       shakeX.value = withSequence(
         withTiming(-8, { duration: 40 }),
         withTiming(8, { duration: 40 }),
@@ -148,7 +170,33 @@ export default function TimeAttackScreen() {
   const nextChar = running ? currentWord[typedCount]?.toUpperCase() : undefined;
 
   return (
-    <View className="flex-1 bg-cream">
+    <View className="flex-1 bg-cream" style={{ position: "relative" }}>
+      {toast && (
+        <Animated.View
+          pointerEvents="none"
+          style={[
+            {
+              position: "absolute",
+              top: 64,
+              right: 24,
+              zIndex: 10,
+              paddingHorizontal: 12,
+              paddingVertical: 6,
+              borderRadius: 999,
+              backgroundColor: toast.positive ? colors.emerald500 : colors.rose,
+              shadowColor: toast.positive ? colors.emerald500 : colors.rose,
+              shadowOpacity: 0.35,
+              shadowRadius: 10,
+              shadowOffset: { width: 0, height: 4 },
+            },
+            toastStyle,
+          ]}
+        >
+          <Text style={{ fontFamily: "JetBrainsMono_700Bold", fontSize: 13, color: "white" }}>
+            {toast.text}
+          </Text>
+        </Animated.View>
+      )}
       <View style={{ paddingTop: 56, paddingHorizontal: 20 }}>
         <View className="flex-row items-center gap-2">
           <Zap size={20} color="#d97706" fill="#d97706" />

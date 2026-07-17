@@ -11,7 +11,8 @@ import Mascot, { type MascotState } from "../../src/components/Mascot";
 import StarBurst, { type StarBurstHandle } from "../../src/components/StarBurst";
 import VirtualKeyboard from "../../src/components/VirtualKeyboard";
 import { usePracticeQueue } from "../../src/practice/usePracticeQueue";
-import { useSubmitAttempt } from "../../src/api/hooks";
+import { useProgressQuery, useSubmitAttempt } from "../../src/api/hooks";
+import { getSrsBoxMeta } from "../../src/srs";
 
 const MODES: Array<{ key: PracticeMode; label: string; icon: typeof Eye }> = [
   { key: "visual", label: "Visual", icon: Eye },
@@ -26,6 +27,7 @@ export default function PracticeScreen() {
 
   const { queue, isLoading } = usePracticeQueue();
   const submitAttempt = useSubmitAttempt();
+  const { data: progressData } = useProgressQuery();
 
   const [mode, setMode] = useState<PracticeMode>(initialMode);
   const [wordIndex, setWordIndex] = useState(0);
@@ -45,6 +47,14 @@ export default function PracticeScreen() {
   const wordWrongCountRef = useRef(0);
 
   const currentWord = queue.length > 0 ? queue[wordIndex % queue.length] : null;
+  // New (never-attempted) words have no progress row yet - the server
+  // defaults an unstarted word to box 1 the first time an attempt is
+  // recorded (see `server/src/routes/progress.ts`), so mirror that default
+  // here rather than showing no box at all.
+  const currentBox = currentWord
+    ? (progressData?.progress.find((p) => p.wordId === currentWord.id)?.srsBox ?? 1)
+    : 1;
+  const boxMeta = getSrsBoxMeta(currentBox);
 
   useEffect(() => {
     const interval = setInterval(() => setElapsedSeconds((s) => s + 1), 1000);
@@ -197,6 +207,16 @@ export default function PracticeScreen() {
         style={{ flex: 1, minHeight: 0 }}
         contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 24 }}
       >
+        {/* SRS box chip */}
+        <View
+          className="mb-3 mt-1 flex-row items-center self-start rounded-full px-3 py-1.5"
+          style={{ backgroundColor: boxMeta.bg }}
+        >
+          <Text style={{ fontFamily: "Outfit_700Bold", fontSize: 11, color: boxMeta.fg }}>
+            📦 Hộp {currentBox} · {boxMeta.label}
+          </Text>
+        </View>
+
         {/* Stats row */}
         <View className="flex-row gap-3">
           <StatChip icon={Zap} value={`${wpm}`} label="WPM" />

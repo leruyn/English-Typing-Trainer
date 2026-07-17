@@ -4,7 +4,8 @@ import * as Speech from "expo-speech";
 import { Search, Volume2 } from "lucide-react-native";
 
 import { colors } from "../../src/theme";
-import { useWordTopicsQuery, useWordsInfiniteQuery } from "../../src/api/hooks";
+import { useProgressQuery, useWordTopicsQuery, useWordsInfiniteQuery } from "../../src/api/hooks";
+import { getSrsBoxMeta } from "../../src/srs";
 import type { Word } from "@art/shared";
 
 /**
@@ -34,6 +35,16 @@ export default function VaultScreen() {
   const { data: topicsData } = useWordTopicsQuery();
   const topicOptions = topicsData?.topics ?? [];
 
+  // Looked up per row to show an SRS box badge - most users have practiced
+  // only a fraction of the ~4900-word bank, so this list is naturally much
+  // smaller than the word table itself.
+  const { data: progressData } = useProgressQuery();
+  const boxByWordId = useMemo(() => {
+    const map = new Map<string, number>();
+    for (const p of progressData?.progress ?? []) map.set(p.wordId, p.srsBox);
+    return map;
+  }, [progressData]);
+
   const {
     data,
     isLoading,
@@ -57,8 +68,8 @@ export default function VaultScreen() {
       <FlatList
         data={words}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <WordRow entry={item} />}
-        contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 24, gap: 10 }}
+        renderItem={({ item }) => <WordRow entry={item} srsBox={boxByWordId.get(item.id)} />}
+        contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 24 }}
         onEndReached={() => {
           if (hasNextPage && !isFetchingNextPage) void fetchNextPage();
         }}
@@ -78,8 +89,8 @@ export default function VaultScreen() {
 
             {/* Search input */}
             <View
-              className="mt-4 flex-row items-center gap-2 rounded-2xl bg-white px-4 py-3"
-              style={{ borderWidth: 1, borderColor: "#eee7da" }}
+              className="mt-4 flex-row items-center gap-2 rounded-full bg-white px-4 py-3"
+              style={{ borderWidth: 1, borderColor: colors.border }}
             >
               <Search size={16} color={colors.ink} opacity={0.4} />
               <TextInput
@@ -142,37 +153,37 @@ export default function VaultScreen() {
   );
 }
 
-function WordRow({ entry }: { entry: Word }) {
+function WordRow({ entry, srsBox }: { entry: Word; srsBox: number | undefined }) {
+  const boxMeta = srsBox !== undefined ? getSrsBoxMeta(srsBox) : null;
+
   return (
     <View
-      className="flex-row items-center rounded-2xl bg-white px-4 py-3.5"
-      style={{
-        shadowColor: colors.ink,
-        shadowOpacity: 0.04,
-        shadowRadius: 6,
-        shadowOffset: { width: 0, height: 2 },
-      }}
+      className="flex-row items-center px-1 py-3"
+      style={{ borderBottomWidth: 1, borderBottomColor: colors.border }}
     >
-      <View className="flex-1">
-        <View className="flex-row items-center gap-2">
-          <Text style={{ fontFamily: "Outfit_600SemiBold", fontSize: 15, color: colors.ink }}>
-            {entry.text}
-          </Text>
-          <Text className="text-xs italic text-ink/40" style={{ fontFamily: "Outfit" }}>
-            {entry.partOfSpeech}
-          </Text>
-        </View>
-        <Text className="mt-0.5 text-sm text-ink/60" style={{ fontFamily: "Outfit" }}>
-          {entry.meaningVi}
-        </Text>
-      </View>
       <Pressable
         onPress={() => Speech.speak(entry.text, { language: "en-US" })}
-        className="h-9 w-9 items-center justify-center rounded-full"
-        style={{ backgroundColor: "#e0e7ff" }}
+        className="h-9 w-9 items-center justify-center rounded-xl"
+        style={{ backgroundColor: colors.indigo100 }}
       >
         <Volume2 size={16} color={colors.indigo600} />
       </Pressable>
+      <View className="ml-3 flex-1">
+        <Text style={{ fontFamily: "JetBrainsMono_700Bold", fontSize: 14, color: colors.ink }}>
+          {entry.text}
+        </Text>
+        <Text className="text-xs text-ink/50" style={{ fontFamily: "PlusJakartaSans" }}>
+          {entry.meaningVi} · {entry.partOfSpeech}
+        </Text>
+      </View>
+      <View
+        className="rounded-full px-2.5 py-1"
+        style={{ backgroundColor: boxMeta ? boxMeta.bg : colors.cream2 }}
+      >
+        <Text style={{ fontFamily: "Outfit_700Bold", fontSize: 10, color: boxMeta ? boxMeta.fg : colors.inkMuted }}>
+          {boxMeta ? `Hộp ${srsBox}` : "Mới"}
+        </Text>
+      </View>
     </View>
   );
 }

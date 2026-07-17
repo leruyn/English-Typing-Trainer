@@ -1,222 +1,206 @@
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { BookOpen, ChevronRight, Ear, Eye, Flame, Zap } from "lucide-react-native";
+import { BookOpenCheck, Keyboard, ListChecks, Zap } from "lucide-react-native";
 
 import { colors } from "../../src/theme";
+import { getGreeting, getLevelProgress, displayNameFromEmail } from "../../src/time";
 import MasteryRing from "../../src/components/MasteryRing";
-import { useStatsQuery } from "../../src/api/hooks";
+import { useAuth } from "../../src/context/AuthContext";
+import { useProgressQuery, useStatsQuery } from "../../src/api/hooks";
 
-const SRS_COLORS = ["#d1fae5", "#a7f3d0", "#6ee7b7", "#34d399", "#059669"];
-
-const PRACTICE_MODES = [
+/**
+ * The four quick-action tiles from the mockup's home bento grid. Each tint
+ * matches the mockup's icon-badge color (`bg-emerald`/`bg-amber`/
+ * `bg-indigo`/`bg-rose`) exactly.
+ */
+const QUICK_ACTIONS = [
   {
-    key: "visual",
-    label: "Visual",
-    description: "Xem hình, gõ từ",
-    icon: Eye,
-    tint: "#10b981",
+    key: "practice",
+    label: "Đấu trường gõ",
+    description: "3 chế độ luyện phản xạ",
+    icon: Keyboard,
+    tint: colors.emerald600,
+    tintBg: colors.emerald100,
+    href: "/(tabs)/practice" as const,
   },
   {
-    key: "dictation",
-    label: "Dictation",
-    description: "Nghe và gõ lại",
-    icon: Ear,
-    tint: "#4f46e5",
+    key: "timeattack",
+    label: "Chớp nhoáng",
+    description: "45s thử thách tốc độ",
+    icon: Zap,
+    tint: colors.amber600,
+    tintBg: colors.amber100,
+    href: "/(tabs)/time-attack" as const,
   },
   {
-    key: "context",
-    label: "Context",
-    description: "Điền từ vào câu",
-    icon: BookOpen,
-    tint: "#d97706",
+    key: "vault",
+    label: "Kho từ vựng",
+    description: "Tra cứu · nghe phát âm",
+    icon: BookOpenCheck,
+    tint: colors.indigo600,
+    tintBg: colors.indigo100,
+    href: "/(tabs)/vault" as const,
   },
-] as const;
+  {
+    key: "assessment",
+    label: "Khảo sát",
+    description: "Đo trình độ CEFR",
+    icon: ListChecks,
+    tint: colors.rose600,
+    tintBg: colors.rose100,
+    // `retake: "1"` tells the assessment flow this is a voluntary re-take
+    // from an already-onboarded account, not first-time onboarding - see
+    // `(onboarding)/assessment.tsx` / `complete.tsx`, which branch on it to
+    // return here afterward instead of continuing into the pace/account
+    // onboarding steps.
+    href: { pathname: "/(onboarding)/assessment" as const, params: { retake: "1" } },
+  },
+];
 
 export default function HomeScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const { user } = useAuth();
   const { data: stats } = useStatsQuery();
+  const { data: progressData } = useProgressQuery();
 
   const masteryPercent = stats?.masteryPercent ?? 0;
   const streakDays = stats?.currentStreak ?? 0;
-  const xp = stats?.totalXp ?? 0;
-  const srsDistribution = [1, 2, 3, 4, 5].map((box) => stats?.boxDistribution[box as 1 | 2 | 3 | 4 | 5] ?? 0);
+  const totalXp = stats?.totalXp ?? 0;
+  const levelProgress = getLevelProgress(totalXp);
+  const dueTodayCount = (progressData?.progress ?? []).filter((p) => p.isDue).length;
+  const totalWordsTracked = progressData?.progress.length ?? 0;
+  const masteredCount = (progressData?.progress ?? []).filter((p) => p.srsBox === 5).length;
+
+  const displayName = user?.email ? displayNameFromEmail(user.email) : "";
 
   return (
-    <ScrollView
-      className="flex-1 bg-cream"
-      contentContainerStyle={{
-        paddingTop: insets.top + 16,
-        paddingHorizontal: 20,
-        paddingBottom: 32,
-      }}
-    >
-      <Text className="text-2xl text-ink" style={{ fontFamily: "Outfit_700Bold" }}>
-        Chào mừng trở lại
-      </Text>
-      <Text className="mt-1 text-sm text-ink/50" style={{ fontFamily: "Outfit" }}>
-        Cùng luyện tập từ vựng hôm nay nhé
-      </Text>
-
-      {/* Bento row 1: mastery ring + streak/xp stack */}
-      <View className="mt-5 flex-row gap-3">
+    <View className="flex-1 bg-cream" style={{ paddingTop: insets.top }}>
+      <ScrollView
+        style={{ flex: 1 }}
+        contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 32 }}
+      >
+        {/* ===== Greeting card ===== */}
         <View
-          className="flex-1 items-center justify-center rounded-3xl bg-white py-6"
-          style={{
-            shadowColor: colors.ink,
-            shadowOpacity: 0.06,
-            shadowRadius: 10,
-            shadowOffset: { width: 0, height: 4 },
-          }}
+          className="mt-4 overflow-hidden rounded-3xl px-5 py-5"
+          style={{ backgroundColor: colors.ink }}
         >
-          <MasteryRing percent={masteryPercent} size={104} label="mastery" />
-        </View>
-
-        <View className="flex-1 gap-3">
-          <View
-            className="flex-1 flex-row items-center gap-3 rounded-3xl bg-white px-4 py-4"
-            style={{
-              shadowColor: colors.ink,
-              shadowOpacity: 0.06,
-              shadowRadius: 10,
-              shadowOffset: { width: 0, height: 4 },
-            }}
-          >
-            <View className="h-9 w-9 items-center justify-center rounded-full" style={{ backgroundColor: "#fef3c7" }}>
-              <Flame size={18} color="#d97706" />
-            </View>
+          <View className="flex-row items-center justify-between">
             <View>
-              <Text style={{ fontFamily: "JetBrainsMono_700Bold", fontSize: 20, color: colors.ink }}>
-                {streakDays}
+              <Text className="text-[13px] text-white/70" style={{ fontFamily: "PlusJakartaSans_500Medium" }}>
+                {getGreeting()}
               </Text>
-              <Text className="text-xs text-ink/50" style={{ fontFamily: "Outfit_500Medium" }}>
-                ngày liên tiếp
-              </Text>
-            </View>
-          </View>
-
-          <View
-            className="flex-1 flex-row items-center gap-3 rounded-3xl bg-white px-4 py-4"
-            style={{
-              shadowColor: colors.ink,
-              shadowOpacity: 0.06,
-              shadowRadius: 10,
-              shadowOffset: { width: 0, height: 4 },
-            }}
-          >
-            <View className="h-9 w-9 items-center justify-center rounded-full" style={{ backgroundColor: "#e0e7ff" }}>
-              <Zap size={18} color={colors.indigo600} />
-            </View>
-            <View>
-              <Text style={{ fontFamily: "JetBrainsMono_700Bold", fontSize: 20, color: colors.ink }}>
-                {xp}
-              </Text>
-              <Text className="text-xs text-ink/50" style={{ fontFamily: "Outfit_500Medium" }}>
-                điểm XP
+              <Text className="mt-0.5 text-xl text-white" style={{ fontFamily: "Outfit_700Bold" }}>
+                {displayName ? `${displayName} 👋` : "Chào mừng 👋"}
               </Text>
             </View>
-          </View>
-        </View>
-      </View>
-
-      {/* Practice mode cards */}
-      <Text className="mb-3 mt-6 text-sm text-ink/60" style={{ fontFamily: "Outfit_600SemiBold" }}>
-        Chế độ luyện tập
-      </Text>
-      <View className="gap-3">
-        {PRACTICE_MODES.map(({ key, label, description, icon: Icon, tint }) => (
-          <Pressable
-            key={key}
-            onPress={() => router.push({ pathname: "/(tabs)/practice", params: { mode: key } })}
-            className="flex-row items-center rounded-2xl bg-white px-4 py-4"
-            style={{
-              shadowColor: colors.ink,
-              shadowOpacity: 0.05,
-              shadowRadius: 8,
-              shadowOffset: { width: 0, height: 3 },
-            }}
-          >
             <View
-              className="h-11 w-11 items-center justify-center rounded-xl"
-              style={{ backgroundColor: `${tint}1a` }}
+              className="flex-row items-center gap-1.5 rounded-full px-3 py-1.5"
+              style={{ backgroundColor: "rgba(245,158,11,0.18)" }}
             >
-              <Icon size={20} color={tint} />
-            </View>
-            <View className="ml-3 flex-1">
-              <Text style={{ fontFamily: "Outfit_600SemiBold", fontSize: 15, color: colors.ink }}>
-                {label}
-              </Text>
-              <Text className="text-xs text-ink/50" style={{ fontFamily: "Outfit" }}>
-                {description}
+              <Text style={{ fontSize: 13 }}>🔥</Text>
+              <Text style={{ fontFamily: "Outfit_700Bold", fontSize: 13, color: "#fbbf24" }}>
+                {streakDays} ngày
               </Text>
             </View>
-            <ChevronRight size={18} color={colors.ink} opacity={0.3} />
-          </Pressable>
-        ))}
-      </View>
+          </View>
 
-      {/* Time Attack banner */}
-      <Pressable
-        onPress={() => router.push("/(tabs)/time-attack")}
-        className="mt-6 overflow-hidden rounded-3xl px-5 py-6"
-        style={{ backgroundColor: colors.ink }}
-      >
-        <View className="flex-row items-center gap-2">
-          <Zap size={18} color="#fbbf24" fill="#fbbf24" />
-          <Text style={{ fontFamily: "Outfit_600SemiBold", fontSize: 12, color: "#fbbf24" }}>
-            TIME ATTACK
-          </Text>
-        </View>
-        <Text className="mt-2 text-lg text-white" style={{ fontFamily: "Outfit_700Bold" }}>
-          Gõ càng nhanh, điểm càng cao
-        </Text>
-        <Text className="mt-1 text-sm text-white/60" style={{ fontFamily: "Outfit" }}>
-          Thử thách 45 giây — sẵn sàng chưa?
-        </Text>
-      </Pressable>
-
-      {/* SRS distribution bar */}
-      <View
-        className="mt-6 rounded-3xl bg-white px-5 py-5"
-        style={{
-          shadowColor: colors.ink,
-          shadowOpacity: 0.06,
-          shadowRadius: 10,
-          shadowOffset: { width: 0, height: 4 },
-        }}
-      >
-        <Text className="mb-3 text-sm text-ink/60" style={{ fontFamily: "Outfit_600SemiBold" }}>
-          Phân bố hộp SRS
-        </Text>
-        <View className="flex-row overflow-hidden rounded-full" style={{ height: 16 }}>
-          {srsDistribution.map((count, i) => (
+          {/* Level / XP progress */}
+          <View
+            className="mt-4 overflow-hidden rounded-full"
+            style={{ height: 8, backgroundColor: "rgba(255,255,255,0.15)" }}
+          >
             <View
-              key={i}
               style={{
-                flex: Math.max(count, 1),
-                backgroundColor: SRS_COLORS[i],
+                height: "100%",
+                width: `${Math.max(4, Math.min(100, levelProgress.percent))}%`,
+                backgroundColor: colors.emerald500,
+                borderRadius: 999,
               }}
             />
+          </View>
+          <View className="mt-1.5 flex-row justify-between">
+            <Text className="text-[11px] text-white/70" style={{ fontFamily: "PlusJakartaSans_500Medium" }}>
+              Cấp độ {levelProgress.level} · {totalXp.toLocaleString("vi-VN")} XP
+            </Text>
+            <Text className="text-[11px] text-white/70" style={{ fontFamily: "PlusJakartaSans_500Medium" }}>
+              {levelProgress.xpToNextLevel} XP tới cấp {levelProgress.level + 1}
+            </Text>
+          </View>
+        </View>
+
+        {/* ===== Quick actions bento (2x2) ===== */}
+        <Text
+          className="ml-0.5 mt-6 text-xs text-ink/60"
+          style={{ fontFamily: "PlusJakartaSans_700Bold", textTransform: "uppercase", letterSpacing: 0.6 }}
+        >
+          Luyện tập nhanh
+        </Text>
+        <View className="mt-2 flex-row flex-wrap" style={{ gap: 12 }}>
+          {QUICK_ACTIONS.map(({ key, label, description, icon: Icon, tint, tintBg, href }) => (
+            <Pressable
+              key={key}
+              onPress={() => router.push(href as never)}
+              className="rounded-2xl bg-white px-4 py-4"
+              style={{
+                width: "47%",
+                borderWidth: 1,
+                borderColor: colors.border,
+              }}
+            >
+              <View
+                className="h-9 w-9 items-center justify-center rounded-xl"
+                style={{ backgroundColor: tintBg }}
+              >
+                <Icon size={18} color={tint} />
+              </View>
+              <Text className="mt-2.5 text-sm text-ink" style={{ fontFamily: "Outfit_700Bold" }}>
+                {label}
+              </Text>
+              <Text className="mt-0.5 text-[11px] text-ink/50" style={{ fontFamily: "PlusJakartaSans" }}>
+                {description}
+              </Text>
+            </Pressable>
           ))}
         </View>
-        <View className="mt-3 flex-row justify-between">
-          {srsDistribution.map((count, i) => (
-            <View key={i} className="items-center">
-              <View
-                className="h-2.5 w-2.5 rounded-full"
-                style={{ backgroundColor: SRS_COLORS[i] }}
-              />
-              <Text className="mt-1 text-[10px] text-ink/50" style={{ fontFamily: "Outfit_500Medium" }}>
-                Box {i + 1}
+
+        {/* ===== Overview bento ===== */}
+        <Text
+          className="ml-0.5 mt-6 text-xs text-ink/60"
+          style={{ fontFamily: "PlusJakartaSans_700Bold", textTransform: "uppercase", letterSpacing: 0.6 }}
+        >
+          Tổng quan
+        </Text>
+        <View className="mt-2 flex-row" style={{ gap: 12 }}>
+          <View
+            className="flex-1 flex-row items-center gap-3 rounded-2xl bg-white px-4 py-4"
+            style={{ borderWidth: 1, borderColor: colors.border }}
+          >
+            <MasteryRing percent={masteryPercent} size={68} strokeWidth={8} />
+            <View className="flex-1">
+              <Text className="text-[13px] text-ink" style={{ fontFamily: "Outfit_700Bold" }}>
+                Tỉ lệ làm chủ
               </Text>
-              <Text style={{ fontFamily: "JetBrainsMono_500Medium", fontSize: 11, color: colors.ink }}>
-                {count}
+              <Text className="mt-0.5 text-[11px] text-ink/50" style={{ fontFamily: "PlusJakartaSans" }}>
+                {masteredCount} / {totalWordsTracked} từ
               </Text>
             </View>
-          ))}
+          </View>
+
+          <View
+            className="flex-1 justify-center rounded-2xl bg-white px-4 py-4"
+            style={{ borderWidth: 1, borderColor: colors.border }}
+          >
+            <Text style={{ fontFamily: "Outfit_700Bold", fontSize: 26, color: colors.indigo }}>
+              {dueTodayCount}
+            </Text>
+            <Text className="mt-0.5 text-[11px] text-ink/50" style={{ fontFamily: "PlusJakartaSans_500Medium" }}>
+              Từ ôn tập hôm nay
+            </Text>
+          </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }

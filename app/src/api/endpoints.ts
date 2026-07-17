@@ -37,6 +37,10 @@ export interface StatsResponse {
   totalXp: number;
   currentStreak: number;
   boxDistribution: Record<1 | 2 | 3 | 4 | 5, number>;
+  /** 84 daily attempt counts, oldest day first, today last (12-week activity heatmap). */
+  activityLast12Weeks: number[];
+  /** Distinct words practiced per week for the last 7 weeks, oldest first. */
+  wordsPerWeek: number[];
 }
 
 interface AuthResponse {

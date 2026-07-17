@@ -1,7 +1,9 @@
 /**
  * GET /stats — aggregate progress stats for the current user: mastery
- * percentage, current daily practice streak, total XP, and SRS box
- * distribution.
+ * percentage, current daily practice streak, total XP, SRS box
+ * distribution, a 12-week daily activity heatmap, and a 7-week "distinct
+ * words practiced" trend - the last two back the Stats screen's activity
+ * heatmap and weekly bar chart.
  */
 import { Router } from 'express';
 import { requireAuth } from '../middleware/auth';
@@ -71,13 +73,59 @@ function computeCurrentStreak(attemptDates: Date[]): number {
   return streak;
 }
 
+const HEATMAP_DAYS = 84; // 12 weeks x 7 days
+const WEEKLY_TREND_WEEKS = 7;
+
+/**
+ * Builds the 84-day activity heatmap (oldest day first, today last) and the
+ * 7-week "distinct words practiced" trend (oldest week first, current week
+ * last) from a user's practice attempts. Both are derived client-side from
+ * the same attempt list already needed for the streak calculation, rather
+ * than issuing separate grouped queries - the per-user attempt volume this
+ * app deals with (typing practice sessions, not high-frequency telemetry)
+ * is small enough that looping in memory is simpler and plenty fast.
+ */
+function buildActivityAggregates(attempts: Array<{ createdAt: Date; wordId: string }>): {
+  activityLast12Weeks: number[];
+  wordsPerWeek: number[];
+} {
+  const todayStart = toUtcDayStart(new Date());
+  const heatmapStart = todayStart - (HEATMAP_DAYS - 1) * ONE_DAY_MS;
+
+  const activityLast12Weeks = new Array(HEATMAP_DAYS).fill(0) as number[];
+  const weeklyWordSets: Array<Set<string>> = Array.from({ length: WEEKLY_TREND_WEEKS }, () => new Set());
+  const weeklyTrendStart = todayStart - (WEEKLY_TREND_WEEKS * 7 - 1) * ONE_DAY_MS;
+
+  for (const attempt of attempts) {
+    const dayStart = toUtcDayStart(attempt.createdAt);
+
+    if (dayStart >= heatmapStart && dayStart <= todayStart) {
+      const idx = Math.round((dayStart - heatmapStart) / ONE_DAY_MS);
+      activityLast12Weeks[idx] += 1;
+    }
+
+    if (dayStart >= weeklyTrendStart && dayStart <= todayStart) {
+      const weekIdx = Math.min(
+        WEEKLY_TREND_WEEKS - 1,
+        Math.floor((dayStart - weeklyTrendStart) / (7 * ONE_DAY_MS)),
+      );
+      weeklyWordSets[weekIdx].add(attempt.wordId);
+    }
+  }
+
+  return {
+    activityLast12Weeks,
+    wordsPerWeek: weeklyWordSets.map((set) => set.size),
+  };
+}
+
 router.get('/', requireAuth, async (req, res, next) => {
   try {
     const userId = req.userId as string;
 
     const [progressRows, attempts] = await Promise.all([
       prisma.userWordProgress.findMany({ where: { userId } }),
-      prisma.practiceAttempt.findMany({ where: { userId }, select: { createdAt: true } }),
+      prisma.practiceAttempt.findMany({ where: { userId }, select: { createdAt: true, wordId: true } }),
     ]);
 
     const totalAttempted = progressRows.length;
@@ -103,12 +151,15 @@ router.get('/', requireAuth, async (req, res, next) => {
     }
 
     const currentStreak = computeCurrentStreak(attempts.map((a) => a.createdAt));
+    const { activityLast12Weeks, wordsPerWeek } = buildActivityAggregates(attempts);
 
     res.json({
       masteryPercent,
       totalXp,
       currentStreak,
       boxDistribution,
+      activityLast12Weeks,
+      wordsPerWeek,
     });
   } catch (err) {
     next(err);

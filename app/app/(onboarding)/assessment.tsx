@@ -1,11 +1,13 @@
 import { useMemo, useState } from "react";
 import { Pressable, Text, View } from "react-native";
-import { useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import Animated, { useAnimatedStyle, withSpring } from "react-native-reanimated";
 import { Check, X } from "lucide-react-native";
+import Svg, { Circle, Polyline } from "react-native-svg";
 
 import { colors } from "../../src/theme";
 import type { AssessmentAnswer, CefrTrack } from "@art/shared";
+import { submitAssessment } from "../../src/api/endpoints";
 
 /**
  * Small hardcoded question bank spanning 6 difficulty tiers (roughly
@@ -70,8 +72,63 @@ function trackForDifficulty(difficulty: number): CefrTrack {
   return "advanced";
 }
 
+const TRAJ_WIDTH = 280;
+const TRAJ_HEIGHT = 70;
+
+/**
+ * Live SVG line chart of the difficulty trajectory so far, matching the
+ * mockup's "Trajectory Tracker" - unlike the mockup (a static demo image),
+ * this redraws after every answer since `trajectory` is real state.
+ */
+function TrajectoryTracker({ trajectory }: { trajectory: number[] }) {
+  // Render a flat placeholder line before any question has been answered
+  // yet, so the chart has something to show from the very first frame.
+  const points = trajectory.length > 0 ? trajectory : [START_DIFFICULTY];
+  const stepX = points.length > 1 ? TRAJ_WIDTH / (points.length - 1) : 0;
+  const toY = (d: number) =>
+    TRAJ_HEIGHT - ((d - MIN_DIFFICULTY) / (MAX_DIFFICULTY - MIN_DIFFICULTY)) * (TRAJ_HEIGHT - 16) - 8;
+  const polylinePoints = points.map((d, i) => `${i * stepX},${toY(d)}`).join(" ");
+
+  return (
+    <View
+      className="rounded-2xl bg-white px-4 py-4"
+      style={{ borderWidth: 1, borderColor: colors.border }}
+    >
+      <Svg width="100%" height={TRAJ_HEIGHT} viewBox={`0 0 ${TRAJ_WIDTH} ${TRAJ_HEIGHT}`}>
+        {points.length > 1 && (
+          <Polyline
+            points={polylinePoints}
+            fill="none"
+            stroke={colors.indigo}
+            strokeWidth={3}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        )}
+        {points.map((d, i) => (
+          <Circle
+            key={i}
+            cx={i * stepX}
+            cy={toY(d)}
+            r={i === points.length - 1 ? 6 : 5}
+            fill={i === points.length - 1 ? colors.emerald500 : colors.indigo}
+          />
+        ))}
+      </Svg>
+      <Text
+        className="mt-1 text-center text-[11px] text-ink/50"
+        style={{ fontFamily: "PlusJakartaSans_500Medium" }}
+      >
+        Quỹ đạo trả lời (Trajectory Tracker)
+      </Text>
+    </View>
+  );
+}
+
 export default function AssessmentScreen() {
   const router = useRouter();
+  const { retake } = useLocalSearchParams<{ retake?: string }>();
+  const isRetake = retake === "1";
 
   const [difficulty, setDifficulty] = useState(START_DIFFICULTY);
   const [questionIndex, setQuestionIndex] = useState(0);
@@ -118,12 +175,27 @@ export default function AssessmentScreen() {
     setTimeout(() => {
       if (questionIndex + 1 >= TOTAL_QUESTIONS) {
         const suggestedTrack = trackForDifficulty(nextDifficulty);
+
+        // First-time onboarding stashes the answers as route params and only
+        // actually POSTs them once the account is created at the end of the
+        // flow (see AuthContext.register's `assessmentAnswers`). A retake by
+        // an already-registered user has no such later step, so submit the
+        // result directly here instead - best-effort, same as the
+        // onboarding path (a failed save shouldn't block seeing the result).
+        if (isRetake) {
+          submitAssessment(nextAnswers).catch((err) => {
+            // eslint-disable-next-line no-console
+            console.warn("Failed to submit retake assessment result:", err);
+          });
+        }
+
         router.replace({
           pathname: "/(onboarding)/complete",
           params: {
             trajectory: JSON.stringify(nextTrajectory),
             answers: JSON.stringify(nextAnswers),
             track: suggestedTrack,
+            retake: isRetake ? "1" : undefined,
           },
         });
         return;
@@ -201,8 +273,13 @@ export default function AssessmentScreen() {
         </View>
       </View>
 
+      {/* Live trajectory tracker */}
+      <View className="mt-6">
+        <TrajectoryTracker trajectory={trajectory} />
+      </View>
+
       {/* Question card */}
-      <View className="mt-10 flex-1">
+      <View className="mt-6 flex-1">
         <View
           className="rounded-3xl bg-white p-6"
           style={{
