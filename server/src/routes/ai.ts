@@ -43,7 +43,7 @@ router.post('/explain', requireAuth, explainLimiter, async (req, res, next) => {
       exampleSentence ? `Câu ví dụ có sẵn: "${exampleSentence}"` : '',
       `Câu hỏi của người học: "${question}"`,
       '',
-      'Trả lời ngắn gọn bằng tiếng Việt (tối đa khoảng 4-5 câu), tập trung đúng vào từ và câu hỏi trên, không lan man, không dùng markdown/danh sách, giọng văn gần gũi như đang giải thích trực tiếp cho học viên.',
+      'Trả lời CỰC KỲ ngắn gọn bằng tiếng Việt: tối đa 2 câu (chỉ 3 câu nếu thật sự cần một ví dụ ngắn), đi thẳng vào trọng tâm câu hỏi, không nhắc lại câu hỏi, không rào đón/chào hỏi mở đầu, không lan man, không dùng markdown/danh sách/emoji, giọng văn gần gũi như đang trả lời nhanh cho học viên trong lúc luyện gõ.',
     ]
       .filter(Boolean)
       .join('\n');
