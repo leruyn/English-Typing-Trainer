@@ -50,6 +50,12 @@ model User {
   minutesPerDay       Int
   /// Optional manual override for the daily new-word cap.
   newWordCapOverride  Int?
+  /// Cached text of the last Gemini-generated coaching note (GET
+  /// /stats/coaching) - re-served as-is if `lastCoachingAt` is recent enough,
+  /// so the AI is called at most a few times/day per user instead of on
+  /// every Stats screen view. Null until the first successful generation.
+  lastCoachingMessage String?
+  lastCoachingAt      DateTime?
 
   wordProgress        UserWordProgress[]
   practiceAttempts    PracticeAttempt[]

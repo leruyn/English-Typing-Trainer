@@ -15,6 +15,7 @@ import { requireAuth } from '../middleware/auth';
 import { prisma } from '../lib/prisma';
 import { HttpError } from '../lib/errors';
 import { generateGeminiJson, GeminiError } from '../lib/gemini';
+import { assessmentQuestionLimiter } from '../middleware/rateLimit';
 
 const router = Router();
 
@@ -135,7 +136,7 @@ const CEFR_BY_DIFFICULTY: Record<number, string> = {
  * `generateGeminiJson`/`GeminiError` throws - the entrance assessment must
  * never be blocked by an AI outage.
  */
-router.post('/question', async (req, res, next) => {
+router.post('/question', assessmentQuestionLimiter, async (req, res, next) => {
   try {
     const parsed = generateQuestionSchema.safeParse(req.body);
     if (!parsed.success) {

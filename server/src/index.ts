@@ -14,6 +14,14 @@ import { HttpError } from './lib/errors';
 
 const app = express();
 
+// Render (and most PaaS hosts) terminate TLS at a reverse proxy in front of
+// this process, so without `trust proxy` every request's `req.ip` would be
+// the proxy's own address instead of the real client - which would make
+// express-rate-limit's per-IP limiter (see middleware/rateLimit.ts) treat
+// every visitor as one shared bucket. `1` trusts exactly one hop in front
+// of us, matching Render's single reverse-proxy setup.
+app.set('trust proxy', 1);
+
 app.use(cors());
 app.use(express.json());
 

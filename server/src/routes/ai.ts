@@ -11,6 +11,7 @@ import { z } from 'zod';
 import { requireAuth } from '../middleware/auth';
 import { HttpError } from '../lib/errors';
 import { generateGeminiText } from '../lib/gemini';
+import { explainLimiter } from '../middleware/rateLimit';
 
 const router = Router();
 
@@ -23,7 +24,7 @@ const explainSchema = z.object({
   question: z.string().min(1).max(MAX_QUESTION_LENGTH),
 });
 
-router.post('/explain', requireAuth, async (req, res, next) => {
+router.post('/explain', requireAuth, explainLimiter, async (req, res, next) => {
   try {
     const parsed = explainSchema.safeParse(req.body);
     if (!parsed.success) {
