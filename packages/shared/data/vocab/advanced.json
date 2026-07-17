@@ -1307,5 +1307,271 @@
         "iconHint": "wobbling scale settling flat"
       }
     ]
+  },
+  {
+    "topicId": "abstract-nouns-c1-2",
+    "topicNameVi": "Danh từ trừu tượng C1 (phần 2)",
+    "cefrLevel": "C1",
+    "words": [
+      {
+        "word": "absence",
+        "pos": "n.",
+        "meaningVi": "sự vắng mặt",
+        "exampleSentence": "Her ___ from the meeting was noticed by everyone.",
+        "iconHint": "empty chair with a question mark"
+      },
+      {
+        "word": "abundance",
+        "pos": "n.",
+        "meaningVi": "sự dồi dào, phong phú",
+        "exampleSentence": "The region has an ___ of natural resources.",
+        "iconHint": "overflowing basket of fruit"
+      },
+      {
+        "word": "acceptance",
+        "pos": "n.",
+        "meaningVi": "sự chấp nhận",
+        "exampleSentence": "The proposal finally gained ___ from the board.",
+        "iconHint": "handshake with a checkmark"
+      },
+      {
+        "word": "accomplishment",
+        "pos": "n.",
+        "meaningVi": "thành tựu",
+        "exampleSentence": "Finishing the marathon was a huge ___ for her.",
+        "iconHint": "medal on a ribbon"
+      },
+      {
+        "word": "accountability",
+        "pos": "n.",
+        "meaningVi": "trách nhiệm giải trình",
+        "exampleSentence": "The scandal raised questions about corporate ___.",
+        "iconHint": "magnifying glass over a signature"
+      },
+      {
+        "word": "accusation",
+        "pos": "n.",
+        "meaningVi": "lời buộc tội",
+        "exampleSentence": "He denied the ___ made against him.",
+        "iconHint": "pointing finger with a speech bubble"
+      },
+      {
+        "word": "acquisition",
+        "pos": "n.",
+        "meaningVi": "sự mua lại, tiếp thu",
+        "exampleSentence": "The merger followed the ___ of a rival firm.",
+        "iconHint": "hand placing a small building into a briefcase"
+      },
+      {
+        "word": "adaptation",
+        "pos": "n.",
+        "meaningVi": "sự thích nghi, chuyển thể",
+        "exampleSentence": "The film is a modern ___ of the classic novel.",
+        "iconHint": "book transforming into a film reel"
+      },
+      {
+        "word": "adjustment",
+        "pos": "n.",
+        "meaningVi": "sự điều chỉnh",
+        "exampleSentence": "Small ___s to the schedule solved the problem.",
+        "iconHint": "dial being gently turned"
+      },
+      {
+        "word": "admission",
+        "pos": "n.",
+        "meaningVi": "sự thừa nhận, sự nhập học",
+        "exampleSentence": "His ___ of guilt surprised the court.",
+        "iconHint": "door opening with a checkmark"
+      },
+      {
+        "word": "affection",
+        "pos": "n.",
+        "meaningVi": "tình cảm, sự trìu mến",
+        "exampleSentence": "She showed great ___ towards her younger siblings.",
+        "iconHint": "heart wrapped in gentle arms"
+      },
+      {
+        "word": "aftermath",
+        "pos": "n.",
+        "meaningVi": "hậu quả, thời kỳ sau (sự kiện)",
+        "exampleSentence": "The ___ of the storm left the town without power.",
+        "iconHint": "cracked landscape with a clock"
+      },
+      {
+        "word": "aggression",
+        "pos": "n.",
+        "meaningVi": "sự hung hăng, gây hấn",
+        "exampleSentence": "The report condemned the country's military ___.",
+        "iconHint": "clenched fist with a warning symbol"
+      },
+      {
+        "word": "alliance",
+        "pos": "n.",
+        "meaningVi": "liên minh",
+        "exampleSentence": "The two nations formed a strong ___.",
+        "iconHint": "two flags linked together"
+      },
+      {
+        "word": "allowance",
+        "pos": "n.",
+        "meaningVi": "khoản trợ cấp, phụ cấp",
+        "exampleSentence": "Children often receive a small weekly ___.",
+        "iconHint": "coin placed into a small hand"
+      },
+      {
+        "word": "ambassador",
+        "pos": "n.",
+        "meaningVi": "đại sứ",
+        "exampleSentence": "The ___ represented her country at the summit.",
+        "iconHint": "person with a sash and flag pin"
+      },
+      {
+        "word": "amendment",
+        "pos": "n.",
+        "meaningVi": "sự tu chính, sửa đổi",
+        "exampleSentence": "The new ___ to the law was passed last week.",
+        "iconHint": "document with a highlighted edit"
+      },
+      {
+        "word": "appetite",
+        "pos": "n.",
+        "meaningVi": "cảm giác thèm ăn, ham muốn",
+        "exampleSentence": "Exercise usually gives him a bigger ___.",
+        "iconHint": "fork and spoon with a rising line"
+      }
+    ]
+  },
+  {
+    "topicId": "formal-verbs-c1-3",
+    "topicNameVi": "Động từ trang trọng C1 (phần 3)",
+    "cefrLevel": "C1",
+    "words": [
+      {
+        "word": "abolish",
+        "pos": "v.",
+        "meaningVi": "bãi bỏ",
+        "exampleSentence": "The new law will ___ the outdated tax system.",
+        "iconHint": "hammer breaking a rulebook"
+      },
+      {
+        "word": "accelerate",
+        "pos": "v.",
+        "meaningVi": "tăng tốc, đẩy nhanh",
+        "exampleSentence": "New funding will ___ the research process.",
+        "iconHint": "speedometer needle moving up"
+      },
+      {
+        "word": "accumulate",
+        "pos": "v.",
+        "meaningVi": "tích lũy",
+        "exampleSentence": "Over the years, he managed to ___ a large collection.",
+        "iconHint": "coins piling up into a stack"
+      },
+      {
+        "word": "administer",
+        "pos": "v.",
+        "meaningVi": "quản lý, thực thi",
+        "exampleSentence": "The trust is set up to ___ the family's estate.",
+        "iconHint": "hand overseeing a set of documents"
+      },
+      {
+        "word": "allege",
+        "pos": "v.",
+        "meaningVi": "cáo buộc (chưa chứng minh)",
+        "exampleSentence": "Reports ___ that the company hid the results.",
+        "iconHint": "speech bubble with a question mark and gavel"
+      },
+      {
+        "word": "allocate",
+        "pos": "v.",
+        "meaningVi": "phân bổ",
+        "exampleSentence": "The council will ___ funds to each local school.",
+        "iconHint": "hand distributing coins into boxes"
+      },
+      {
+        "word": "applaud",
+        "pos": "v.",
+        "meaningVi": "vỗ tay tán thưởng",
+        "exampleSentence": "The audience stood up to ___ the performance.",
+        "iconHint": "two clapping hands"
+      },
+      {
+        "word": "appoint",
+        "pos": "v.",
+        "meaningVi": "bổ nhiệm",
+        "exampleSentence": "The board voted to ___ a new director.",
+        "iconHint": "hand placing a badge on a figure"
+      },
+      {
+        "word": "aspire",
+        "pos": "v.",
+        "meaningVi": "khao khát, mong muốn",
+        "exampleSentence": "Many young athletes ___ to compete in the Olympics.",
+        "iconHint": "figure reaching toward a rising star"
+      },
+      {
+        "word": "assemble",
+        "pos": "v.",
+        "meaningVi": "lắp ráp, tập hợp",
+        "exampleSentence": "Workers ___ the parts on the factory line.",
+        "iconHint": "puzzle pieces coming together"
+      },
+      {
+        "word": "assert",
+        "pos": "v.",
+        "meaningVi": "khẳng định (mạnh mẽ)",
+        "exampleSentence": "She continued to ___ that she was innocent.",
+        "iconHint": "speech bubble with a bold exclamation mark"
+      },
+      {
+        "word": "authorize",
+        "pos": "v.",
+        "meaningVi": "cho phép, ủy quyền",
+        "exampleSentence": "Only the manager can ___ this kind of purchase.",
+        "iconHint": "stamp of approval on a document"
+      },
+      {
+        "word": "await",
+        "pos": "v.",
+        "meaningVi": "chờ đợi",
+        "exampleSentence": "Fans eagerly ___ the release of the new album.",
+        "iconHint": "clock beside an excited face"
+      },
+      {
+        "word": "betray",
+        "pos": "v.",
+        "meaningVi": "phản bội",
+        "exampleSentence": "He felt his closest friend had ___ed his trust.",
+        "iconHint": "broken handshake"
+      },
+      {
+        "word": "bind",
+        "pos": "v.",
+        "meaningVi": "ràng buộc, trói buộc",
+        "exampleSentence": "The contract will legally ___ both companies.",
+        "iconHint": "rope tying two shapes together"
+      },
+      {
+        "word": "bleed",
+        "pos": "v.",
+        "meaningVi": "chảy máu",
+        "exampleSentence": "The small cut on his hand began to ___.",
+        "iconHint": "drop falling from a bandaged hand"
+      },
+      {
+        "word": "bless",
+        "pos": "v.",
+        "meaningVi": "ban phước, chúc phúc",
+        "exampleSentence": "The priest will ___ the new building this weekend.",
+        "iconHint": "hands raised over a glowing light"
+      },
+      {
+        "word": "boast",
+        "pos": "v.",
+        "meaningVi": "khoe khoang",
+        "exampleSentence": "He loves to ___ about his new car.",
+        "iconHint": "speech bubble with a small trophy"
+      }
+    ]
   }
 ]
