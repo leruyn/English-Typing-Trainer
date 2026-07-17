@@ -1,31 +1,22 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, Pressable, ScrollView, Text, View } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withSequence, withTiming } from "react-native-reanimated";
 import { Flame, Hash, Play, Zap } from "lucide-react-native";
 
+import type { Word } from "@art/shared";
 import { colors } from "../../src/theme";
 import Mascot, { type MascotState } from "../../src/components/Mascot";
 import StarBurst, { type StarBurstHandle } from "../../src/components/StarBurst";
 import VirtualKeyboard from "../../src/components/VirtualKeyboard";
-import beginnerVocabJson from "../../../packages/shared/data/vocab/beginner.json";
-
-interface VocabTopic {
-  topicId: string;
-  topicNameVi: string;
-  cefrLevel: string;
-  words: Array<{ word: string; pos: string; meaningVi: string; exampleSentence: string; iconHint: string }>;
-}
-
-const beginnerVocab = beginnerVocabJson as VocabTopic[];
-const WORDS = beginnerVocab.flatMap((topic) => topic.words.map((w) => w.word));
+import { useSubmitAttempt, useWordsQuery } from "../../src/api/hooks";
 
 const ROUND_SECONDS = 45;
 const CORRECT_WORD_BONUS_SECONDS = 3;
 const WRONG_CHAR_PENALTY_SECONDS = 1;
 const LOW_TIME_THRESHOLD = 10;
 
-function shuffledWords(): string[] {
-  const copy = [...WORDS];
+function shuffled<T>(items: T[]): T[] {
+  const copy = [...items];
   for (let i = copy.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [copy[i], copy[j]] = [copy[j], copy[i]];
@@ -34,9 +25,13 @@ function shuffledWords(): string[] {
 }
 
 export default function TimeAttackScreen() {
+  const { data, isLoading } = useWordsQuery();
+  const submitAttempt = useSubmitAttempt();
+  const allWords = data?.words ?? [];
+
   const [running, setRunning] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState(ROUND_SECONDS);
-  const [queue, setQueue] = useState<string[]>(() => shuffledWords());
+  const [queue, setQueue] = useState<Word[]>([]);
   const [wordIndex, setWordIndex] = useState(0);
   const [typedCount, setTypedCount] = useState(0);
   const [score, setScore] = useState(0);
@@ -48,8 +43,11 @@ export default function TimeAttackScreen() {
   const starBurstRef = useRef<StarBurstHandle>(null);
   const shakeX = useSharedValue(0);
   const sadTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const wordStartTimeRef = useRef(Date.now());
+  const wordWrongCountRef = useRef(0);
 
-  const currentWord = queue[wordIndex % queue.length] ?? "";
+  const currentWordEntry = queue.length > 0 ? queue[wordIndex % queue.length] : null;
+  const currentWord = currentWordEntry?.text ?? "";
 
   useEffect(() => {
     if (!running) return;
@@ -73,7 +71,7 @@ export default function TimeAttackScreen() {
   }));
 
   function startGame() {
-    setQueue(shuffledWords());
+    setQueue(shuffled(allWords));
     setWordIndex(0);
     setTypedCount(0);
     setScore(0);
@@ -83,10 +81,12 @@ export default function TimeAttackScreen() {
     setMascotState("neutral");
     setGameOver(false);
     setRunning(true);
+    wordStartTimeRef.current = Date.now();
+    wordWrongCountRef.current = 0;
   }
 
   function handleKeyPress(char: string, isCorrect: boolean) {
-    if (!running) return;
+    if (!running || !currentWordEntry) return;
 
     if (isCorrect) {
       setCharsTyped((c) => c + 1);
@@ -99,11 +99,32 @@ export default function TimeAttackScreen() {
         setSecondsLeft((s) => Math.min(ROUND_SECONDS + 60, s + CORRECT_WORD_BONUS_SECONDS));
         setMascotState("happy");
         starBurstRef.current?.burst();
+
+        // Time Attack's fast-paced typing is the same skill practice.tsx
+        // measures, so completed words feed the same SRS/XP pipeline -
+        // tagged `visual` since the UI here (bare letter boxes, no prompt)
+        // is closest to that mode's "just recall and type" shape.
+        const timeMs = Math.max(1, Date.now() - wordStartTimeRef.current);
+        const totalPresses = currentWord.length + wordWrongCountRef.current;
+        const attemptAccuracy = Math.round((currentWord.length / totalPresses) * 100);
+        const attemptWpm = Math.round((currentWord.length / 5) / (timeMs / 60000));
+        submitAttempt.mutate({
+          wordId: currentWordEntry.id,
+          mode: "visual",
+          wpm: attemptWpm,
+          accuracyPercent: attemptAccuracy,
+          timeMs,
+          correct: true,
+        });
+
         setWordIndex((i) => i + 1);
         setTypedCount(0);
+        wordStartTimeRef.current = Date.now();
+        wordWrongCountRef.current = 0;
       }
     } else {
       setStreak(0);
+      wordWrongCountRef.current += 1;
       setSecondsLeft((s) => Math.max(0, s - WRONG_CHAR_PENALTY_SECONDS));
       setMascotState("sad");
       shakeX.value = withSequence(
@@ -181,15 +202,21 @@ export default function TimeAttackScreen() {
         {!running && !gameOver && (
           <View className="mt-8 items-center">
             <Mascot state="neutral" size={96} />
-            <Pressable
-              onPress={startGame}
-              className="mt-6 flex-row items-center gap-2 rounded-2xl bg-emerald-500 px-8 py-4"
-            >
-              <Play size={18} color="white" fill="white" />
-              <Text className="text-base text-white" style={{ fontFamily: "Outfit_600SemiBold" }}>
-                Bắt đầu
-              </Text>
-            </Pressable>
+            {isLoading ? (
+              <ActivityIndicator color={colors.emerald500} style={{ marginTop: 24 }} />
+            ) : (
+              <Pressable
+                onPress={startGame}
+                disabled={allWords.length === 0}
+                className="mt-6 flex-row items-center gap-2 rounded-2xl bg-emerald-500 px-8 py-4"
+                style={{ opacity: allWords.length === 0 ? 0.5 : 1 }}
+              >
+                <Play size={18} color="white" fill="white" />
+                <Text className="text-base text-white" style={{ fontFamily: "Outfit_600SemiBold" }}>
+                  Bắt đầu
+                </Text>
+              </Pressable>
+            )}
           </View>
         )}
 

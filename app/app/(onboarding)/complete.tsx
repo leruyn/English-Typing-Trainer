@@ -25,9 +25,14 @@ const MAX_DIFFICULTY = 6;
 
 export default function OnboardingCompleteScreen() {
   const router = useRouter();
-  const { trajectory: trajectoryParam, track: trackParam } = useLocalSearchParams<{
+  const {
+    trajectory: trajectoryParam,
+    track: trackParam,
+    answers: answersParam,
+  } = useLocalSearchParams<{
     trajectory?: string;
     track?: string;
+    answers?: string;
   }>();
 
   let trajectory: number[] = [];
@@ -165,7 +170,7 @@ export default function OnboardingCompleteScreen() {
         onPress={() =>
           router.push({
             pathname: "/(onboarding)/pace",
-            params: { track: suggestedTrack },
+            params: { track: suggestedTrack, answers: answersParam ?? "" },
           })
         }
         className="items-center rounded-2xl bg-emerald-500 py-4"

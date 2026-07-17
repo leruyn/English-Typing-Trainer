@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, Pressable, ScrollView, Text, View } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import * as Speech from "expo-speech";
 import Animated, { useAnimatedStyle, useSharedValue, withSequence, withTiming } from "react-native-reanimated";
@@ -10,36 +10,8 @@ import { colors } from "../../src/theme";
 import Mascot, { type MascotState } from "../../src/components/Mascot";
 import StarBurst, { type StarBurstHandle } from "../../src/components/StarBurst";
 import VirtualKeyboard from "../../src/components/VirtualKeyboard";
-
-import beginnerVocabJson from "../../../packages/shared/data/vocab/beginner.json";
-
-interface VocabTopic {
-  topicId: string;
-  topicNameVi: string;
-  cefrLevel: string;
-  words: Array<{
-    word: string;
-    pos: string;
-    meaningVi: string;
-    exampleSentence: string;
-    iconHint: string;
-  }>;
-}
-
-const beginnerVocab = beginnerVocabJson as VocabTopic[];
-
-interface PracticeWord {
-  word: string;
-  pos: string;
-  meaningVi: string;
-  exampleSentence: string;
-  iconHint: string;
-  topicNameVi: string;
-}
-
-const WORDS: PracticeWord[] = beginnerVocab.flatMap((topic) =>
-  topic.words.map((w) => ({ ...w, topicNameVi: topic.topicNameVi })),
-);
+import { usePracticeQueue } from "../../src/practice/usePracticeQueue";
+import { useSubmitAttempt } from "../../src/api/hooks";
 
 const MODES: Array<{ key: PracticeMode; label: string; icon: typeof Eye }> = [
   { key: "visual", label: "Visual", icon: Eye },
@@ -51,6 +23,9 @@ export default function PracticeScreen() {
   const params = useLocalSearchParams<{ mode?: string }>();
   const initialMode: PracticeMode =
     params.mode === "dictation" || params.mode === "context" ? params.mode : "visual";
+
+  const { queue, isLoading } = usePracticeQueue();
+  const submitAttempt = useSubmitAttempt();
 
   const [mode, setMode] = useState<PracticeMode>(initialMode);
   const [wordIndex, setWordIndex] = useState(0);
@@ -66,8 +41,10 @@ export default function PracticeScreen() {
   const starBurstRef = useRef<StarBurstHandle>(null);
   const shakeX = useSharedValue(0);
   const sadTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const wordStartTimeRef = useRef(Date.now());
+  const wordWrongCountRef = useRef(0);
 
-  const currentWord = WORDS[wordIndex % WORDS.length];
+  const currentWord = queue.length > 0 ? queue[wordIndex % queue.length] : null;
 
   useEffect(() => {
     const interval = setInterval(() => setElapsedSeconds((s) => s + 1), 1000);
@@ -76,7 +53,9 @@ export default function PracticeScreen() {
 
   useEffect(() => {
     setHasSpoken(false);
-  }, [wordIndex]);
+    wordStartTimeRef.current = Date.now();
+    wordWrongCountRef.current = 0;
+  }, [wordIndex, currentWord?.id]);
 
   useEffect(() => {
     return () => {
@@ -100,14 +79,14 @@ export default function PracticeScreen() {
   }));
 
   function goToNextWord() {
-    setWordIndex((i) => (i + 1) % WORDS.length);
+    setWordIndex((i) => (queue.length > 0 ? (i + 1) % queue.length : i));
     setTypedCount(0);
     setWordComplete(false);
     setMascotState("neutral");
   }
 
   function handleKeyPress(char: string, isCorrect: boolean) {
-    if (wordComplete) return;
+    if (wordComplete || !currentWord) return;
 
     if (isCorrect) {
       setCorrectPresses((c) => c + 1);
@@ -115,14 +94,29 @@ export default function PracticeScreen() {
       const nextTypedCount = typedCount + 1;
       setTypedCount(nextTypedCount);
 
-      if (nextTypedCount >= currentWord.word.length) {
+      if (nextTypedCount >= currentWord.text.length) {
         setWordComplete(true);
         setMascotState("happy");
         starBurstRef.current?.burst();
+
+        const timeMs = Math.max(1, Date.now() - wordStartTimeRef.current);
+        const totalPresses = currentWord.text.length + wordWrongCountRef.current;
+        const attemptAccuracy = Math.round((currentWord.text.length / totalPresses) * 100);
+        const attemptWpm = Math.round((currentWord.text.length / 5) / (timeMs / 60000));
+        submitAttempt.mutate({
+          wordId: currentWord.id,
+          mode,
+          wpm: attemptWpm,
+          accuracyPercent: attemptAccuracy,
+          timeMs,
+          correct: true,
+        });
+
         setTimeout(goToNextWord, 900);
       }
     } else {
       setWrongPresses((c) => c + 1);
+      wordWrongCountRef.current += 1;
       setMascotState("sad");
       shakeX.value = withSequence(
         withTiming(-8, { duration: 40 }),
@@ -142,11 +136,23 @@ export default function PracticeScreen() {
   }
 
   function speakWord() {
+    if (!currentWord) return;
     setHasSpoken(true);
-    Speech.speak(currentWord.word, { language: "en-US" });
+    Speech.speak(currentWord.text, { language: "en-US" });
   }
 
-  const nextChar = wordComplete ? undefined : currentWord.word[typedCount]?.toUpperCase();
+  const nextChar = !currentWord || wordComplete ? undefined : currentWord.text[typedCount]?.toUpperCase();
+
+  if (isLoading || !currentWord) {
+    return (
+      <View className="flex-1 items-center justify-center bg-cream">
+        <ActivityIndicator color={colors.emerald500} />
+        <Text className="mt-3 text-sm text-ink/50" style={{ fontFamily: "Outfit_500Medium" }}>
+          Đang tải từ vựng...
+        </Text>
+      </View>
+    );
+  }
 
   return (
     <View className="flex-1 bg-cream">
@@ -232,7 +238,7 @@ export default function PracticeScreen() {
                   {currentWord.meaningVi}
                 </Text>
                 <Text className="mt-1 text-xs text-ink/40" style={{ fontFamily: "Outfit" }}>
-                  {currentWord.pos}
+                  {currentWord.partOfSpeech}
                 </Text>
               </>
             )}
@@ -259,7 +265,7 @@ export default function PracticeScreen() {
 
             {/* Letter progress boxes */}
             <View className="mt-6 flex-row flex-wrap justify-center gap-2">
-              {currentWord.word.split("").map((letter, i) => {
+              {currentWord.text.split("").map((letter, i) => {
                 const isDone = i < typedCount;
                 const isCurrent = i === typedCount && !wordComplete;
                 return (

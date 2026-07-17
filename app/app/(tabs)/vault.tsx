@@ -1,68 +1,42 @@
 import { useMemo, useState } from "react";
-import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
+import { ActivityIndicator, Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import * as Speech from "expo-speech";
 import { Search, Volume2 } from "lucide-react-native";
 
 import { colors } from "../../src/theme";
-import beginnerJson from "../../../packages/shared/data/vocab/beginner.json";
-import intermediateJson from "../../../packages/shared/data/vocab/intermediate.json";
-import advancedJson from "../../../packages/shared/data/vocab/advanced.json";
-
-interface VocabTopic {
-  topicId: string;
-  topicNameVi: string;
-  cefrLevel: string;
-  words: Array<{ word: string; pos: string; meaningVi: string; exampleSentence: string; iconHint: string }>;
-}
-
-interface VaultEntry {
-  word: string;
-  pos: string;
-  meaningVi: string;
-  topicId: string;
-  topicNameVi: string;
-  cefrLevel: string;
-}
-
-const ALL_TOPICS = [
-  ...(beginnerJson as VocabTopic[]),
-  ...(intermediateJson as VocabTopic[]),
-  ...(advancedJson as VocabTopic[]),
-];
-
-const ALL_ENTRIES: VaultEntry[] = ALL_TOPICS.flatMap((topic) =>
-  topic.words.map((w) => ({
-    word: w.word,
-    pos: w.pos,
-    meaningVi: w.meaningVi,
-    topicId: topic.topicId,
-    topicNameVi: topic.topicNameVi,
-    cefrLevel: topic.cefrLevel,
-  })),
-);
-
-const TOPIC_OPTIONS = Array.from(
-  new Map(ALL_TOPICS.map((t) => [t.topicId, t.topicNameVi])).entries(),
-).map(([topicId, topicNameVi]) => ({ topicId, topicNameVi }));
-
-const POS_OPTIONS = Array.from(new Set(ALL_ENTRIES.map((e) => e.pos)));
+import { useWordsQuery } from "../../src/api/hooks";
 
 export default function VaultScreen() {
+  const { data, isLoading } = useWordsQuery();
+  const allEntries = data?.words ?? [];
+
   const [query, setQuery] = useState("");
   const [topicFilter, setTopicFilter] = useState<string | null>(null);
   const [posFilter, setPosFilter] = useState<string | null>(null);
 
+  const topicOptions = useMemo(
+    () =>
+      Array.from(new Map(allEntries.map((w) => [w.topicId, w.topicNameVi])).entries()).map(
+        ([topicId, topicNameVi]) => ({ topicId, topicNameVi }),
+      ),
+    [allEntries],
+  );
+  const posOptions = useMemo(
+    () => Array.from(new Set(allEntries.map((w) => w.partOfSpeech))),
+    [allEntries],
+  );
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return ALL_ENTRIES.filter((entry) => {
+    return allEntries.filter((entry) => {
       if (topicFilter && entry.topicId !== topicFilter) return false;
-      if (posFilter && entry.pos !== posFilter) return false;
-      if (q && !entry.word.toLowerCase().includes(q) && !entry.meaningVi.toLowerCase().includes(q)) {
+      if (posFilter && entry.partOfSpeech !== posFilter) return false;
+      if (q && !entry.text.toLowerCase().includes(q) && !entry.meaningVi.toLowerCase().includes(q)) {
         return false;
       }
       return true;
     });
-  }, [query, topicFilter, posFilter]);
+  }, [allEntries, query, topicFilter, posFilter]);
 
   return (
     <View className="flex-1 bg-cream">
@@ -71,7 +45,7 @@ export default function VaultScreen() {
           Kho từ vựng
         </Text>
         <Text className="mt-1 text-xs text-ink/50" style={{ fontFamily: "Outfit" }}>
-          {ALL_ENTRIES.length} từ trong {TOPIC_OPTIONS.length} chủ đề
+          {allEntries.length} từ trong {topicOptions.length} chủ đề
         </Text>
 
         {/* Search input */}
@@ -92,7 +66,7 @@ export default function VaultScreen() {
         {/* Topic filter chips */}
         <ScrollView horizontal showsHorizontalScrollIndicator={false} className="mt-3" contentContainerStyle={{ gap: 8 }}>
           <FilterChip label="Tất cả chủ đề" active={topicFilter === null} onPress={() => setTopicFilter(null)} />
-          {TOPIC_OPTIONS.map((t) => (
+          {topicOptions.map((t) => (
             <FilterChip
               key={t.topicId}
               label={t.topicNameVi}
@@ -105,7 +79,7 @@ export default function VaultScreen() {
         {/* Word-type filter chips */}
         <ScrollView horizontal showsHorizontalScrollIndicator={false} className="mt-2" contentContainerStyle={{ gap: 8 }}>
           <FilterChip label="Tất cả loại từ" active={posFilter === null} onPress={() => setPosFilter(null)} tone="indigo" />
-          {POS_OPTIONS.map((pos) => (
+          {posOptions.map((pos) => (
             <FilterChip
               key={pos}
               label={pos}
@@ -121,15 +95,19 @@ export default function VaultScreen() {
         style={{ flex: 1, minHeight: 0 }}
         contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 24 }}
       >
-        {filtered.length === 0 ? (
+        {isLoading ? (
+          <View className="mt-10 items-center">
+            <ActivityIndicator color={colors.emerald500} />
+          </View>
+        ) : filtered.length === 0 ? (
           <Text className="mt-10 text-center text-sm text-ink/40" style={{ fontFamily: "Outfit" }}>
             Không tìm thấy từ nào phù hợp.
           </Text>
         ) : (
           <View className="gap-2.5">
-            {filtered.map((entry, i) => (
+            {filtered.map((entry) => (
               <View
-                key={`${entry.word}-${i}`}
+                key={entry.id}
                 className="flex-row items-center rounded-2xl bg-white px-4 py-3.5"
                 style={{
                   shadowColor: colors.ink,
@@ -141,10 +119,10 @@ export default function VaultScreen() {
                 <View className="flex-1">
                   <View className="flex-row items-center gap-2">
                     <Text style={{ fontFamily: "Outfit_600SemiBold", fontSize: 15, color: colors.ink }}>
-                      {entry.word}
+                      {entry.text}
                     </Text>
                     <Text className="text-xs italic text-ink/40" style={{ fontFamily: "Outfit" }}>
-                      {entry.pos}
+                      {entry.partOfSpeech}
                     </Text>
                   </View>
                   <Text className="mt-0.5 text-sm text-ink/60" style={{ fontFamily: "Outfit" }}>
@@ -152,7 +130,7 @@ export default function VaultScreen() {
                   </Text>
                 </View>
                 <Pressable
-                  onPress={() => Speech.speak(entry.word, { language: "en-US" })}
+                  onPress={() => Speech.speak(entry.text, { language: "en-US" })}
                   className="h-9 w-9 items-center justify-center rounded-full"
                   style={{ backgroundColor: "#e0e7ff" }}
                 >

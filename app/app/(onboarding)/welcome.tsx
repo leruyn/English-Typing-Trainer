@@ -86,7 +86,12 @@ export default function WelcomeScreen() {
         </Pressable>
 
         <Pressable
-          onPress={() => router.replace("/(tabs)/home")}
+          onPress={() =>
+            router.push({
+              pathname: "/(onboarding)/account",
+              params: { minutesPerDay: "10", track: "beginner", answers: "" },
+            })
+          }
           className="items-center py-2"
         >
           <Text

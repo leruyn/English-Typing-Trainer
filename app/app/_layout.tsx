@@ -21,11 +21,39 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { colors } from "../src/theme";
+import { AuthProvider, useAuth } from "../src/context/AuthContext";
+import { useOfflineSync } from "../src/offline/useOfflineSync";
 
 // Keep the splash screen visible until fonts have finished loading.
 SplashScreen.preventAutoHideAsync();
 
 const queryClient = new QueryClient();
+
+/**
+ * Chooses which navigator group to land on once the auth session has been
+ * read from storage: returning users with a stored token skip straight to
+ * `(tabs)`, everyone else starts at `(onboarding)`. Rendered only after
+ * `isBootstrapping` resolves so `initialRouteName` is correct from the
+ * first frame - no flash of the wrong screen before a redirect kicks in.
+ */
+function RootNavigator() {
+  const { isBootstrapping, isAuthenticated } = useAuth();
+  useOfflineSync();
+
+  if (isBootstrapping) {
+    return <View style={{ flex: 1, backgroundColor: colors.cream }} />;
+  }
+
+  return (
+    <Stack
+      initialRouteName={isAuthenticated ? "(tabs)" : "(onboarding)"}
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen name="(onboarding)" />
+      <Stack.Screen name="(tabs)" />
+    </Stack>
+  );
+}
 
 export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts({
@@ -63,13 +91,9 @@ export default function RootLayout() {
     <GestureHandlerRootView style={{ flex: 1 }} onLayout={onLayoutRootView}>
       <SafeAreaProvider>
         <QueryClientProvider client={queryClient}>
-          <Stack
-            initialRouteName="(onboarding)"
-            screenOptions={{ headerShown: false }}
-          >
-            <Stack.Screen name="(onboarding)" />
-            <Stack.Screen name="(tabs)" />
-          </Stack>
+          <AuthProvider>
+            <RootNavigator />
+          </AuthProvider>
         </QueryClientProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>

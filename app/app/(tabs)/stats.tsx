@@ -5,17 +5,7 @@ import { Flame, Zap } from "lucide-react-native";
 
 import { colors } from "../../src/theme";
 import MasteryRing from "../../src/components/MasteryRing";
-
-/**
- * Mock stats data. Real word progress / streak / XP wiring against the
- * backend is a separate later task.
- */
-const MOCK = {
-  masteryPercent: 62,
-  streakDays: 7,
-  xp: 1280,
-  srsDistribution: [42, 27, 18, 11, 7], // box 1 (new) -> box 5 (mastered)
-};
+import { useStatsQuery } from "../../src/api/hooks";
 
 const SRS_COLORS = ["#d1fae5", "#a7f3d0", "#6ee7b7", "#34d399", "#059669"];
 
@@ -25,8 +15,15 @@ const BAR_GAP = 14;
 
 export default function StatsScreen() {
   const insets = useSafeAreaInsets();
-  const maxCount = Math.max(...MOCK.srsDistribution, 1);
-  const barWidth = (CHART_WIDTH - BAR_GAP * (MOCK.srsDistribution.length - 1)) / MOCK.srsDistribution.length;
+  const { data: stats } = useStatsQuery();
+
+  const masteryPercent = stats?.masteryPercent ?? 0;
+  const streakDays = stats?.currentStreak ?? 0;
+  const xp = stats?.totalXp ?? 0;
+  const srsDistribution = [1, 2, 3, 4, 5].map((box) => stats?.boxDistribution[box as 1 | 2 | 3 | 4 | 5] ?? 0);
+
+  const maxCount = Math.max(...srsDistribution, 1);
+  const barWidth = (CHART_WIDTH - BAR_GAP * (srsDistribution.length - 1)) / srsDistribution.length;
 
   return (
     <ScrollView
@@ -50,7 +47,7 @@ export default function StatsScreen() {
           shadowOffset: { width: 0, height: 4 },
         }}
       >
-        <MasteryRing percent={MOCK.masteryPercent} size={168} strokeWidth={16} label="mức độ thành thạo" />
+        <MasteryRing percent={masteryPercent} size={168} strokeWidth={16} label="mức độ thành thạo" />
       </View>
 
       {/* Streak + XP summary cards */}
@@ -68,7 +65,7 @@ export default function StatsScreen() {
             <Flame size={20} color="#d97706" />
           </View>
           <Text style={{ fontFamily: "JetBrainsMono_700Bold", fontSize: 26, color: colors.ink, marginTop: 8 }}>
-            {MOCK.streakDays}
+            {streakDays}
           </Text>
           <Text className="text-xs text-ink/50" style={{ fontFamily: "Outfit_500Medium" }}>
             ngày liên tiếp
@@ -88,7 +85,7 @@ export default function StatsScreen() {
             <Zap size={20} color={colors.indigo600} />
           </View>
           <Text style={{ fontFamily: "JetBrainsMono_700Bold", fontSize: 26, color: colors.ink, marginTop: 8 }}>
-            {MOCK.xp}
+            {xp}
           </Text>
           <Text className="text-xs text-ink/50" style={{ fontFamily: "Outfit_500Medium" }}>
             điểm XP
@@ -110,7 +107,7 @@ export default function StatsScreen() {
           Phân bố hộp SRS
         </Text>
         <Svg width={CHART_WIDTH} height={CHART_HEIGHT}>
-          {MOCK.srsDistribution.map((count, i) => {
+          {srsDistribution.map((count, i) => {
             const barHeight = (count / maxCount) * (CHART_HEIGHT - 8);
             const x = i * (barWidth + BAR_GAP);
             const y = CHART_HEIGHT - barHeight;
@@ -128,7 +125,7 @@ export default function StatsScreen() {
           })}
         </Svg>
         <View className="mt-3 flex-row justify-between">
-          {MOCK.srsDistribution.map((count, i) => (
+          {srsDistribution.map((count, i) => (
             <View key={i} style={{ width: barWidth + BAR_GAP, alignItems: "center" }}>
               <Text className="text-[10px] text-ink/50" style={{ fontFamily: "Outfit_500Medium" }}>
                 Box {i + 1}

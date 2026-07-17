@@ -5,17 +5,7 @@ import { BookOpen, ChevronRight, Ear, Eye, Flame, Zap } from "lucide-react-nativ
 
 import { colors } from "../../src/theme";
 import MasteryRing from "../../src/components/MasteryRing";
-
-/**
- * Mock dashboard data. Real word progress / streak / XP wiring against the
- * backend + TanStack Query is a separate later task — see project notes.
- */
-const MOCK = {
-  masteryPercent: 62,
-  streakDays: 7,
-  xp: 1280,
-  srsDistribution: [42, 27, 18, 11, 7], // box 1 (new) -> box 5 (mastered)
-};
+import { useStatsQuery } from "../../src/api/hooks";
 
 const SRS_COLORS = ["#d1fae5", "#a7f3d0", "#6ee7b7", "#34d399", "#059669"];
 
@@ -46,6 +36,12 @@ const PRACTICE_MODES = [
 export default function HomeScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const { data: stats } = useStatsQuery();
+
+  const masteryPercent = stats?.masteryPercent ?? 0;
+  const streakDays = stats?.currentStreak ?? 0;
+  const xp = stats?.totalXp ?? 0;
+  const srsDistribution = [1, 2, 3, 4, 5].map((box) => stats?.boxDistribution[box as 1 | 2 | 3 | 4 | 5] ?? 0);
 
   return (
     <ScrollView
@@ -74,7 +70,7 @@ export default function HomeScreen() {
             shadowOffset: { width: 0, height: 4 },
           }}
         >
-          <MasteryRing percent={MOCK.masteryPercent} size={104} label="mastery" />
+          <MasteryRing percent={masteryPercent} size={104} label="mastery" />
         </View>
 
         <View className="flex-1 gap-3">
@@ -92,7 +88,7 @@ export default function HomeScreen() {
             </View>
             <View>
               <Text style={{ fontFamily: "JetBrainsMono_700Bold", fontSize: 20, color: colors.ink }}>
-                {MOCK.streakDays}
+                {streakDays}
               </Text>
               <Text className="text-xs text-ink/50" style={{ fontFamily: "Outfit_500Medium" }}>
                 ngày liên tiếp
@@ -114,7 +110,7 @@ export default function HomeScreen() {
             </View>
             <View>
               <Text style={{ fontFamily: "JetBrainsMono_700Bold", fontSize: 20, color: colors.ink }}>
-                {MOCK.xp}
+                {xp}
               </Text>
               <Text className="text-xs text-ink/50" style={{ fontFamily: "Outfit_500Medium" }}>
                 điểm XP
@@ -194,7 +190,7 @@ export default function HomeScreen() {
           Phân bố hộp SRS
         </Text>
         <View className="flex-row overflow-hidden rounded-full" style={{ height: 16 }}>
-          {MOCK.srsDistribution.map((count, i) => (
+          {srsDistribution.map((count, i) => (
             <View
               key={i}
               style={{
@@ -205,7 +201,7 @@ export default function HomeScreen() {
           ))}
         </View>
         <View className="mt-3 flex-row justify-between">
-          {MOCK.srsDistribution.map((count, i) => (
+          {srsDistribution.map((count, i) => (
             <View key={i} className="items-center">
               <View
                 className="h-2.5 w-2.5 rounded-full"

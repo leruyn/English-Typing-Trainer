@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Pressable, Text, View } from "react-native";
-import { useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { Clock, Sparkles } from "lucide-react-native";
 
 import { colors } from "../../src/theme";
@@ -10,6 +10,7 @@ const OPTIONS = [5, 10, 15, 20] as const;
 
 export default function PaceScreen() {
   const router = useRouter();
+  const { track, answers } = useLocalSearchParams<{ track?: string; answers?: string }>();
   const [minutes, setMinutes] = useState<number>(10);
 
   const newWordCap = useMemo(() => computeDailyNewWordCap(minutes), [minutes]);
@@ -99,7 +100,12 @@ export default function PaceScreen() {
       </View>
 
       <Pressable
-        onPress={() => router.replace("/(tabs)/home")}
+        onPress={() =>
+          router.push({
+            pathname: "/(onboarding)/account",
+            params: { minutesPerDay: String(minutes), track: track ?? "", answers: answers ?? "" },
+          })
+        }
         className="items-center rounded-2xl bg-emerald-500 py-4"
         style={{
           shadowColor: colors.emerald500,

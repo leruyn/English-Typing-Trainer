@@ -5,7 +5,7 @@ import Animated, { useAnimatedStyle, withSpring } from "react-native-reanimated"
 import { Check, X } from "lucide-react-native";
 
 import { colors } from "../../src/theme";
-import type { CefrTrack } from "@art/shared";
+import type { AssessmentAnswer, CefrTrack } from "@art/shared";
 
 /**
  * Small hardcoded question bank spanning 6 difficulty tiers (roughly
@@ -76,6 +76,7 @@ export default function AssessmentScreen() {
   const [difficulty, setDifficulty] = useState(START_DIFFICULTY);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [trajectory, setTrajectory] = useState<number[]>([]);
+  const [answers, setAnswers] = useState<AssessmentAnswer[]>([]);
   const [selected, setSelected] = useState<number | null>(null);
   const [askedPrompts, setAskedPrompts] = useState<Set<string>>(new Set());
 
@@ -103,6 +104,11 @@ export default function AssessmentScreen() {
     const correct = optionIndex === currentQuestion.correctIndex;
     const nextTrajectory = [...trajectory, currentQuestion.difficulty];
     setTrajectory(nextTrajectory);
+    const nextAnswers: AssessmentAnswer[] = [
+      ...answers,
+      { questionIndex, difficulty: currentQuestion.difficulty, correct },
+    ];
+    setAnswers(nextAnswers);
     setAskedPrompts((prev) => new Set(prev).add(currentQuestion.prompt));
 
     const nextDifficulty = correct
@@ -116,6 +122,7 @@ export default function AssessmentScreen() {
           pathname: "/(onboarding)/complete",
           params: {
             trajectory: JSON.stringify(nextTrajectory),
+            answers: JSON.stringify(nextAnswers),
             track: suggestedTrack,
           },
         });

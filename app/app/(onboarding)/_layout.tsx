@@ -10,6 +10,7 @@ export default function OnboardingLayout() {
       <Stack.Screen name="assessment" />
       <Stack.Screen name="complete" />
       <Stack.Screen name="pace" />
+      <Stack.Screen name="account" />
     </Stack>
   );
 }
