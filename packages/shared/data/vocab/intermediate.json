@@ -1734,5 +1734,537 @@
         "iconHint": "sun above solar panel"
       }
     ]
+  },
+  {
+    "topicId": "common-adjectives-b1",
+    "topicNameVi": "Tính từ thông dụng B1",
+    "cefrLevel": "B1",
+    "words": [
+      {
+        "word": "covered",
+        "pos": "adj.",
+        "meaningVi": "được bao phủ",
+        "exampleSentence": "The hills were ___ in snow all winter.",
+        "iconHint": "hill topped with a white blanket"
+      },
+      {
+        "word": "cruel",
+        "pos": "adj.",
+        "meaningVi": "tàn nhẫn",
+        "exampleSentence": "It was ___ to leave the dog outside in the cold.",
+        "iconHint": "storm cloud over a small figure"
+      },
+      {
+        "word": "cultural",
+        "pos": "adj.",
+        "meaningVi": "thuộc về văn hóa",
+        "exampleSentence": "The festival celebrates the region's ___ heritage.",
+        "iconHint": "mask and drum side by side"
+      },
+      {
+        "word": "current",
+        "pos": "adj.",
+        "meaningVi": "hiện tại, hiện nay",
+        "exampleSentence": "What is your ___ job title?",
+        "iconHint": "clock hand pointing to 'now'"
+      },
+      {
+        "word": "definite",
+        "pos": "adj.",
+        "meaningVi": "chắc chắn, rõ ràng",
+        "exampleSentence": "We need a ___ answer by Friday.",
+        "iconHint": "checkmark in a bold box"
+      },
+      {
+        "word": "determined",
+        "pos": "adj.",
+        "meaningVi": "quyết tâm",
+        "exampleSentence": "She is ___ to finish the marathon this year.",
+        "iconHint": "clenched fist with a small flag"
+      },
+      {
+        "word": "disappointing",
+        "pos": "adj.",
+        "meaningVi": "đáng thất vọng",
+        "exampleSentence": "The film's ending was quite ___.",
+        "iconHint": "thumbs down with a small cloud"
+      },
+      {
+        "word": "dressed",
+        "pos": "adj.",
+        "meaningVi": "đã mặc quần áo",
+        "exampleSentence": "He was already ___ and ready to leave.",
+        "iconHint": "figure wearing a full outfit"
+      },
+      {
+        "word": "drunk",
+        "pos": "adj.",
+        "meaningVi": "say rượu",
+        "exampleSentence": "He was too ___ to drive home safely.",
+        "iconHint": "wobbling glass with bubbles"
+      },
+      {
+        "word": "due",
+        "pos": "adj.",
+        "meaningVi": "đến hạn, dự kiến",
+        "exampleSentence": "The rent is ___ on the first of the month.",
+        "iconHint": "calendar with a red circle"
+      },
+      {
+        "word": "eastern",
+        "pos": "adj.",
+        "meaningVi": "thuộc phía đông",
+        "exampleSentence": "They visited several ___ European countries last year.",
+        "iconHint": "compass pointing east"
+      },
+      {
+        "word": "economic",
+        "pos": "adj.",
+        "meaningVi": "thuộc về kinh tế",
+        "exampleSentence": "The country is facing serious ___ problems.",
+        "iconHint": "chart with a downward line"
+      },
+      {
+        "word": "educated",
+        "pos": "adj.",
+        "meaningVi": "có học thức",
+        "exampleSentence": "She is a well ___ young professional.",
+        "iconHint": "graduation cap above an open book"
+      },
+      {
+        "word": "educational",
+        "pos": "adj.",
+        "meaningVi": "mang tính giáo dục",
+        "exampleSentence": "The museum offers many ___ programs for children.",
+        "iconHint": "book beside a small owl"
+      },
+      {
+        "word": "effective",
+        "pos": "adj.",
+        "meaningVi": "hiệu quả",
+        "exampleSentence": "This is a very ___ way to learn vocabulary.",
+        "iconHint": "target with an arrow in the centre"
+      },
+      {
+        "word": "embarrassing",
+        "pos": "adj.",
+        "meaningVi": "gây xấu hổ",
+        "exampleSentence": "Tripping on stage was really ___ for him.",
+        "iconHint": "red face with small sweat drops"
+      },
+      {
+        "word": "essential",
+        "pos": "adj.",
+        "meaningVi": "cần thiết, thiết yếu",
+        "exampleSentence": "Clean water is ___ for good health.",
+        "iconHint": "star inside a small circle"
+      },
+      {
+        "word": "familiar",
+        "pos": "adj.",
+        "meaningVi": "quen thuộc",
+        "exampleSentence": "That song sounds ___, but I can't remember its name.",
+        "iconHint": "face recognizing a pattern"
+      }
+    ]
+  },
+  {
+    "topicId": "common-verbs-b1",
+    "topicNameVi": "Động từ thông dụng B1",
+    "cefrLevel": "B1",
+    "words": [
+      {
+        "word": "decorate",
+        "pos": "v.",
+        "meaningVi": "trang trí",
+        "exampleSentence": "They spent the afternoon helping to ___ the hall.",
+        "iconHint": "wall with hanging streamers"
+      },
+      {
+        "word": "define",
+        "pos": "v.",
+        "meaningVi": "định nghĩa",
+        "exampleSentence": "Can you ___ what this word means?",
+        "iconHint": "open dictionary with a highlighted word"
+      },
+      {
+        "word": "deliver",
+        "pos": "v.",
+        "meaningVi": "giao hàng, chuyển phát",
+        "exampleSentence": "The company promises to ___ within two days.",
+        "iconHint": "delivery box with a truck"
+      },
+      {
+        "word": "determine",
+        "pos": "v.",
+        "meaningVi": "xác định, quyết định",
+        "exampleSentence": "The test results will ___ her treatment plan.",
+        "iconHint": "magnifying glass over a checklist"
+      },
+      {
+        "word": "divide",
+        "pos": "v.",
+        "meaningVi": "chia, phân chia",
+        "exampleSentence": "___ the class into four small groups.",
+        "iconHint": "circle split into equal parts"
+      },
+      {
+        "word": "educate",
+        "pos": "v.",
+        "meaningVi": "giáo dục",
+        "exampleSentence": "The program aims to ___ young people about recycling.",
+        "iconHint": "teacher pointing at a chalkboard"
+      },
+      {
+        "word": "empty",
+        "pos": "v.",
+        "meaningVi": "làm rỗng, đổ hết ra",
+        "exampleSentence": "Please ___ the bin before it overflows.",
+        "iconHint": "trash can being tipped over"
+      },
+      {
+        "word": "encourage",
+        "pos": "v.",
+        "meaningVi": "khuyến khích",
+        "exampleSentence": "Her parents always ___ her to try new things.",
+        "iconHint": "hand giving a thumbs up to another"
+      },
+      {
+        "word": "examine",
+        "pos": "v.",
+        "meaningVi": "kiểm tra, xem xét",
+        "exampleSentence": "The doctor will ___ your arm for any injury.",
+        "iconHint": "magnifying glass over a clipboard"
+      },
+      {
+        "word": "expand",
+        "pos": "v.",
+        "meaningVi": "mở rộng",
+        "exampleSentence": "The company plans to ___ into new markets next year.",
+        "iconHint": "arrows stretching outward from a box"
+      },
+      {
+        "word": "experience",
+        "pos": "v.",
+        "meaningVi": "trải nghiệm",
+        "exampleSentence": "Travelling abroad let her ___ new cultures.",
+        "iconHint": "footprints leading to a globe"
+      },
+      {
+        "word": "experiment",
+        "pos": "v.",
+        "meaningVi": "thử nghiệm",
+        "exampleSentence": "Scientists ___ with new materials in the lab.",
+        "iconHint": "beaker with bubbling liquid"
+      },
+      {
+        "word": "explode",
+        "pos": "v.",
+        "meaningVi": "phát nổ",
+        "exampleSentence": "The old bridge was set to ___ safely.",
+        "iconHint": "burst of small fragments"
+      },
+      {
+        "word": "explore",
+        "pos": "v.",
+        "meaningVi": "khám phá",
+        "exampleSentence": "They wanted to ___ the old castle's hidden rooms.",
+        "iconHint": "compass over a winding path"
+      },
+      {
+        "word": "face",
+        "pos": "v.",
+        "meaningVi": "đối mặt",
+        "exampleSentence": "The team must ___ a tough opponent this weekend.",
+        "iconHint": "person standing before a large wall"
+      },
+      {
+        "word": "fasten",
+        "pos": "v.",
+        "meaningVi": "thắt chặt, cài lại",
+        "exampleSentence": "Please ___ your seatbelt before the plane takes off.",
+        "iconHint": "buckle clicking shut"
+      },
+      {
+        "word": "fear",
+        "pos": "v.",
+        "meaningVi": "sợ hãi",
+        "exampleSentence": "Many people ___ public speaking more than anything else.",
+        "iconHint": "shadow looming behind a small figure"
+      },
+      {
+        "word": "feature",
+        "pos": "v.",
+        "meaningVi": "có, giới thiệu nổi bật",
+        "exampleSentence": "The magazine will ___ a story about young inventors.",
+        "iconHint": "spotlight on a small article"
+      }
+    ]
+  },
+  {
+    "topicId": "advanced-adjectives-b2",
+    "topicNameVi": "Tính từ nâng cao B2",
+    "cefrLevel": "B2",
+    "words": [
+      {
+        "word": "colourful",
+        "pos": "adj.",
+        "meaningVi": "sặc sỡ, đầy màu sắc",
+        "exampleSentence": "The market was full of ___ fruit and fabric.",
+        "iconHint": "rainbow of small paint splashes"
+      },
+      {
+        "word": "complicated",
+        "pos": "adj.",
+        "meaningVi": "phức tạp",
+        "exampleSentence": "The instructions for the machine were quite ___.",
+        "iconHint": "tangled wires"
+      },
+      {
+        "word": "comprehensive",
+        "pos": "adj.",
+        "meaningVi": "toàn diện",
+        "exampleSentence": "The report gives a ___ overview of the market.",
+        "iconHint": "open folder with many labeled tabs"
+      },
+      {
+        "word": "compulsory",
+        "pos": "adj.",
+        "meaningVi": "bắt buộc",
+        "exampleSentence": "Wearing a helmet is ___ for all cyclists here.",
+        "iconHint": "stop sign with a checkmark"
+      },
+      {
+        "word": "concerned",
+        "pos": "adj.",
+        "meaningVi": "lo lắng, quan tâm",
+        "exampleSentence": "Parents are ___ about the school's new schedule.",
+        "iconHint": "furrowed brow above a raised hand"
+      },
+      {
+        "word": "confusing",
+        "pos": "adj.",
+        "meaningVi": "gây nhầm lẫn",
+        "exampleSentence": "The map was too ___ to follow at night.",
+        "iconHint": "maze with crossed paths"
+      },
+      {
+        "word": "conscious",
+        "pos": "adj.",
+        "meaningVi": "có ý thức, tỉnh táo",
+        "exampleSentence": "She made a ___ effort to eat more vegetables.",
+        "iconHint": "open eye above a lightbulb"
+      },
+      {
+        "word": "considerable",
+        "pos": "adj.",
+        "meaningVi": "đáng kể",
+        "exampleSentence": "The renovation required a ___ amount of money.",
+        "iconHint": "large stack of coins"
+      },
+      {
+        "word": "consistent",
+        "pos": "adj.",
+        "meaningVi": "nhất quán",
+        "exampleSentence": "He has been ___ in his training every week.",
+        "iconHint": "row of identical checkmarks"
+      },
+      {
+        "word": "constant",
+        "pos": "adj.",
+        "meaningVi": "liên tục, không đổi",
+        "exampleSentence": "The ___ noise from the street kept her awake.",
+        "iconHint": "steady wavy line without breaks"
+      },
+      {
+        "word": "contemporary",
+        "pos": "adj.",
+        "meaningVi": "đương đại, hiện đại",
+        "exampleSentence": "The gallery focuses on ___ art from young painters.",
+        "iconHint": "abstract shapes in a picture frame"
+      },
+      {
+        "word": "controversial",
+        "pos": "adj.",
+        "meaningVi": "gây tranh cãi",
+        "exampleSentence": "The new policy was highly ___ among voters.",
+        "iconHint": "two speech bubbles clashing over a topic"
+      },
+      {
+        "word": "conventional",
+        "pos": "adj.",
+        "meaningVi": "thông thường, truyền thống",
+        "exampleSentence": "They chose a more ___ approach to the design.",
+        "iconHint": "simple box shape without decoration"
+      },
+      {
+        "word": "convincing",
+        "pos": "adj.",
+        "meaningVi": "thuyết phục",
+        "exampleSentence": "Her argument was clear and very ___.",
+        "iconHint": "checkmark beside a speech bubble"
+      },
+      {
+        "word": "corporate",
+        "pos": "adj.",
+        "meaningVi": "thuộc về công ty, tập đoàn",
+        "exampleSentence": "He works in the ___ office downtown.",
+        "iconHint": "tall office building with a briefcase"
+      },
+      {
+        "word": "critical",
+        "pos": "adj.",
+        "meaningVi": "quan trọng, mang tính phê phán",
+        "exampleSentence": "Getting enough sleep is ___ for good health.",
+        "iconHint": "exclamation mark inside a shield"
+      },
+      {
+        "word": "crucial",
+        "pos": "adj.",
+        "meaningVi": "then chốt, cực kỳ quan trọng",
+        "exampleSentence": "This next step is ___ to the project's success.",
+        "iconHint": "key in a keyhole with a star"
+      },
+      {
+        "word": "cute",
+        "pos": "adj.",
+        "meaningVi": "dễ thương",
+        "exampleSentence": "The puppy looked incredibly ___ in its little coat.",
+        "iconHint": "small round face with big eyes"
+      }
+    ]
+  },
+  {
+    "topicId": "advanced-verbs-b2",
+    "topicNameVi": "Động từ nâng cao B2",
+    "cefrLevel": "B2",
+    "words": [
+      {
+        "word": "compose",
+        "pos": "v.",
+        "meaningVi": "sáng tác, soạn thảo",
+        "exampleSentence": "She began to ___ a song for the wedding.",
+        "iconHint": "musical notes flowing from a pen"
+      },
+      {
+        "word": "confess",
+        "pos": "v.",
+        "meaningVi": "thú nhận",
+        "exampleSentence": "He finally decided to ___ that he broke the vase.",
+        "iconHint": "speech bubble with a small heart"
+      },
+      {
+        "word": "construct",
+        "pos": "v.",
+        "meaningVi": "xây dựng",
+        "exampleSentence": "Workers will ___ the new bridge within a year.",
+        "iconHint": "crane building a structure"
+      },
+      {
+        "word": "consult",
+        "pos": "v.",
+        "meaningVi": "tham khảo ý kiến",
+        "exampleSentence": "You should ___ a doctor before starting the diet.",
+        "iconHint": "person raising a hand to ask"
+      },
+      {
+        "word": "contribute",
+        "pos": "v.",
+        "meaningVi": "đóng góp",
+        "exampleSentence": "Everyone was asked to ___ ideas for the project.",
+        "iconHint": "hand adding a piece to a puzzle"
+      },
+      {
+        "word": "convert",
+        "pos": "v.",
+        "meaningVi": "chuyển đổi",
+        "exampleSentence": "They plan to ___ the old barn into a house.",
+        "iconHint": "arrow turning a square into a circle"
+      },
+      {
+        "word": "convey",
+        "pos": "v.",
+        "meaningVi": "truyền đạt",
+        "exampleSentence": "Her letter managed to ___ real warmth and care.",
+        "iconHint": "speech bubble with an arrow to a heart"
+      },
+      {
+        "word": "cope",
+        "pos": "v.",
+        "meaningVi": "đối phó, xoay xở",
+        "exampleSentence": "It's hard to ___ with so much stress at once.",
+        "iconHint": "person balancing several small weights"
+      },
+      {
+        "word": "criticize",
+        "pos": "v.",
+        "meaningVi": "phê bình, chỉ trích",
+        "exampleSentence": "Critics began to ___ the film's slow pacing.",
+        "iconHint": "speech bubble with a red underline"
+      },
+      {
+        "word": "dare",
+        "pos": "v.",
+        "meaningVi": "dám, thách thức",
+        "exampleSentence": "Nobody would ___ to speak first in the meeting.",
+        "iconHint": "person stepping over a line"
+      },
+      {
+        "word": "declare",
+        "pos": "v.",
+        "meaningVi": "tuyên bố",
+        "exampleSentence": "The judges will ___ the winner at noon.",
+        "iconHint": "megaphone with a small ribbon"
+      },
+      {
+        "word": "defend",
+        "pos": "v.",
+        "meaningVi": "bảo vệ",
+        "exampleSentence": "The lawyer worked hard to ___ her client.",
+        "iconHint": "shield in front of a small figure"
+      },
+      {
+        "word": "delete",
+        "pos": "v.",
+        "meaningVi": "xóa bỏ",
+        "exampleSentence": "He accidentally hit ___ and lost the whole file.",
+        "iconHint": "trash bin icon with an X"
+      },
+      {
+        "word": "demonstrate",
+        "pos": "v.",
+        "meaningVi": "chứng minh, trình diễn",
+        "exampleSentence": "The teacher will ___ the experiment for the class.",
+        "iconHint": "hand showing a glowing flask"
+      },
+      {
+        "word": "deny",
+        "pos": "v.",
+        "meaningVi": "phủ nhận",
+        "exampleSentence": "He continued to ___ any involvement in the incident.",
+        "iconHint": "hand raised with a crossed-out circle"
+      },
+      {
+        "word": "depart",
+        "pos": "v.",
+        "meaningVi": "khởi hành",
+        "exampleSentence": "The train will ___ from platform two.",
+        "iconHint": "train pulling away from a station"
+      },
+      {
+        "word": "deserve",
+        "pos": "v.",
+        "meaningVi": "xứng đáng",
+        "exampleSentence": "After all that hard work, she ___s a break.",
+        "iconHint": "medal resting on an open palm"
+      },
+      {
+        "word": "detect",
+        "pos": "v.",
+        "meaningVi": "phát hiện",
+        "exampleSentence": "The sensor can ___ even the smallest amount of smoke.",
+        "iconHint": "radar wave finding a small dot"
+      }
+    ]
   }
 ]

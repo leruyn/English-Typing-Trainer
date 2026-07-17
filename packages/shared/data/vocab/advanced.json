@@ -775,5 +775,271 @@
         "iconHint": "columned building with a checkmark"
       }
     ]
+  },
+  {
+    "topicId": "formal-adjectives-c1",
+    "topicNameVi": "Tính từ trang trọng C1",
+    "cefrLevel": "C1",
+    "words": [
+      {
+        "word": "legitimate",
+        "pos": "adj.",
+        "meaningVi": "hợp pháp, chính đáng",
+        "exampleSentence": "He raised a ___ concern about the budget plan.",
+        "iconHint": "official stamp with a checkmark"
+      },
+      {
+        "word": "lethal",
+        "pos": "adj.",
+        "meaningVi": "chết người, gây tử vong",
+        "exampleSentence": "The chemical is ___ even in small amounts.",
+        "iconHint": "skull inside a warning triangle"
+      },
+      {
+        "word": "magical",
+        "pos": "adj.",
+        "meaningVi": "kỳ diệu, huyền bí",
+        "exampleSentence": "The old forest had a truly ___ atmosphere at night.",
+        "iconHint": "sparkling wand with stars"
+      },
+      {
+        "word": "magnetic",
+        "pos": "adj.",
+        "meaningVi": "có từ tính, thu hút",
+        "exampleSentence": "The speaker had a ___ presence on stage.",
+        "iconHint": "horseshoe magnet pulling small dots"
+      },
+      {
+        "word": "marginal",
+        "pos": "adj.",
+        "meaningVi": "không đáng kể, ở rìa",
+        "exampleSentence": "The new update made only a ___ difference.",
+        "iconHint": "thin sliver at the edge of a circle"
+      },
+      {
+        "word": "marine",
+        "pos": "adj.",
+        "meaningVi": "thuộc về biển",
+        "exampleSentence": "The team studies ___ life along the coast.",
+        "iconHint": "fish swimming beneath waves"
+      },
+      {
+        "word": "mathematical",
+        "pos": "adj.",
+        "meaningVi": "thuộc về toán học",
+        "exampleSentence": "She has a strong ___ background from university.",
+        "iconHint": "equation on a chalkboard"
+      },
+      {
+        "word": "meaningful",
+        "pos": "adj.",
+        "meaningVi": "có ý nghĩa",
+        "exampleSentence": "They had a ___ conversation about their future.",
+        "iconHint": "heart inside a speech bubble"
+      },
+      {
+        "word": "medieval",
+        "pos": "adj.",
+        "meaningVi": "thời trung cổ",
+        "exampleSentence": "The town still has its old ___ castle walls.",
+        "iconHint": "stone castle with a flag"
+      },
+      {
+        "word": "moderate",
+        "pos": "adj.",
+        "meaningVi": "vừa phải, ôn hòa",
+        "exampleSentence": "The doctor recommended ___ exercise every day.",
+        "iconHint": "gauge needle pointing to the middle"
+      },
+      {
+        "word": "mutual",
+        "pos": "adj.",
+        "meaningVi": "chung, qua lại",
+        "exampleSentence": "They reached a ___ agreement after the discussion.",
+        "iconHint": "two hands meeting in the middle"
+      },
+      {
+        "word": "notable",
+        "pos": "adj.",
+        "meaningVi": "đáng chú ý",
+        "exampleSentence": "There were several ___ improvements in this version.",
+        "iconHint": "star beside a highlighted line"
+      },
+      {
+        "word": "notorious",
+        "pos": "adj.",
+        "meaningVi": "khét tiếng",
+        "exampleSentence": "The area was ___ for its heavy traffic.",
+        "iconHint": "warning sign with a spotlight"
+      },
+      {
+        "word": "novel",
+        "pos": "adj.",
+        "meaningVi": "mới lạ, độc đáo",
+        "exampleSentence": "The scientists proposed a ___ solution to the problem.",
+        "iconHint": "lightbulb with a small spark"
+      },
+      {
+        "word": "occasional",
+        "pos": "adj.",
+        "meaningVi": "thỉnh thoảng",
+        "exampleSentence": "He enjoys an ___ cup of coffee in the afternoon.",
+        "iconHint": "calendar with a few scattered dots"
+      },
+      {
+        "word": "optical",
+        "pos": "adj.",
+        "meaningVi": "thuộc về quang học, thị giác",
+        "exampleSentence": "The design creates an ___ illusion on the wall.",
+        "iconHint": "eye with a swirling pattern"
+      },
+      {
+        "word": "oral",
+        "pos": "adj.",
+        "meaningVi": "bằng miệng, nói",
+        "exampleSentence": "Students must pass an ___ exam as well as a written one.",
+        "iconHint": "speech bubble with a microphone"
+      },
+      {
+        "word": "overwhelming",
+        "pos": "adj.",
+        "meaningVi": "áp đảo, choáng ngợp",
+        "exampleSentence": "The support from fans was truly ___.",
+        "iconHint": "wave towering over a small figure"
+      }
+    ]
+  },
+  {
+    "topicId": "formal-verbs-c1",
+    "topicNameVi": "Động từ trang trọng C1",
+    "cefrLevel": "C1",
+    "words": [
+      {
+        "word": "manipulate",
+        "pos": "v.",
+        "meaningVi": "thao túng, điều khiển",
+        "exampleSentence": "The editor tried to ___ the photo to hide the flaw.",
+        "iconHint": "puppet strings controlled by a hand"
+      },
+      {
+        "word": "maximize",
+        "pos": "v.",
+        "meaningVi": "tối đa hóa",
+        "exampleSentence": "The team worked to ___ efficiency on the factory floor.",
+        "iconHint": "arrow stretching to the top of a chart"
+      },
+      {
+        "word": "merge",
+        "pos": "v.",
+        "meaningVi": "hợp nhất, sáp nhập",
+        "exampleSentence": "The two companies decided to ___ next year.",
+        "iconHint": "two circles overlapping into one"
+      },
+      {
+        "word": "minimize",
+        "pos": "v.",
+        "meaningVi": "tối thiểu hóa",
+        "exampleSentence": "New safety rules aim to ___ workplace accidents.",
+        "iconHint": "arrow shrinking a bar chart down"
+      },
+      {
+        "word": "mobilize",
+        "pos": "v.",
+        "meaningVi": "huy động",
+        "exampleSentence": "The charity worked to ___ volunteers after the flood.",
+        "iconHint": "group of small figures marching together"
+      },
+      {
+        "word": "nominate",
+        "pos": "v.",
+        "meaningVi": "đề cử",
+        "exampleSentence": "The committee will ___ three candidates for the award.",
+        "iconHint": "hand raising a name card"
+      },
+      {
+        "word": "notify",
+        "pos": "v.",
+        "meaningVi": "thông báo",
+        "exampleSentence": "The school will ___ parents about the schedule change.",
+        "iconHint": "envelope with a bell icon"
+      },
+      {
+        "word": "oblige",
+        "pos": "v.",
+        "meaningVi": "buộc phải, bắt buộc",
+        "exampleSentence": "The new law will ___ companies to publish their reports.",
+        "iconHint": "document beside a stamp of approval"
+      },
+      {
+        "word": "opt",
+        "pos": "v.",
+        "meaningVi": "lựa chọn",
+        "exampleSentence": "Many students ___ to study abroad for a semester.",
+        "iconHint": "hand choosing one of two paths"
+      },
+      {
+        "word": "originate",
+        "pos": "v.",
+        "meaningVi": "bắt nguồn từ",
+        "exampleSentence": "The tradition is believed to ___ from the region's early settlers.",
+        "iconHint": "seed sprouting from a root"
+      },
+      {
+        "word": "overlook",
+        "pos": "v.",
+        "meaningVi": "bỏ sót, bỏ qua",
+        "exampleSentence": "It's easy to ___ small errors in a long report.",
+        "iconHint": "magnifying glass passing over a tiny dot"
+      },
+      {
+        "word": "oversee",
+        "pos": "v.",
+        "meaningVi": "giám sát",
+        "exampleSentence": "She was chosen to ___ the entire construction project.",
+        "iconHint": "eye above a blueprint"
+      },
+      {
+        "word": "overturn",
+        "pos": "v.",
+        "meaningVi": "lật ngược, bác bỏ",
+        "exampleSentence": "The court decided to ___ the earlier decision.",
+        "iconHint": "gavel flipping a scale"
+      },
+      {
+        "word": "persist",
+        "pos": "v.",
+        "meaningVi": "kiên trì, tiếp diễn",
+        "exampleSentence": "Despite the setbacks, she chose to ___ with her research.",
+        "iconHint": "small plant growing through a crack"
+      },
+      {
+        "word": "plead",
+        "pos": "v.",
+        "meaningVi": "cầu xin, biện hộ",
+        "exampleSentence": "The lawyer will ___ the case before the judge tomorrow.",
+        "iconHint": "hands clasped together pleading"
+      },
+      {
+        "word": "portray",
+        "pos": "v.",
+        "meaningVi": "khắc họa, miêu tả",
+        "exampleSentence": "The film tries to ___ the hardships of that era realistically.",
+        "iconHint": "paintbrush completing a portrait"
+      },
+      {
+        "word": "postpone",
+        "pos": "v.",
+        "meaningVi": "hoãn lại",
+        "exampleSentence": "They had to ___ the wedding due to the storm.",
+        "iconHint": "calendar page with an arrow moving forward"
+      },
+      {
+        "word": "preach",
+        "pos": "v.",
+        "meaningVi": "thuyết giảng, rao giảng",
+        "exampleSentence": "The speaker likes to ___ about the value of honesty.",
+        "iconHint": "podium with a speech bubble"
+      }
+    ]
   }
 ]
