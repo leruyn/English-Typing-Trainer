@@ -1958,5 +1958,537 @@
         "iconHint": "hand placing an item into a jar"
       }
     ]
+  },
+  {
+    "topicId": "common-nouns-a1-1",
+    "topicNameVi": "Danh từ thông dụng A1 (phần 1)",
+    "cefrLevel": "A1",
+    "words": [
+      {
+        "word": "station",
+        "pos": "n.",
+        "meaningVi": "nhà ga, trạm",
+        "exampleSentence": "Meet me at the train ___ at nine.",
+        "iconHint": "platform with train tracks"
+      },
+      {
+        "word": "street",
+        "pos": "n.",
+        "meaningVi": "đường phố",
+        "exampleSentence": "Their house is on a quiet ___.",
+        "iconHint": "row of houses along a road"
+      },
+      {
+        "word": "supermarket",
+        "pos": "n.",
+        "meaningVi": "siêu thị",
+        "exampleSentence": "We buy groceries at the ___ every week.",
+        "iconHint": "shopping cart with aisles"
+      },
+      {
+        "word": "sweater",
+        "pos": "n.",
+        "meaningVi": "áo len",
+        "exampleSentence": "She wore a warm ___ in winter.",
+        "iconHint": "knitted pullover"
+      },
+      {
+        "word": "table",
+        "pos": "n.",
+        "meaningVi": "cái bàn",
+        "exampleSentence": "Please put the plates on the ___.",
+        "iconHint": "wooden table"
+      },
+      {
+        "word": "taxi",
+        "pos": "n.",
+        "meaningVi": "xe taxi",
+        "exampleSentence": "We took a ___ to the airport.",
+        "iconHint": "car with a taxi sign on top"
+      },
+      {
+        "word": "team",
+        "pos": "n.",
+        "meaningVi": "đội, nhóm",
+        "exampleSentence": "Our ___ won the match yesterday.",
+        "iconHint": "group of people with matching shirts"
+      },
+      {
+        "word": "television",
+        "pos": "n.",
+        "meaningVi": "ti vi",
+        "exampleSentence": "The children watched cartoons on ___.",
+        "iconHint": "TV screen"
+      },
+      {
+        "word": "theatre",
+        "pos": "n.",
+        "meaningVi": "nhà hát, rạp",
+        "exampleSentence": "We saw a play at the ___ last night.",
+        "iconHint": "stage with red curtains"
+      },
+      {
+        "word": "ticket",
+        "pos": "n.",
+        "meaningVi": "vé",
+        "exampleSentence": "He bought two ___s for the concert.",
+        "iconHint": "torn ticket stub"
+      },
+      {
+        "word": "tooth",
+        "pos": "n.",
+        "meaningVi": "răng",
+        "exampleSentence": "She has a ___ache and needs a dentist.",
+        "iconHint": "single white tooth"
+      },
+      {
+        "word": "town",
+        "pos": "n.",
+        "meaningVi": "thị trấn",
+        "exampleSentence": "They grew up in a small ___.",
+        "iconHint": "cluster of small buildings"
+      },
+      {
+        "word": "train",
+        "pos": "n.",
+        "meaningVi": "tàu hỏa",
+        "exampleSentence": "The ___ arrives at platform three.",
+        "iconHint": "locomotive with carriages"
+      },
+      {
+        "word": "tree",
+        "pos": "n.",
+        "meaningVi": "cây",
+        "exampleSentence": "A big ___ stands in front of the house.",
+        "iconHint": "tree with a full canopy"
+      },
+      {
+        "word": "trip",
+        "pos": "n.",
+        "meaningVi": "chuyến đi",
+        "exampleSentence": "We're planning a ___ to the mountains.",
+        "iconHint": "suitcase with a map"
+      },
+      {
+        "word": "university",
+        "pos": "n.",
+        "meaningVi": "trường đại học",
+        "exampleSentence": "She studies medicine at ___.",
+        "iconHint": "graduation cap above a building"
+      },
+      {
+        "word": "village",
+        "pos": "n.",
+        "meaningVi": "làng",
+        "exampleSentence": "His grandparents live in a small ___.",
+        "iconHint": "small cottages near a field"
+      },
+      {
+        "word": "weather",
+        "pos": "n.",
+        "meaningVi": "thời tiết",
+        "exampleSentence": "The ___ was sunny all weekend.",
+        "iconHint": "sun peeking behind a cloud"
+      }
+    ]
+  },
+  {
+    "topicId": "common-nouns-a1-2",
+    "topicNameVi": "Danh từ thông dụng A1 (phần 2)",
+    "cefrLevel": "A1",
+    "words": [
+      {
+        "word": "teenager",
+        "pos": "n.",
+        "meaningVi": "thiếu niên",
+        "exampleSentence": "My ___ daughter loves listening to music.",
+        "iconHint": "young person with headphones"
+      },
+      {
+        "word": "tennis",
+        "pos": "n.",
+        "meaningVi": "quần vợt",
+        "exampleSentence": "They play ___ every Saturday morning.",
+        "iconHint": "tennis racket and ball"
+      },
+      {
+        "word": "tourist",
+        "pos": "n.",
+        "meaningVi": "khách du lịch",
+        "exampleSentence": "Many ___s visit the old castle each year.",
+        "iconHint": "person with a camera and map"
+      },
+      {
+        "word": "vacation",
+        "pos": "n.",
+        "meaningVi": "kỳ nghỉ",
+        "exampleSentence": "We're going on ___ next month.",
+        "iconHint": "suitcase with a sun"
+      },
+      {
+        "word": "video",
+        "pos": "n.",
+        "meaningVi": "video",
+        "exampleSentence": "He watched a funny ___ online.",
+        "iconHint": "play button on a screen"
+      },
+      {
+        "word": "wall",
+        "pos": "n.",
+        "meaningVi": "bức tường",
+        "exampleSentence": "They hung a painting on the ___.",
+        "iconHint": "brick wall"
+      },
+      {
+        "word": "window",
+        "pos": "n.",
+        "meaningVi": "cửa sổ",
+        "exampleSentence": "She opened the ___ for fresh air.",
+        "iconHint": "framed window with curtains"
+      },
+      {
+        "word": "wine",
+        "pos": "n.",
+        "meaningVi": "rượu vang",
+        "exampleSentence": "They ordered a bottle of red ___.",
+        "iconHint": "wine glass"
+      },
+      {
+        "word": "woman",
+        "pos": "n.",
+        "meaningVi": "người phụ nữ",
+        "exampleSentence": "The ___ next to me was reading a book.",
+        "iconHint": "woman silhouette"
+      },
+      {
+        "word": "word",
+        "pos": "n.",
+        "meaningVi": "từ ngữ",
+        "exampleSentence": "I don't understand this ___.",
+        "iconHint": "speech bubble with letters"
+      },
+      {
+        "word": "worker",
+        "pos": "n.",
+        "meaningVi": "công nhân, người lao động",
+        "exampleSentence": "The factory ___s finish at five.",
+        "iconHint": "person wearing a hard hat"
+      },
+      {
+        "word": "world",
+        "pos": "n.",
+        "meaningVi": "thế giới",
+        "exampleSentence": "She wants to travel around the ___.",
+        "iconHint": "globe icon"
+      },
+      {
+        "word": "writer",
+        "pos": "n.",
+        "meaningVi": "nhà văn",
+        "exampleSentence": "The famous ___ signed copies of her new book.",
+        "iconHint": "pen writing on paper"
+      },
+      {
+        "word": "way",
+        "pos": "n.",
+        "meaningVi": "con đường, cách thức",
+        "exampleSentence": "Can you show me the ___ to the station?",
+        "iconHint": "signpost with an arrow"
+      },
+      {
+        "word": "waiter",
+        "pos": "n.",
+        "meaningVi": "người phục vụ (nam)",
+        "exampleSentence": "The ___ brought us the menu.",
+        "iconHint": "person holding a serving tray"
+      },
+      {
+        "word": "toilet",
+        "pos": "n.",
+        "meaningVi": "nhà vệ sinh",
+        "exampleSentence": "Excuse me, where is the ___?",
+        "iconHint": "restroom door sign"
+      },
+      {
+        "word": "topic",
+        "pos": "n.",
+        "meaningVi": "chủ đề",
+        "exampleSentence": "Let's change the ___ of conversation.",
+        "iconHint": "speech bubble with a lightbulb"
+      },
+      {
+        "word": "type",
+        "pos": "n.",
+        "meaningVi": "loại, kiểu",
+        "exampleSentence": "What ___ of music do you like?",
+        "iconHint": "several labeled boxes"
+      }
+    ]
+  },
+  {
+    "topicId": "common-nouns-a2-1",
+    "topicNameVi": "Danh từ thông dụng A2 (phần 1)",
+    "cefrLevel": "A2",
+    "words": [
+      {
+        "word": "engineer",
+        "pos": "n.",
+        "meaningVi": "kỹ sư",
+        "exampleSentence": "Her father works as a civil ___.",
+        "iconHint": "hard hat with a blueprint"
+      },
+      {
+        "word": "environment",
+        "pos": "n.",
+        "meaningVi": "môi trường",
+        "exampleSentence": "We should all try to protect the ___.",
+        "iconHint": "tree beside the globe"
+      },
+      {
+        "word": "equipment",
+        "pos": "n.",
+        "meaningVi": "thiết bị",
+        "exampleSentence": "The gym has modern exercise ___.",
+        "iconHint": "toolbox with gears"
+      },
+      {
+        "word": "factory",
+        "pos": "n.",
+        "meaningVi": "nhà máy",
+        "exampleSentence": "He works at a car ___ nearby.",
+        "iconHint": "building with a smoking chimney"
+      },
+      {
+        "word": "field",
+        "pos": "n.",
+        "meaningVi": "cánh đồng, sân",
+        "exampleSentence": "The cows were grazing in the ___.",
+        "iconHint": "open green field"
+      },
+      {
+        "word": "forest",
+        "pos": "n.",
+        "meaningVi": "rừng",
+        "exampleSentence": "They went hiking in the ___ last weekend.",
+        "iconHint": "cluster of tall trees"
+      },
+      {
+        "word": "furniture",
+        "pos": "n.",
+        "meaningVi": "đồ nội thất",
+        "exampleSentence": "They bought new ___ for the living room.",
+        "iconHint": "sofa and table"
+      },
+      {
+        "word": "gallery",
+        "pos": "n.",
+        "meaningVi": "phòng trưng bày",
+        "exampleSentence": "The art ___ displayed paintings from local artists.",
+        "iconHint": "framed painting on a wall"
+      },
+      {
+        "word": "gift",
+        "pos": "n.",
+        "meaningVi": "món quà",
+        "exampleSentence": "She wrapped the ___ in colourful paper.",
+        "iconHint": "wrapped present with a bow"
+      },
+      {
+        "word": "government",
+        "pos": "n.",
+        "meaningVi": "chính phủ",
+        "exampleSentence": "The ___ announced a new health policy.",
+        "iconHint": "building with a flag"
+      },
+      {
+        "word": "ground",
+        "pos": "n.",
+        "meaningVi": "mặt đất, nền",
+        "exampleSentence": "The apples fell to the ___.",
+        "iconHint": "flat brown surface"
+      },
+      {
+        "word": "guest",
+        "pos": "n.",
+        "meaningVi": "khách",
+        "exampleSentence": "We invited fifty ___s to the wedding.",
+        "iconHint": "person with a welcome sign"
+      },
+      {
+        "word": "hall",
+        "pos": "n.",
+        "meaningVi": "sảnh, hội trường",
+        "exampleSentence": "The ceremony took place in the main ___.",
+        "iconHint": "large open room with columns"
+      },
+      {
+        "word": "heart",
+        "pos": "n.",
+        "meaningVi": "trái tim",
+        "exampleSentence": "Her ___ raced with excitement.",
+        "iconHint": "red heart shape"
+      },
+      {
+        "word": "hero",
+        "pos": "n.",
+        "meaningVi": "người hùng",
+        "exampleSentence": "The firefighter was praised as a local ___.",
+        "iconHint": "cape and shield"
+      },
+      {
+        "word": "hill",
+        "pos": "n.",
+        "meaningVi": "đồi",
+        "exampleSentence": "They climbed the small ___ behind the village.",
+        "iconHint": "rounded green hill"
+      },
+      {
+        "word": "industry",
+        "pos": "n.",
+        "meaningVi": "ngành công nghiệp",
+        "exampleSentence": "The tourism ___ brings a lot of income here.",
+        "iconHint": "factory with gears"
+      },
+      {
+        "word": "instrument",
+        "pos": "n.",
+        "meaningVi": "nhạc cụ, dụng cụ",
+        "exampleSentence": "She plays a musical ___ every evening.",
+        "iconHint": "violin outline"
+      }
+    ]
+  },
+  {
+    "topicId": "common-nouns-a2-2",
+    "topicNameVi": "Danh từ thông dụng A2 (phần 2)",
+    "cefrLevel": "A2",
+    "words": [
+      {
+        "word": "journalist",
+        "pos": "n.",
+        "meaningVi": "nhà báo",
+        "exampleSentence": "The ___ interviewed the mayor about the new project.",
+        "iconHint": "notebook with a microphone"
+      },
+      {
+        "word": "king",
+        "pos": "n.",
+        "meaningVi": "vua",
+        "exampleSentence": "The ___ ruled the country for forty years.",
+        "iconHint": "golden crown"
+      },
+      {
+        "word": "lady",
+        "pos": "n.",
+        "meaningVi": "quý bà",
+        "exampleSentence": "An elderly ___ waited patiently at the bus stop.",
+        "iconHint": "woman with an elegant hat"
+      },
+      {
+        "word": "lake",
+        "pos": "n.",
+        "meaningVi": "hồ",
+        "exampleSentence": "They went fishing at the ___ near their house.",
+        "iconHint": "still water surrounded by trees"
+      },
+      {
+        "word": "lamp",
+        "pos": "n.",
+        "meaningVi": "đèn bàn/đèn cây",
+        "exampleSentence": "She turned on the ___ to read her book.",
+        "iconHint": "desk lamp with a glowing bulb"
+      },
+      {
+        "word": "laptop",
+        "pos": "n.",
+        "meaningVi": "máy tính xách tay",
+        "exampleSentence": "He forgot his ___ at the office.",
+        "iconHint": "open laptop screen"
+      },
+      {
+        "word": "lawyer",
+        "pos": "n.",
+        "meaningVi": "luật sư",
+        "exampleSentence": "She hired a ___ to review the contract.",
+        "iconHint": "briefcase with a scale of justice"
+      },
+      {
+        "word": "leader",
+        "pos": "n.",
+        "meaningVi": "người lãnh đạo",
+        "exampleSentence": "A good ___ listens to their team.",
+        "iconHint": "person standing in front of a group"
+      },
+      {
+        "word": "lemon",
+        "pos": "n.",
+        "meaningVi": "quả chanh vàng",
+        "exampleSentence": "Add a slice of ___ to your tea.",
+        "iconHint": "yellow lemon with a leaf"
+      },
+      {
+        "word": "media",
+        "pos": "n.",
+        "meaningVi": "truyền thông",
+        "exampleSentence": "The story spread quickly across social ___.",
+        "iconHint": "newspaper and camera icon"
+      },
+      {
+        "word": "memory",
+        "pos": "n.",
+        "meaningVi": "ký ức, trí nhớ",
+        "exampleSentence": "That trip left us with wonderful ___ies.",
+        "iconHint": "photo inside a thought bubble"
+      },
+      {
+        "word": "metal",
+        "pos": "n.",
+        "meaningVi": "kim loại",
+        "exampleSentence": "The bridge is made of strong ___.",
+        "iconHint": "grey bar with a shine line"
+      },
+      {
+        "word": "moon",
+        "pos": "n.",
+        "meaningVi": "mặt trăng",
+        "exampleSentence": "The ___ was full and bright last night.",
+        "iconHint": "crescent moon with stars"
+      },
+      {
+        "word": "musician",
+        "pos": "n.",
+        "meaningVi": "nhạc sĩ, nhạc công",
+        "exampleSentence": "The ___ played the guitar beautifully.",
+        "iconHint": "person holding a guitar"
+      },
+      {
+        "word": "nature",
+        "pos": "n.",
+        "meaningVi": "thiên nhiên",
+        "exampleSentence": "She loves spending time in ___.",
+        "iconHint": "tree beside a mountain"
+      },
+      {
+        "word": "neck",
+        "pos": "n.",
+        "meaningVi": "cổ",
+        "exampleSentence": "He wore a scarf around his ___.",
+        "iconHint": "neck outline with a collar"
+      },
+      {
+        "word": "noise",
+        "pos": "n.",
+        "meaningVi": "tiếng ồn",
+        "exampleSentence": "The loud ___ from the street woke her up.",
+        "iconHint": "soundwave burst"
+      },
+      {
+        "word": "ocean",
+        "pos": "n.",
+        "meaningVi": "đại dương",
+        "exampleSentence": "They swam in the warm ___ all afternoon.",
+        "iconHint": "waves with a small fish"
+      }
+    ]
   }
 ]

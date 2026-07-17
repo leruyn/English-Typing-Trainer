@@ -1041,5 +1041,271 @@
         "iconHint": "podium with a speech bubble"
       }
     ]
+  },
+  {
+    "topicId": "abstract-nouns-c1",
+    "topicNameVi": "Danh từ trừu tượng C1",
+    "cefrLevel": "C1",
+    "words": [
+      {
+        "word": "reflection",
+        "pos": "n.",
+        "meaningVi": "sự phản ánh, suy ngẫm",
+        "exampleSentence": "The essay is a personal ___ on her childhood.",
+        "iconHint": "mirror image of a thoughtful face"
+      },
+      {
+        "word": "refuge",
+        "pos": "n.",
+        "meaningVi": "nơi ẩn náu, sự tị nạn",
+        "exampleSentence": "The old church became a ___ during the storm.",
+        "iconHint": "small shelter under a tree"
+      },
+      {
+        "word": "refusal",
+        "pos": "n.",
+        "meaningVi": "sự từ chối",
+        "exampleSentence": "His ___ to apologize surprised everyone.",
+        "iconHint": "hand raised with a crossed circle"
+      },
+      {
+        "word": "relevance",
+        "pos": "n.",
+        "meaningVi": "sự liên quan, tính thích đáng",
+        "exampleSentence": "The professor questioned the study's ___ today.",
+        "iconHint": "two linked circles with a checkmark"
+      },
+      {
+        "word": "reliability",
+        "pos": "n.",
+        "meaningVi": "độ tin cậy",
+        "exampleSentence": "Customers value the ___ of this brand.",
+        "iconHint": "shield with a checkmark"
+      },
+      {
+        "word": "remedy",
+        "pos": "n.",
+        "meaningVi": "biện pháp khắc phục, phương thuốc",
+        "exampleSentence": "Herbal tea is a common ___ for a sore throat.",
+        "iconHint": "leaf beside a cup"
+      },
+      {
+        "word": "reminder",
+        "pos": "n.",
+        "meaningVi": "lời nhắc nhở",
+        "exampleSentence": "She left a ___ note on the fridge.",
+        "iconHint": "sticky note with a bell"
+      },
+      {
+        "word": "representation",
+        "pos": "n.",
+        "meaningVi": "sự đại diện, biểu diễn",
+        "exampleSentence": "The chart is a visual ___ of the survey results.",
+        "iconHint": "chart beside a small figure"
+      },
+      {
+        "word": "residence",
+        "pos": "n.",
+        "meaningVi": "nơi cư trú",
+        "exampleSentence": "The ambassador's official ___ is in the capital.",
+        "iconHint": "grand house with a flag"
+      },
+      {
+        "word": "resistance",
+        "pos": "n.",
+        "meaningVi": "sự kháng cự",
+        "exampleSentence": "The plan faced strong ___ from local residents.",
+        "iconHint": "shield blocking an arrow"
+      },
+      {
+        "word": "restoration",
+        "pos": "n.",
+        "meaningVi": "sự phục hồi, trùng tu",
+        "exampleSentence": "The museum funded the ___ of the old painting.",
+        "iconHint": "cracked frame being repaired"
+      },
+      {
+        "word": "revelation",
+        "pos": "n.",
+        "meaningVi": "sự tiết lộ, khám phá bất ngờ",
+        "exampleSentence": "The documents were a shocking ___ to the public.",
+        "iconHint": "curtain opening to reveal a light"
+      },
+      {
+        "word": "revenge",
+        "pos": "n.",
+        "meaningVi": "sự trả thù",
+        "exampleSentence": "He swore he would take ___ for the betrayal.",
+        "iconHint": "clenched fist with a shadow"
+      },
+      {
+        "word": "rhetoric",
+        "pos": "n.",
+        "meaningVi": "hùng biện, lời lẽ",
+        "exampleSentence": "The speech was full of powerful political ___.",
+        "iconHint": "podium with a speech bubble"
+      },
+      {
+        "word": "rumour",
+        "pos": "n.",
+        "meaningVi": "tin đồn",
+        "exampleSentence": "A ___ spread quickly around the office.",
+        "iconHint": "speech bubbles passing between people"
+      },
+      {
+        "word": "scope",
+        "pos": "n.",
+        "meaningVi": "phạm vi",
+        "exampleSentence": "The ___ of the project grew much larger than planned.",
+        "iconHint": "frame expanding outward"
+      },
+      {
+        "word": "scrutiny",
+        "pos": "n.",
+        "meaningVi": "sự giám sát, xem xét kỹ",
+        "exampleSentence": "The deal came under close public ___.",
+        "iconHint": "magnifying glass over a document"
+      },
+      {
+        "word": "summit",
+        "pos": "n.",
+        "meaningVi": "hội nghị thượng đỉnh, đỉnh núi",
+        "exampleSentence": "World leaders met at the climate ___.",
+        "iconHint": "flag planted at a mountain peak"
+      }
+    ]
+  },
+  {
+    "topicId": "formal-verbs-c1-2",
+    "topicNameVi": "Động từ trang trọng C1 (phần 2)",
+    "cefrLevel": "C1",
+    "words": [
+      {
+        "word": "reassure",
+        "pos": "v.",
+        "meaningVi": "trấn an, đảm bảo",
+        "exampleSentence": "The doctor tried to ___ the worried patient.",
+        "iconHint": "hand gently patting a shoulder"
+      },
+      {
+        "word": "regain",
+        "pos": "v.",
+        "meaningVi": "giành lại, lấy lại",
+        "exampleSentence": "It took months for her to ___ her strength.",
+        "iconHint": "arrow returning a bar to full"
+      },
+      {
+        "word": "render",
+        "pos": "v.",
+        "meaningVi": "khiến trở nên, biến thành",
+        "exampleSentence": "The storm ___ed the road impossible to drive on.",
+        "iconHint": "arrow transforming one shape into another"
+      },
+      {
+        "word": "renew",
+        "pos": "v.",
+        "meaningVi": "gia hạn, làm mới",
+        "exampleSentence": "Remember to ___ your passport before it expires.",
+        "iconHint": "circular arrow refreshing a document"
+      },
+      {
+        "word": "reproduce",
+        "pos": "v.",
+        "meaningVi": "sinh sản, sao chép",
+        "exampleSentence": "Rabbits ___ very quickly in the wild.",
+        "iconHint": "two circles multiplying into four"
+      },
+      {
+        "word": "resemble",
+        "pos": "v.",
+        "meaningVi": "giống với",
+        "exampleSentence": "She really does ___ her grandmother.",
+        "iconHint": "two overlapping silhouettes"
+      },
+      {
+        "word": "reside",
+        "pos": "v.",
+        "meaningVi": "cư trú",
+        "exampleSentence": "The family has ___d in this town for generations.",
+        "iconHint": "house with a small root"
+      },
+      {
+        "word": "resume",
+        "pos": "v.",
+        "meaningVi": "tiếp tục lại",
+        "exampleSentence": "Classes will ___ after the winter break.",
+        "iconHint": "play button after a pause icon"
+      },
+      {
+        "word": "retrieve",
+        "pos": "v.",
+        "meaningVi": "lấy lại, thu hồi",
+        "exampleSentence": "The diver managed to ___ the lost ring.",
+        "iconHint": "hand pulling an object from water"
+      },
+      {
+        "word": "revive",
+        "pos": "v.",
+        "meaningVi": "hồi phục, làm sống lại",
+        "exampleSentence": "Fresh air seemed to ___ the tired hikers.",
+        "iconHint": "wilted plant turning green again"
+      },
+      {
+        "word": "rotate",
+        "pos": "v.",
+        "meaningVi": "xoay vòng",
+        "exampleSentence": "Staff members ___ shifts every two weeks.",
+        "iconHint": "circular arrows around a dot"
+      },
+      {
+        "word": "seize",
+        "pos": "v.",
+        "meaningVi": "nắm bắt, tịch thu",
+        "exampleSentence": "Customs officers decided to ___ the illegal goods.",
+        "iconHint": "hand gripping a box tightly"
+      },
+      {
+        "word": "shatter",
+        "pos": "v.",
+        "meaningVi": "vỡ tan, đập vỡ",
+        "exampleSentence": "The glass fell and began to ___ on the floor.",
+        "iconHint": "cracked glass with flying shards"
+      },
+      {
+        "word": "shrink",
+        "pos": "v.",
+        "meaningVi": "co lại, thu nhỏ",
+        "exampleSentence": "The sweater seemed to ___ after washing.",
+        "iconHint": "shirt shrinking with an arrow"
+      },
+      {
+        "word": "shrug",
+        "pos": "v.",
+        "meaningVi": "nhún vai",
+        "exampleSentence": "She could only ___ when asked for an explanation.",
+        "iconHint": "person raising both shoulders"
+      },
+      {
+        "word": "simulate",
+        "pos": "v.",
+        "meaningVi": "mô phỏng",
+        "exampleSentence": "The training program can ___ real flight conditions.",
+        "iconHint": "screen displaying a virtual cockpit"
+      },
+      {
+        "word": "soar",
+        "pos": "v.",
+        "meaningVi": "bay vút lên, tăng vọt",
+        "exampleSentence": "Prices began to ___ after the shortage.",
+        "iconHint": "arrow rising sharply like a bird"
+      },
+      {
+        "word": "stabilize",
+        "pos": "v.",
+        "meaningVi": "ổn định",
+        "exampleSentence": "Doctors worked quickly to ___ the patient.",
+        "iconHint": "wobbling scale settling flat"
+      }
+    ]
   }
 ]
