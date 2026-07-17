@@ -46,6 +46,7 @@ interface UserRecord {
   createdAt: Date;
   minutesPerDay: number;
   newWordCapOverride: number | null;
+  hasCompletedAssessment: boolean;
 }
 
 /** Strips `passwordHash` (and normalizes nullable fields) before sending a user back to the client. */
@@ -56,6 +57,7 @@ function toPublicUser(user: UserRecord) {
     createdAt: user.createdAt,
     minutesPerDay: user.minutesPerDay,
     newWordCapOverride: user.newWordCapOverride ?? undefined,
+    hasCompletedAssessment: user.hasCompletedAssessment,
   };
 }
 

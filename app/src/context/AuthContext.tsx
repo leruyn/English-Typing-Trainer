@@ -10,7 +10,6 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
-import type { AssessmentAnswer } from "@art/shared";
 import {
   clearCachedUser,
   clearStoredToken,
@@ -19,7 +18,7 @@ import {
   setCachedUser,
   setStoredToken,
 } from "../api/authStorage";
-import { loginRequest, registerRequest, submitAssessment, type WireUser } from "../api/endpoints";
+import { loginRequest, registerRequest, type WireUser } from "../api/endpoints";
 import { ApiError } from "../api/client";
 
 interface AuthContextValue {
@@ -28,17 +27,30 @@ interface AuthContextValue {
   token: string | null;
   user: WireUser | null;
   isAuthenticated: boolean;
-  register: (params: {
-    email: string;
-    password: string;
-    minutesPerDay?: number;
-    /** Optional completed-assessment answers, submitted right after the
-     * account is created so onboarding only needs one network round trip
-     * from the user's perspective. */
-    assessmentAnswers?: AssessmentAnswer[];
-  }) => Promise<void>;
-  login: (params: { email: string; password: string }) => Promise<void>;
+  /**
+   * Returns the freshly-created user (rather than `void`) so the caller
+   * (`(onboarding)/account.tsx`) can branch on `hasCompletedAssessment`
+   * immediately, without waiting for a re-render to see the updated
+   * `user` from this context - registering always yields a brand new
+   * account, so this is always `hasCompletedAssessment: false`, but
+   * reading it off the return value keeps both code paths (register/login)
+   * symmetrical.
+   */
+  register: (params: { email: string; password: string; minutesPerDay?: number }) => Promise<WireUser>;
+  /** Returns the logged-in user so the caller can branch on `hasCompletedAssessment`. */
+  login: (params: { email: string; password: string }) => Promise<WireUser>;
   logout: () => Promise<void>;
+  /**
+   * Merges a partial update into the cached user (in memory + persisted
+   * storage), without a round trip - for cases where a mutation elsewhere
+   * (e.g. submitting the entrance assessment) already tells us the new
+   * field value server-side, so re-fetching the whole user would be
+   * redundant. In particular, keeps `hasCompletedAssessment` in sync right
+   * after a successful assessment submit, so the root-layout redirect
+   * (app/_layout.tsx) doesn't send the user back into the assessment if
+   * they close and reopen the app immediately after finishing it.
+   */
+  updateUser: (patch: Partial<WireUser>) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -71,29 +83,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       user,
       isAuthenticated: token !== null,
 
-      async register({ email, password, minutesPerDay, assessmentAnswers }) {
+      async register({ email, password, minutesPerDay }) {
         const { token: newToken, user: newUser } = await registerRequest({
           email,
           password,
           minutesPerDay,
         });
         await persistSession(newToken, newUser);
-
-        if (assessmentAnswers && assessmentAnswers.length === 5) {
-          try {
-            await submitAssessment(assessmentAnswers, newToken);
-          } catch (err) {
-            // Don't fail account creation over the assessment record - the
-            // account/track choice already stands; just log it.
-            // eslint-disable-next-line no-console
-            console.warn("Failed to submit assessment result:", err);
-          }
-        }
+        return newUser;
       },
 
       async login({ email, password }) {
         const { token: newToken, user: newUser } = await loginRequest({ email, password });
         await persistSession(newToken, newUser);
+        return newUser;
       },
 
       async logout() {
@@ -101,6 +104,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setToken(null);
         setUser(null);
         queryClient.clear();
+      },
+
+      async updateUser(patch) {
+        setUser((current) => {
+          if (!current) return current;
+          const next = { ...current, ...patch };
+          // Fire-and-forget persist - the in-memory state update above is
+          // what matters for this render; a slow/failed AsyncStorage write
+          // just means the next cold start re-reads the slightly stale
+          // cached copy, which is harmless here.
+          void setCachedUser(next);
+          return next;
+        });
       },
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -157,8 +157,8 @@ export function submitAttempt(
 export function submitAssessment(
   answers: AssessmentAnswer[],
   token?: string,
-): Promise<{ suggestedTrack: CefrTrack }> {
-  return apiFetch<{ suggestedTrack: CefrTrack }>("/assessment", {
+): Promise<{ suggestedTrack: CefrTrack; hasCompletedAssessment: true }> {
+  return apiFetch<{ suggestedTrack: CefrTrack; hasCompletedAssessment: true }>("/assessment", {
     method: "POST",
     body: { answers },
     token,

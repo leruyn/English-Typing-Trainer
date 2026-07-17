@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ActivityIndicator, Pressable, Text, View } from "react-native";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import Animated, { useAnimatedStyle, withSpring } from "react-native-reanimated";
 import { Check, X } from "lucide-react-native";
 import Svg, { Circle, Polyline } from "react-native-svg";
@@ -8,6 +8,7 @@ import Svg, { Circle, Polyline } from "react-native-svg";
 import { colors } from "../../src/theme";
 import type { AssessmentAnswer, CefrTrack } from "@art/shared";
 import { generateAssessmentQuestion, submitAssessment } from "../../src/api/endpoints";
+import { useAuth } from "../../src/context/AuthContext";
 
 /**
  * Small hardcoded question bank spanning 6 difficulty tiers (roughly
@@ -44,7 +45,12 @@ const QUESTION_BANK: Question[] = [
   { difficulty: 6, prompt: "'Pragmatic' nghĩa là gì?", options: ["Lý tưởng hoá", "Thực dụng", "Mơ mộng", "Cảm tính"], correctIndex: 1 },
 ];
 
-const TOTAL_QUESTIONS = 5;
+// Raised from 5 to 8: the original suggestTrack() heuristic only looked at
+// the last two answers, so 5 questions was plenty; the new weighted-average
+// heuristic (server/src/routes/assessment.ts) uses every answer, and more
+// data points make that average converge on the learner's real level more
+// reliably.
+const TOTAL_QUESTIONS = 8;
 const MIN_DIFFICULTY = 1;
 const MAX_DIFFICULTY = 6;
 const START_DIFFICULTY = 3;
@@ -125,8 +131,7 @@ function TrajectoryTracker({ trajectory }: { trajectory: number[] }) {
 
 export default function AssessmentScreen() {
   const router = useRouter();
-  const { retake } = useLocalSearchParams<{ retake?: string }>();
-  const isRetake = retake === "1";
+  const { updateUser } = useAuth();
 
   const [difficulty, setDifficulty] = useState(START_DIFFICULTY);
   const [questionIndex, setQuestionIndex] = useState(0);
@@ -199,30 +204,34 @@ export default function AssessmentScreen() {
       ? Math.min(MAX_DIFFICULTY, difficulty + 1)
       : Math.max(MIN_DIFFICULTY, difficulty - 1);
 
-    setTimeout(() => {
+    setTimeout(async () => {
       if (questionIndex + 1 >= TOTAL_QUESTIONS) {
-        const suggestedTrack = trackForDifficulty(nextDifficulty);
+        // Local fallback estimate in case the submit below fails (offline,
+        // Gemini/server hiccup) - the accurate value is whatever the server
+        // computes via its weighted-average suggestTrack(), which we prefer
+        // once the request succeeds.
+        let suggestedTrack = trackForDifficulty(nextDifficulty);
 
-        // First-time onboarding stashes the answers as route params and only
-        // actually POSTs them once the account is created at the end of the
-        // flow (see AuthContext.register's `assessmentAnswers`). A retake by
-        // an already-registered user has no such later step, so submit the
-        // result directly here instead - best-effort, same as the
-        // onboarding path (a failed save shouldn't block seeing the result).
-        if (isRetake) {
-          submitAssessment(nextAnswers).catch((err) => {
-            // eslint-disable-next-line no-console
-            console.warn("Failed to submit retake assessment result:", err);
-          });
+        // This screen now always runs in an authenticated context (account
+        // creation/login happens first - see (onboarding)/account.tsx), so
+        // the result can always be submitted directly instead of being
+        // stashed in route params for a later step to POST. Best-effort:
+        // a failed save shouldn't block the learner from seeing their result
+        // and moving on.
+        try {
+          const result = await submitAssessment(nextAnswers);
+          suggestedTrack = result.suggestedTrack;
+          await updateUser({ hasCompletedAssessment: true });
+        } catch (err) {
+          // eslint-disable-next-line no-console
+          console.warn("Failed to submit assessment result:", err);
         }
 
         router.replace({
           pathname: "/(onboarding)/complete",
           params: {
             trajectory: JSON.stringify(nextTrajectory),
-            answers: JSON.stringify(nextAnswers),
             track: suggestedTrack,
-            retake: isRetake ? "1" : undefined,
           },
         });
         return;

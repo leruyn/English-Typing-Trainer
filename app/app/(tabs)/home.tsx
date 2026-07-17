@@ -49,12 +49,12 @@ const QUICK_ACTIONS = [
     icon: ListChecks,
     tint: colors.rose600,
     tintBg: colors.rose100,
-    // `retake: "1"` tells the assessment flow this is a voluntary re-take
-    // from an already-onboarded account, not first-time onboarding - see
-    // `(onboarding)/assessment.tsx` / `complete.tsx`, which branch on it to
-    // return here afterward instead of continuing into the pace/account
-    // onboarding steps.
-    href: { pathname: "/(onboarding)/assessment" as const, params: { retake: "1" } },
+    // The assessment screen always runs authenticated now (account creation
+    // happens before it - see (onboarding)/account.tsx), so a voluntary
+    // retake from an already-onboarded account needs no special param: it
+    // submits the result and returns to /(tabs)/home the same way a
+    // first-time post-registration assessment does.
+    href: "/(onboarding)/assessment" as const,
   },
 ];
 

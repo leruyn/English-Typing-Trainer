@@ -72,7 +72,10 @@ export const createPracticeAttemptSchema = practiceAttemptSchema.omit({
 
 /** Zod schema for {@link AssessmentAnswer}. */
 export const assessmentAnswerSchema = z.object({
-  questionIndex: z.number().int().min(0).max(4),
+  // Assessment length was raised from 5 to 8 questions (better accuracy for
+  // the weighted-average suggestTrack() heuristic - see server/src/routes/
+  // assessment.ts) - indices are 0-based, so max is 7.
+  questionIndex: z.number().int().min(0).max(7),
   difficulty: z.number(),
   correct: z.boolean(),
 });
@@ -80,7 +83,7 @@ export const assessmentAnswerSchema = z.object({
 /** Zod schema for {@link AssessmentResult}. */
 export const assessmentResultSchema = z.object({
   userId: z.string().min(1),
-  answers: z.array(assessmentAnswerSchema).length(5),
+  answers: z.array(assessmentAnswerSchema).length(8),
   suggestedTrack: cefrTrackSchema,
   createdAt: z.coerce.date(),
 });

@@ -67,8 +67,14 @@ export default function WelcomeScreen() {
       </View>
 
       <View className="gap-4">
+        {/* Account (register/login) now always comes first - see
+            (onboarding)/account.tsx. The entrance assessment only runs
+            afterward, and only for accounts that haven't completed one yet
+            (a brand new registration, or a login to an unassessed account) -
+            so there's no separate "start assessment" vs "skip" choice here
+            anymore; every path leads through account creation. */}
         <Pressable
-          onPress={() => router.push("/(onboarding)/assessment")}
+          onPress={() => router.push("/(onboarding)/pace")}
           className="items-center rounded-2xl bg-emerald-500 py-4"
           style={{
             shadowColor: colors.emerald500,
@@ -81,24 +87,19 @@ export default function WelcomeScreen() {
             className="text-base text-white"
             style={{ fontFamily: "Outfit_600SemiBold" }}
           >
-            Bắt đầu khảo sát trình độ
+            Bắt đầu
           </Text>
         </Pressable>
 
         <Pressable
-          onPress={() =>
-            router.push({
-              pathname: "/(onboarding)/account",
-              params: { minutesPerDay: "10", track: "beginner", answers: "" },
-            })
-          }
+          onPress={() => router.push({ pathname: "/(onboarding)/account", params: { minutesPerDay: "10" } })}
           className="items-center py-2"
         >
           <Text
             className="text-sm text-ink/60"
             style={{ fontFamily: "Outfit_500Medium", textDecorationLine: "underline" }}
           >
-            Bỏ qua, khám phá luôn
+            Đã có tài khoản? Đăng nhập luôn
           </Text>
         </Pressable>
       </View>

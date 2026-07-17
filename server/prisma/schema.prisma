@@ -50,6 +50,13 @@ model User {
   minutesPerDay       Int
   /// Optional manual override for the daily new-word cap.
   newWordCapOverride  Int?
+  /// True once this account has a saved AssessmentResult. Drives whether a
+  /// freshly logged-in/registered user is routed into the entrance
+  /// assessment or straight to (tabs)/home - see app/app/_layout.tsx and
+  /// app/app/(onboarding)/account.tsx. Denormalized onto User (rather than
+  /// just checking `assessmentResults.length` at login/register time) so
+  /// that check is a single indexed row read instead of a join.
+  hasCompletedAssessment Boolean @default(false)
   /// Cached text of the last Gemini-generated coaching note (GET
   /// /stats/coaching) - re-served as-is if `lastCoachingAt` is recent enough,
   /// so the AI is called at most a few times/day per user instead of on

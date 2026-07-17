@@ -25,18 +25,10 @@ const MAX_DIFFICULTY = 6;
 
 export default function OnboardingCompleteScreen() {
   const router = useRouter();
-  const {
-    trajectory: trajectoryParam,
-    track: trackParam,
-    answers: answersParam,
-    retake: retakeParam,
-  } = useLocalSearchParams<{
+  const { trajectory: trajectoryParam, track: trackParam } = useLocalSearchParams<{
     trajectory?: string;
     track?: string;
-    answers?: string;
-    retake?: string;
   }>();
-  const isRetake = retakeParam === "1";
 
   let trajectory: number[] = [];
   try {
@@ -49,7 +41,7 @@ export default function OnboardingCompleteScreen() {
       ? trackParam
       : "beginner";
 
-  const points = trajectory.length > 0 ? trajectory : [3, 3, 3, 3, 3];
+  const points = trajectory.length > 0 ? trajectory : [3, 3, 3, 3, 3, 3, 3, 3];
   const stepX = CHART_WIDTH / Math.max(1, points.length - 1);
   const toY = (difficulty: number) =>
     CHART_HEIGHT -
@@ -82,7 +74,7 @@ export default function OnboardingCompleteScreen() {
           className="mt-2 text-center text-sm text-ink/60"
           style={{ fontFamily: "Outfit" }}
         >
-          Đây là hành trình độ khó của bạn qua 5 câu hỏi
+          Đây là hành trình độ khó của bạn qua {points.length} câu hỏi
         </Text>
       </View>
 
@@ -169,15 +161,14 @@ export default function OnboardingCompleteScreen() {
 
       <View className="flex-1" />
 
+      {/* Account creation and minutesPerDay are both already settled by the
+          time this screen is reached (account.tsx now runs before the
+          assessment - see app/_layout.tsx's routing gate), and the result
+          was already submitted in assessment.tsx, so there's nothing left
+          to do but go to the home tabs, whether this was first-time
+          onboarding or a voluntary retake from Home. */}
       <Pressable
-        onPress={() =>
-          isRetake
-            ? router.replace("/(tabs)/home")
-            : router.push({
-                pathname: "/(onboarding)/pace",
-                params: { track: suggestedTrack, answers: answersParam ?? "" },
-              })
-        }
+        onPress={() => router.replace("/(tabs)/home")}
         className="items-center rounded-2xl bg-emerald-500 py-4"
         style={{
           shadowColor: colors.emerald500,
@@ -190,7 +181,7 @@ export default function OnboardingCompleteScreen() {
           className="text-base text-white"
           style={{ fontFamily: "Outfit_600SemiBold" }}
         >
-          {isRetake ? "Về trang chủ" : "Tiếp tục"}
+          Về trang chủ
         </Text>
       </Pressable>
     </View>

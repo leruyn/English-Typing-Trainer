@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Pressable, Text, View } from "react-native";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { Clock, Sparkles } from "lucide-react-native";
 
 import { colors } from "../../src/theme";
@@ -8,9 +8,16 @@ import { computeDailyNewWordCap } from "@art/shared";
 
 const OPTIONS = [5, 10, 15, 20] as const;
 
+/**
+ * Asks how many minutes/day the learner wants to commit to, used to derive
+ * the daily new-word cap on the account about to be created. Comes right
+ * after `welcome.tsx` and before `account.tsx` now - this only matters for
+ * a brand new registration (a login to an existing account already has its
+ * own stored `minutesPerDay`), but asking it before account creation keeps
+ * the account form itself to just email/password.
+ */
 export default function PaceScreen() {
   const router = useRouter();
-  const { track, answers } = useLocalSearchParams<{ track?: string; answers?: string }>();
   const [minutes, setMinutes] = useState<number>(10);
 
   const newWordCap = useMemo(() => computeDailyNewWordCap(minutes), [minutes]);
@@ -103,7 +110,7 @@ export default function PaceScreen() {
         onPress={() =>
           router.push({
             pathname: "/(onboarding)/account",
-            params: { minutesPerDay: String(minutes), track: track ?? "", answers: answers ?? "" },
+            params: { minutesPerDay: String(minutes) },
           })
         }
         className="items-center rounded-2xl bg-emerald-500 py-4"

@@ -7,41 +7,31 @@ import { colors } from "../../src/theme";
 import Mascot from "../../src/components/Mascot";
 import { useAuth } from "../../src/context/AuthContext";
 import { ApiError } from "../../src/api/client";
-import type { AssessmentAnswer, CefrTrack } from "@art/shared";
-
-const TRACK_LABEL: Record<CefrTrack, string> = {
-  beginner: "Beginner (A1-A2)",
-  intermediate: "Intermediate (B1-B2)",
-  advanced: "Advanced (C1-C2)",
-};
 
 /**
- * Final onboarding step: create an account (or sign into an existing one)
- * so the rest of the app - words, SRS progress, stats - has a user to
- * attach to on the backend. Reached from `pace.tsx` (full onboarding path,
- * carrying `minutesPerDay`/`track`/`answers` params) or directly from
- * `welcome.tsx`'s "skip" link (with sensible defaults and no assessment
- * answers to submit).
+ * Onboarding step: create an account (or sign into an existing one) so the
+ * rest of the app - words, SRS progress, stats - has a user to attach to on
+ * the backend. Reached from `pace.tsx` (carrying `minutesPerDay`) or
+ * directly from `welcome.tsx`'s "already have an account" link.
+ *
+ * This now runs *before* the entrance assessment (previously the assessment
+ * ran first, pre-account, and answers were stashed in route params to be
+ * submitted alongside registration) - account state is what decides whether
+ * the assessment runs at all: a brand new registration is always
+ * unassessed, but a login might be logging back into an account that
+ * already completed it, in which case there's nothing left to do but go
+ * straight to the home tabs.
  */
 export default function AccountScreen() {
   const router = useRouter();
   const { register, login } = useAuth();
-  const params = useLocalSearchParams<{
-    minutesPerDay?: string;
-    track?: string;
-    answers?: string;
-  }>();
+  const params = useLocalSearchParams<{ minutesPerDay?: string }>();
 
   const [mode, setMode] = useState<"register" | "login">("register");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  const suggestedTrack: CefrTrack | null =
-    params.track === "beginner" || params.track === "intermediate" || params.track === "advanced"
-      ? params.track
-      : null;
 
   async function handleSubmit() {
     if (isSubmitting) return;
@@ -55,21 +45,23 @@ export default function AccountScreen() {
 
     setIsSubmitting(true);
     try {
-      if (mode === "register") {
-        const minutesPerDay = params.minutesPerDay ? Number(params.minutesPerDay) : undefined;
-        let assessmentAnswers: AssessmentAnswer[] | undefined;
-        if (params.answers) {
-          try {
-            assessmentAnswers = JSON.parse(params.answers) as AssessmentAnswer[];
-          } catch {
-            assessmentAnswers = undefined;
-          }
-        }
-        await register({ email: trimmedEmail, password, minutesPerDay, assessmentAnswers });
+      const user =
+        mode === "register"
+          ? await register({
+              email: trimmedEmail,
+              password,
+              minutesPerDay: params.minutesPerDay ? Number(params.minutesPerDay) : undefined,
+            })
+          : await login({ email: trimmedEmail, password });
+
+      // New registrations are always unassessed; a login might belong to an
+      // account that already finished the assessment before, in which case
+      // there's nothing left to gate on.
+      if (user.hasCompletedAssessment) {
+        router.replace("/(tabs)/home");
       } else {
-        await login({ email: trimmedEmail, password });
+        router.replace("/(onboarding)/assessment");
       }
-      router.replace("/(tabs)/home");
     } catch (err) {
       if (err instanceof ApiError) {
         setError(err.isNetworkError ? "Không có kết nối mạng. Thử lại nhé." : err.message);
@@ -99,16 +91,13 @@ export default function AccountScreen() {
             ? "Tiến trình SRS, streak và XP của bạn sẽ được đồng bộ và lưu an toàn."
             : "Đăng nhập để tiếp tục tiến trình học tập của bạn."}
         </Text>
-
-        {suggestedTrack && mode === "register" && (
-          <View
-            className="mt-4 rounded-full bg-white px-4 py-2"
-            style={{ borderWidth: 1, borderColor: "#eee7da" }}
+        {mode === "register" && (
+          <Text
+            className="mt-3 text-center text-xs text-ink/40"
+            style={{ fontFamily: "Outfit_500Medium" }}
           >
-            <Text className="text-xs text-emerald-600" style={{ fontFamily: "Outfit_600SemiBold" }}>
-              Lộ trình: {TRACK_LABEL[suggestedTrack]}
-            </Text>
-          </View>
+            Sau khi tạo tài khoản, bạn sẽ làm một bài khảo sát ngắn để đo trình độ.
+          </Text>
         )}
       </View>
 

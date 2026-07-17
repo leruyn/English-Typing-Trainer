@@ -1,8 +1,8 @@
 import "../global.css";
 
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { View } from "react-native";
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
 import {
@@ -42,10 +42,36 @@ const queryClient = new QueryClient();
  * `(tabs)`, everyone else starts at `(onboarding)`. Rendered only after
  * `isBootstrapping` resolves so `initialRouteName` is correct from the
  * first frame - no flash of the wrong screen before a redirect kicks in.
+ *
+ * Separately, a one-time effect below covers the case `initialRouteName`
+ * can't express on its own: an authenticated user whose account hasn't
+ * completed the entrance assessment yet (e.g. they closed the app between
+ * finishing account creation and finishing the quiz). `initialRouteName`
+ * only picks a top-level group, not a specific screen inside it, so
+ * landing them on "(tabs)" and then immediately redirecting into
+ * "/(onboarding)/assessment" is the straightforward way to route them to
+ * that exact screen rather than back to "welcome" (which they've already
+ * been through) or into "home" (which they haven't earned yet).
  */
 function RootNavigator() {
-  const { isBootstrapping, isAuthenticated } = useAuth();
+  const { isBootstrapping, isAuthenticated, user } = useAuth();
+  const router = useRouter();
   useOfflineSync();
+
+  // Only ever runs once per cold start/foreground of this component, not on
+  // every subsequent navigation - so it doesn't fight with a voluntary
+  // retake from Home (by then hasCompletedAssessment is already true) or
+  // repeatedly bounce someone actively answering questions on the
+  // assessment screen itself.
+  const hasCheckedAssessmentGate = useRef(false);
+
+  useEffect(() => {
+    if (isBootstrapping || hasCheckedAssessmentGate.current) return;
+    hasCheckedAssessmentGate.current = true;
+    if (isAuthenticated && user && !user.hasCompletedAssessment) {
+      router.replace("/(onboarding)/assessment");
+    }
+  }, [isBootstrapping, isAuthenticated, user, router]);
 
   if (isBootstrapping) {
     return <View style={{ flex: 1, backgroundColor: colors.cream }} />;

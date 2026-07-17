@@ -137,7 +137,7 @@ export interface PracticeAttempt {
  * A single question/answer pair within an adaptive entrance assessment.
  */
 export interface AssessmentAnswer {
-  /** Zero-based index of the question within the assessment (0-4). */
+  /** Zero-based index of the question within the assessment (0-7). */
   questionIndex: number;
   /**
    * Difficulty of the question that was asked, on an implementation-defined
@@ -184,4 +184,11 @@ export interface User {
    * over the value derived from `minutesPerDay` when set.
    */
   newWordCapOverride?: number;
+  /**
+   * True once this account has completed the entrance assessment at least
+   * once. Drives onboarding routing: a fresh registration or a login to an
+   * account without this set should be routed into the assessment before
+   * landing on the home tabs; an already-assessed account skips straight in.
+   */
+  hasCompletedAssessment: boolean;
 }
