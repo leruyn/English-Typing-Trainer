@@ -3,7 +3,7 @@
  * `offlineCache.ts` for reads and the AsyncStorage queue (`attemptQueue.ts`)
  * for the one write that matters most while offline: practice attempts.
  */
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import type { AssessmentAnswer, CefrLevel } from "@art/shared";
 import { useAuth } from "../context/AuthContext";
@@ -14,17 +14,89 @@ import {
   fetchProgress,
   fetchStats,
   fetchWords,
+  fetchWordTopics,
   submitAssessment,
   submitAttempt,
+  type FetchWordsParams,
   type SubmitAttemptParams,
 } from "./endpoints";
 
+/**
+ * Fetches an entire CEFR level's word pool in one shot (bounded per-level -
+ * up to ~1363 words for the biggest level, B2 - well under the server's
+ * `MAX_LIMIT`). Used by the practice queue/SRS picker and Time Attack mode,
+ * both of which need to sample/shuffle over the *whole* pool for a level
+ * rather than a page of it.
+ *
+ * Do NOT use this for the Vault screen: with no `cefrLevel` filter it would
+ * again be requesting the whole ~4900-word table. Vault paginates instead,
+ * via `useWordsInfiniteQuery` below.
+ */
 export function useWordsQuery(cefrLevel?: CefrLevel) {
   const { isAuthenticated } = useAuth();
   return useQuery({
     queryKey: ["words", cefrLevel ?? "all"],
     queryFn: () =>
-      fetchWithOfflineCache(`art_cache_words_${cefrLevel ?? "all"}`, () => fetchWords({ cefrLevel })),
+      fetchWithOfflineCache(`art_cache_words_${cefrLevel ?? "all"}`, () =>
+        fetchWords({ cefrLevel, limit: 2000 }),
+      ),
+    enabled: isAuthenticated,
+    staleTime: 5 * 60 * 1000,
+  });
+}
+
+export interface WordsInfiniteFilters {
+  cefrLevel?: CefrLevel;
+  topicId?: string;
+  partOfSpeech?: string;
+  search?: string;
+}
+
+const VAULT_PAGE_SIZE = 50;
+
+/**
+ * Paginated word list for the Vault (dictionary) screen. Each page fetches
+ * `VAULT_PAGE_SIZE` words at a time from the server (filtered/searched
+ * server-side), so the client never holds or renders more of the ~4900-word
+ * table than the user has actually scrolled to.
+ */
+export function useWordsInfiniteQuery(filters: WordsInfiniteFilters) {
+  const { isAuthenticated } = useAuth();
+  const { cefrLevel, topicId, partOfSpeech, search } = filters;
+
+  return useInfiniteQuery({
+    queryKey: ["words", "infinite", cefrLevel ?? null, topicId ?? null, partOfSpeech ?? null, search ?? ""],
+    queryFn: ({ pageParam }) => {
+      const params: FetchWordsParams = {
+        cefrLevel,
+        topicId,
+        partOfSpeech,
+        search: search || undefined,
+        limit: VAULT_PAGE_SIZE,
+        offset: pageParam,
+      };
+      return fetchWords(params);
+    },
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, allPages) => {
+      if (!lastPage.hasMore) return undefined;
+      return allPages.reduce((sum, page) => sum + page.words.length, 0);
+    },
+    enabled: isAuthenticated,
+    staleTime: 5 * 60 * 1000,
+  });
+}
+
+/**
+ * Lightweight topic metadata (topicId/topicNameVi/cefrLevel/count) for the
+ * Vault screen's topic filter chips - avoids pulling every word just to
+ * read distinct topics off them.
+ */
+export function useWordTopicsQuery() {
+  const { isAuthenticated } = useAuth();
+  return useQuery({
+    queryKey: ["wordTopics"],
+    queryFn: () => fetchWithOfflineCache("art_cache_word_topics", fetchWordTopics),
     enabled: isAuthenticated,
     staleTime: 5 * 60 * 1000,
   });

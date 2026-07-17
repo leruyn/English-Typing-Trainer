@@ -71,14 +71,55 @@ export function loginRequest(params: {
 
 // --- words --------------------------------------------------------------
 
-export function fetchWords(params?: { cefrLevel?: CefrLevel; topicId?: string }): Promise<{
+export interface FetchWordsParams {
+  cefrLevel?: CefrLevel;
+  topicId?: string;
+  partOfSpeech?: string;
+  /** Free-text search, matched server-side against the word or its Vietnamese meaning. */
+  search?: string;
+  /** Page size; server clamps to a max of 100. */
+  limit?: number;
+  offset?: number;
+}
+
+export interface FetchWordsResponse {
   words: Word[];
-}> {
+  total: number;
+  hasMore: boolean;
+}
+
+/**
+ * `/words` is paginated (default page size 50) rather than returning the
+ * whole ~4900-word table in one response — see `server/src/routes/words.ts`
+ * for why. Callers that page through results should use
+ * `useWordsInfiniteQuery` (`hooks.ts`) rather than calling this directly.
+ */
+export function fetchWords(params?: FetchWordsParams): Promise<FetchWordsResponse> {
   const query = new URLSearchParams();
   if (params?.cefrLevel) query.set("cefrLevel", params.cefrLevel);
   if (params?.topicId) query.set("topicId", params.topicId);
+  if (params?.partOfSpeech) query.set("partOfSpeech", params.partOfSpeech);
+  if (params?.search) query.set("search", params.search);
+  if (params?.limit !== undefined) query.set("limit", String(params.limit));
+  if (params?.offset !== undefined) query.set("offset", String(params.offset));
   const qs = query.toString();
-  return apiFetch<{ words: Word[] }>(`/words${qs ? `?${qs}` : ""}`);
+  return apiFetch<FetchWordsResponse>(`/words${qs ? `?${qs}` : ""}`);
+}
+
+export interface WordTopic {
+  topicId: string;
+  topicNameVi: string;
+  cefrLevel: CefrLevel;
+  wordCount: number;
+}
+
+/**
+ * Lightweight topic list (topicId/topicNameVi/cefrLevel/count) for populating
+ * the Vault screen's topic filter chips, without pulling every word just to
+ * read distinct topics off them.
+ */
+export function fetchWordTopics(): Promise<{ topics: WordTopic[] }> {
+  return apiFetch<{ topics: WordTopic[] }>("/words/topics");
 }
 
 // --- progress -----------------------------------------------------------

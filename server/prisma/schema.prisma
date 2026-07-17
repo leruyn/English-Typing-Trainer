@@ -77,6 +77,9 @@ model Word {
   @@unique([text, cefrLevel])
   @@index([cefrLevel])
   @@index([topicId])
+  // Supports ORDER BY text (used by the paginated list query) and
+  // narrows the scan for search/lookup-by-text queries.
+  @@index([text])
   @@map("words")
 }
 
