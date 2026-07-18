@@ -5,9 +5,10 @@ module.exports = function (api) {
       ["babel-preset-expo", { jsxImportSource: "nativewind" }],
       "nativewind/babel",
     ],
-    plugins: [
-      // react-native-reanimated/plugin must be listed last.
-      "react-native-reanimated/plugin",
-    ],
+    // No manual reanimated/worklets plugin here: babel-preset-expo (SDK 57)
+    // auto-registers react-native-worklets/plugin when the package is
+    // installed, and react-native-reanimated/plugin is just a forward to it
+    // in Reanimated 4 - listing it manually applied the same transform
+    // twice.
   };
 };

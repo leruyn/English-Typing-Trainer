@@ -63,10 +63,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     (async () => {
-      const [storedToken, cachedUser] = await Promise.all([getStoredToken(), getCachedUser()]);
-      setToken(storedToken);
-      setUser((cachedUser as WireUser | null) ?? null);
-      setIsBootstrapping(false);
+      try {
+        const [storedToken, cachedUser] = await Promise.all([getStoredToken(), getCachedUser()]);
+        setToken(storedToken);
+        setUser((cachedUser as WireUser | null) ?? null);
+      } catch (err) {
+        // SecureStore/AsyncStorage can throw on some Android devices (e.g.
+        // keystore corruption after a backup restore). Without this catch
+        // the rejection left `isBootstrapping` stuck at true forever - and
+        // since the bootstrap fallback view uses the same navy as the
+        // native splash, the app looked frozen on the splash screen.
+        // Treat it as a signed-out session instead.
+        // eslint-disable-next-line no-console
+        console.warn("Auth bootstrap failed, continuing signed-out:", err);
+      } finally {
+        setIsBootstrapping(false);
+      }
     })();
   }, []);
 

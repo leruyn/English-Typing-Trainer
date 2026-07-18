@@ -1,6 +1,6 @@
 import "../global.css";
 
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { View } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -94,6 +94,16 @@ function RootNavigator() {
 }
 
 export default function RootLayout() {
+  // Failsafe: if font loading neither resolves nor errors within a few
+  // seconds (seen as an app frozen on the splash screen), stop waiting and
+  // render with system fonts rather than blocking forever - a wrong
+  // typeface beats a hung app.
+  const [fontTimeoutElapsed, setFontTimeoutElapsed] = useState(false);
+  useEffect(() => {
+    const id = setTimeout(() => setFontTimeoutElapsed(true), 5000);
+    return () => clearTimeout(id);
+  }, []);
+
   const [fontsLoaded, fontError] = useFonts({
     // Registered under simple aliases so `fontFamily: "Outfit"` /
     // `fontFamily: "JetBrainsMono"` (see tailwind.config.js) resolve
@@ -115,19 +125,21 @@ export default function RootLayout() {
     PlusJakartaSans_700Bold,
   });
 
+  const fontsReady = fontsLoaded || Boolean(fontError) || fontTimeoutElapsed;
+
   const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded || fontError) {
+    if (fontsReady) {
       await SplashScreen.hideAsync();
     }
-  }, [fontsLoaded, fontError]);
+  }, [fontsReady]);
 
   useEffect(() => {
-    if (fontsLoaded || fontError) {
+    if (fontsReady) {
       SplashScreen.hideAsync();
     }
-  }, [fontsLoaded, fontError]);
+  }, [fontsReady]);
 
-  if (!fontsLoaded && !fontError) {
+  if (!fontsReady) {
     // Splash screen is still visible; render nothing (or a bare loading
     // view as a fallback for platforms where the native splash isn't used).
     // Matches the native splash's backgroundColor (app.json's
