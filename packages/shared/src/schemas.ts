@@ -70,12 +70,18 @@ export const createPracticeAttemptSchema = practiceAttemptSchema.omit({
   createdAt: true,
 });
 
+/** Zod schema for {@link AssessmentItemType}. */
+export const assessmentItemTypeSchema = z.enum(['mcq', 'dictation', 'recall']);
+
 /** Zod schema for {@link AssessmentAnswer}. */
 export const assessmentAnswerSchema = z.object({
   // Assessment length was raised from 5 to 8 questions (better accuracy for
   // the weighted-average suggestTrack() heuristic - see server/src/routes/
   // assessment.ts) - indices are 0-based, so max is 7.
   questionIndex: z.number().int().min(0).max(7),
+  // Optional for backward compatibility with clients that predate typed
+  // items; absent is treated as 'mcq'.
+  itemType: assessmentItemTypeSchema.optional(),
   difficulty: z.number(),
   correct: z.boolean(),
 });

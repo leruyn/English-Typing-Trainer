@@ -7,6 +7,7 @@ export default function OnboardingLayout() {
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="welcome" />
+      <Stack.Screen name="profile" />
       <Stack.Screen name="assessment" />
       <Stack.Screen name="complete" />
       <Stack.Screen name="pace" />

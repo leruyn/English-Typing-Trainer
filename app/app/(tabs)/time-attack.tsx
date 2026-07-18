@@ -4,11 +4,13 @@ import Animated, { useAnimatedStyle, useSharedValue, withSequence, withTiming } 
 import { Flame, Hash, Play, Zap } from "lucide-react-native";
 
 import type { Word } from "@art/shared";
+import { CEFR_LEVEL_TO_TRACK } from "@art/shared";
 import { colors } from "../../src/theme";
 import Mascot, { type MascotState } from "../../src/components/Mascot";
 import StarBurst, { type StarBurstHandle } from "../../src/components/StarBurst";
 import VirtualKeyboard from "../../src/components/VirtualKeyboard";
 import { useSubmitAttempt, useWordsQuery } from "../../src/api/hooks";
+import { useAuth } from "../../src/context/AuthContext";
 
 const ROUND_SECONDS = 45;
 const CORRECT_WORD_BONUS_SECONDS = 3;
@@ -26,8 +28,15 @@ function shuffled<T>(items: T[]): T[] {
 
 export default function TimeAttackScreen() {
   const { data, isLoading } = useWordsQuery();
+  const { user } = useAuth();
   const submitAttempt = useSubmitAttempt();
-  const allWords = data?.words ?? [];
+  // Rounds draw from the user's current CEFR track so Time Attack matches
+  // their level (same policy as the practice queue), falling back to the
+  // full bank if the filter would leave nothing.
+  const fetchedWords = data?.words ?? [];
+  const currentTrack = user?.currentTrack ?? "beginner";
+  const trackWords = fetchedWords.filter((w) => CEFR_LEVEL_TO_TRACK[w.cefrLevel] === currentTrack);
+  const allWords = trackWords.length > 0 ? trackWords : fetchedWords;
 
   const [running, setRunning] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState(ROUND_SECONDS);

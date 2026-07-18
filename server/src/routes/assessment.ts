@@ -24,8 +24,17 @@ const ASSESSMENT_MAX_OUTPUT_TOKENS = getEnvInt('GEMINI_ASSESSMENT_MAX_TOKENS', 5
 
 const router = Router();
 
+const learnerGroupSchema = z.enum(['child', 'student', 'adult']);
+
 const submitAssessmentSchema = z.object({
   answers: z.array(assessmentAnswerSchema).length(8),
+  // Self-declared group from the onboarding profile screen - persisted
+  // alongside the result so it only needs to be sent once, with the test.
+  learnerGroup: learnerGroupSchema.optional(),
+});
+
+const skipAssessmentSchema = z.object({
+  learnerGroup: learnerGroupSchema,
 });
 
 const MIN_DIFFICULTY = 1;
@@ -80,7 +89,12 @@ function isValidGeneratedQuestion(value: unknown): value is GeneratedQuestion {
  * 2. Later questions are weighted more heavily (weight = 1-based question
  *    index), since the adaptive difficulty walk has had more steps to
  *    converge toward the learner's real level by the end of the test.
- * 3. The final estimate is the weighted average of all per-question
+ * 3. Typed items ('dictation'/'recall') get double weight on top of the
+ *    positional weight: a 4-option MCQ succeeds 25% of the time by blind
+ *    guessing, but a typed answer can't be guessed - and typing is the
+ *    exact production skill this app trains, so it's the stronger signal
+ *    of the level the learner can actually work at.
+ * 4. The final estimate is the weighted average of all per-question
  *    estimates, bucketed the same way as before:
  *      <= 2  -> beginner (roughly A1-A2)
  *      <= 4  -> intermediate (roughly B1-B2)
@@ -89,6 +103,8 @@ function isValidGeneratedQuestion(value: unknown): value is GeneratedQuestion {
  * Works for any assessment length (5, 8, or otherwise) since weights are
  * derived from position, not a hardcoded "last two" window.
  */
+const TYPED_ITEM_WEIGHT_MULTIPLIER = 2;
+
 export function suggestTrack(answers: AssessmentAnswer[]): CefrTrack {
   if (answers.length === 0) {
     return 'beginner';
@@ -99,7 +115,11 @@ export function suggestTrack(answers: AssessmentAnswer[]): CefrTrack {
   let weightedSum = 0;
   let weightTotal = 0;
   sorted.forEach((answer, i) => {
-    const weight = i + 1;
+    const typeMultiplier =
+      answer.itemType === 'dictation' || answer.itemType === 'recall'
+        ? TYPED_ITEM_WEIGHT_MULTIPLIER
+        : 1;
+    const weight = (i + 1) * typeMultiplier;
     const estimate = answer.correct ? answer.difficulty : Math.max(0, answer.difficulty - 1);
     weightedSum += estimate * weight;
     weightTotal += weight;
@@ -237,6 +257,42 @@ router.post('/question', assessmentQuestionLimiter, async (req, res, next) => {
   }
 });
 
+/**
+ * POST /assessment/skip — the no-test onboarding path for young children.
+ * A 5-6 year old can't meaningfully take a reading-based multiple-choice
+ * quiz in Vietnamese about English word nuance, so forcing them through it
+ * would just produce a noise-driven placement; they start on the beginner
+ * track by definition instead. Marks the account as "assessment complete"
+ * so the routing gates (app/_layout.tsx, account.tsx) treat it the same as
+ * a finished test.
+ */
+router.post('/skip', requireAuth, async (req, res, next) => {
+  try {
+    const userId = req.userId as string;
+    const parsed = skipAssessmentSchema.safeParse(req.body);
+    if (!parsed.success) {
+      throw new HttpError(400, parsed.error.issues.map((i) => i.message).join(', '));
+    }
+
+    await prisma.user.update({
+      where: { id: userId },
+      data: {
+        hasCompletedAssessment: true,
+        learnerGroup: parsed.data.learnerGroup,
+        currentTrack: 'beginner',
+      },
+    });
+
+    res.status(201).json({
+      suggestedTrack: 'beginner' as const,
+      hasCompletedAssessment: true,
+      currentTrack: 'beginner' as const,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.post('/', requireAuth, async (req, res, next) => {
   try {
     const userId = req.userId as string;
@@ -244,7 +300,7 @@ router.post('/', requireAuth, async (req, res, next) => {
     if (!parsed.success) {
       throw new HttpError(400, parsed.error.issues.map((i) => i.message).join(', '));
     }
-    const { answers } = parsed.data;
+    const { answers, learnerGroup } = parsed.data;
 
     const questionIndexes = new Set(answers.map((a) => a.questionIndex));
     if (questionIndexes.size !== answers.length) {
@@ -263,23 +319,37 @@ router.post('/', requireAuth, async (req, res, next) => {
               questionIndex: a.questionIndex,
               difficulty: a.difficulty,
               correct: a.correct,
+              itemType: a.itemType ?? 'mcq',
             })),
           },
         },
         include: { answers: { orderBy: { questionIndex: 'asc' } } },
       }),
       // Flips the User-level flag that gates onboarding routing (see
-      // app/app/_layout.tsx / (onboarding)/account.tsx) - a retake overwrites
-      // nothing here since it's already true, this only matters the first
-      // time. Same transaction as the result insert so the two can't
-      // diverge (e.g. result saved but flag update lost to a crash).
-      prisma.user.update({ where: { id: userId }, data: { hasCompletedAssessment: true } }),
+      // app/app/_layout.tsx / (onboarding)/account.tsx) and seeds/updates
+      // currentTrack - the mutable "where the user is now" value that later
+      // continuous calibration adjusts, as opposed to the immutable
+      // AssessmentResult record above. Same transaction as the result
+      // insert so the two can't diverge.
+      prisma.user.update({
+        where: { id: userId },
+        data: {
+          hasCompletedAssessment: true,
+          currentTrack: suggestedTrack,
+          ...(learnerGroup ? { learnerGroup } : {}),
+        },
+      }),
     ]);
 
-    // Echo hasCompletedAssessment: true directly, rather than making the
-    // client re-fetch/re-login to learn its own account flipped - it just
+    // Echo the updated user-level fields directly, rather than making the
+    // client re-fetch/re-login to learn its own account changed - it just
     // did, in the same transaction above.
-    res.status(201).json({ suggestedTrack, assessmentResult, hasCompletedAssessment: true });
+    res.status(201).json({
+      suggestedTrack,
+      assessmentResult,
+      hasCompletedAssessment: true,
+      currentTrack: suggestedTrack,
+    });
   } catch (err) {
     next(err);
   }

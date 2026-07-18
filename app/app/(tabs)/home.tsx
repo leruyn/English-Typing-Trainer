@@ -1,13 +1,21 @@
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { useState } from "react";
+import { ActivityIndicator, Pressable, ScrollView, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { BookOpenCheck, Keyboard, ListChecks, Zap } from "lucide-react-native";
+import { BookOpenCheck, Keyboard, ListChecks, TrendingDown, TrendingUp, X, Zap } from "lucide-react-native";
 
+import type { CefrTrack } from "@art/shared";
 import { colors } from "../../src/theme";
 import { getGreeting, getLevelProgress, displayNameFromEmail } from "../../src/time";
 import MasteryRing from "../../src/components/MasteryRing";
 import { useAuth } from "../../src/context/AuthContext";
-import { useProgressQuery, useStatsQuery } from "../../src/api/hooks";
+import { useCalibrationQuery, useProgressQuery, useStatsQuery, useUpdateTrack } from "../../src/api/hooks";
+
+const TRACK_LABEL: Record<CefrTrack, string> = {
+  beginner: "Beginner (A1-A2)",
+  intermediate: "Intermediate (B1-B2)",
+  advanced: "Advanced (C1-C2)",
+};
 
 /**
  * The four quick-action tiles from the mockup's home bento grid. Each tint
@@ -61,9 +69,32 @@ const QUICK_ACTIONS = [
 export default function HomeScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
-  const { user } = useAuth();
+  const { user, updateUser } = useAuth();
   const { data: stats } = useStatsQuery();
   const { data: progressData } = useProgressQuery();
+  const { data: calibration } = useCalibrationQuery();
+  const updateTrackMutation = useUpdateTrack();
+  // Session-local dismiss: declining a suggestion shouldn't nag again until
+  // the app restarts (and the 6h query staleTime keeps even that gentle).
+  const [calibrationDismissed, setCalibrationDismissed] = useState(false);
+
+  const calibrationSuggestion =
+    !calibrationDismissed && calibration?.suggestion && calibration.suggestedTrack
+      ? calibration
+      : null;
+
+  async function acceptCalibration() {
+    const target = calibrationSuggestion?.suggestedTrack;
+    if (!target || updateTrackMutation.isPending) return;
+    try {
+      await updateTrackMutation.mutateAsync(target);
+      await updateUser({ currentTrack: target });
+      setCalibrationDismissed(true);
+    } catch {
+      // Leave the banner up - the user can retry; no error state needed
+      // beyond the button simply not having taken effect.
+    }
+  }
 
   const masteryPercent = stats?.masteryPercent ?? 0;
   const streakDays = stats?.currentStreak ?? 0;
@@ -129,6 +160,65 @@ export default function HomeScreen() {
             </Text>
           </View>
         </View>
+
+        {/* ===== Placement calibration banner ===== */}
+        {calibrationSuggestion && calibrationSuggestion.suggestedTrack && (
+          <View
+            className="mt-4 rounded-2xl bg-white px-4 py-4"
+            style={{ borderWidth: 1.5, borderColor: colors.indigo }}
+          >
+            <View className="flex-row items-start gap-3">
+              <View
+                className="h-10 w-10 items-center justify-center rounded-xl"
+                style={{ backgroundColor: colors.indigo100 }}
+              >
+                {calibrationSuggestion.suggestion === "promote" ? (
+                  <TrendingUp size={18} color={colors.indigo600} />
+                ) : (
+                  <TrendingDown size={18} color={colors.indigo600} />
+                )}
+              </View>
+              <View className="flex-1">
+                <Text className="text-sm text-ink" style={{ fontFamily: "Outfit_600SemiBold" }}>
+                  {calibrationSuggestion.suggestion === "promote"
+                    ? "Bạn đang gõ quá tốt so với cấp hiện tại!"
+                    : "Cấp hiện tại có vẻ hơi khó với bạn"}
+                </Text>
+                <Text className="mt-1 text-xs text-ink/60" style={{ fontFamily: "PlusJakartaSans" }}>
+                  Dựa trên kết quả gõ gần đây, gợi ý chuyển sang{" "}
+                  {TRACK_LABEL[calibrationSuggestion.suggestedTrack]}.
+                </Text>
+                <View className="mt-3 flex-row gap-2">
+                  <Pressable
+                    onPress={acceptCalibration}
+                    disabled={updateTrackMutation.isPending}
+                    className="flex-row items-center gap-1.5 rounded-full bg-indigo-600 px-4 py-2"
+                    style={{ opacity: updateTrackMutation.isPending ? 0.6 : 1 }}
+                  >
+                    {updateTrackMutation.isPending && (
+                      <ActivityIndicator size="small" color="white" />
+                    )}
+                    <Text className="text-xs text-white" style={{ fontFamily: "Outfit_600SemiBold" }}>
+                      Chuyển cấp
+                    </Text>
+                  </Pressable>
+                  <Pressable
+                    onPress={() => setCalibrationDismissed(true)}
+                    className="rounded-full px-4 py-2"
+                    style={{ borderWidth: 1, borderColor: colors.border }}
+                  >
+                    <Text className="text-xs text-ink/60" style={{ fontFamily: "Outfit_500Medium" }}>
+                      Để sau
+                    </Text>
+                  </Pressable>
+                </View>
+              </View>
+              <Pressable onPress={() => setCalibrationDismissed(true)} hitSlop={8}>
+                <X size={16} color={colors.inkFaint} />
+              </Pressable>
+            </View>
+          </View>
+        )}
 
         {/* ===== Quick actions bento (2x2) ===== */}
         <Text

@@ -10,6 +10,7 @@ import type {
   AssessmentAnswer,
   CefrLevel,
   CefrTrack,
+  LearnerGroup,
   PracticeMode,
   SrsBox,
   User,
@@ -154,14 +155,58 @@ export function submitAttempt(
 
 // --- assessment -----------------------------------------------------------
 
+export interface SubmitAssessmentResponse {
+  suggestedTrack: CefrTrack;
+  hasCompletedAssessment: true;
+  currentTrack: CefrTrack;
+}
+
 export function submitAssessment(
   answers: AssessmentAnswer[],
+  learnerGroup?: LearnerGroup,
   token?: string,
-): Promise<{ suggestedTrack: CefrTrack; hasCompletedAssessment: true }> {
-  return apiFetch<{ suggestedTrack: CefrTrack; hasCompletedAssessment: true }>("/assessment", {
+): Promise<SubmitAssessmentResponse> {
+  return apiFetch<SubmitAssessmentResponse>("/assessment", {
     method: "POST",
-    body: { answers },
+    body: { answers, ...(learnerGroup ? { learnerGroup } : {}) },
     token,
+  });
+}
+
+/**
+ * The no-test onboarding path for young children - see
+ * `POST /assessment/skip` in `server/src/routes/assessment.ts`. Marks the
+ * account as assessed and places it on the beginner track.
+ */
+export function skipAssessment(learnerGroup: LearnerGroup): Promise<SubmitAssessmentResponse> {
+  return apiFetch<SubmitAssessmentResponse>("/assessment/skip", {
+    method: "POST",
+    body: { learnerGroup },
+  });
+}
+
+// --- placement calibration -------------------------------------------
+
+export interface CalibrationResponse {
+  suggestion: "promote" | "demote" | null;
+  suggestedTrack?: CefrTrack | null;
+  currentTrack: CefrTrack;
+  sampleSize?: number;
+}
+
+/**
+ * Advisory check of whether recent real practice performance says the
+ * current track is too easy/too hard - see `GET /progress/calibration`.
+ */
+export function fetchCalibration(): Promise<CalibrationResponse> {
+  return apiFetch<CalibrationResponse>("/progress/calibration");
+}
+
+/** Sets the user's current CEFR track (accepting a calibration suggestion). */
+export function updateTrack(track: CefrTrack): Promise<{ currentTrack: CefrTrack }> {
+  return apiFetch<{ currentTrack: CefrTrack }>("/progress/track", {
+    method: "POST",
+    body: { track },
   });
 }
 

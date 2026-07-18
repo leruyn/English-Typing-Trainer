@@ -56,11 +56,14 @@ export default function AccountScreen() {
 
       // New registrations are always unassessed; a login might belong to an
       // account that already finished the assessment before, in which case
-      // there's nothing left to gate on.
+      // there's nothing left to gate on. Unassessed accounts go to the
+      // learner-profile step first (who is this account for?), which
+      // either skips the test (young children) or seeds its starting
+      // difficulty before handing off to the assessment itself.
       if (user.hasCompletedAssessment) {
         router.replace("/(tabs)/home");
       } else {
-        router.replace("/(onboarding)/assessment");
+        router.replace("/(onboarding)/profile");
       }
     } catch (err) {
       if (err instanceof ApiError) {

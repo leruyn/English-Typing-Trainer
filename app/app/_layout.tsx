@@ -69,7 +69,10 @@ function RootNavigator() {
     if (isBootstrapping || hasCheckedAssessmentGate.current) return;
     hasCheckedAssessmentGate.current = true;
     if (isAuthenticated && user && !user.hasCompletedAssessment) {
-      router.replace("/(onboarding)/assessment");
+      // Into the learner-profile step (not the assessment directly): the
+      // profile choice decides whether a test happens at all and at what
+      // starting difficulty.
+      router.replace("/(onboarding)/profile");
     }
   }, [isBootstrapping, isAuthenticated, user, router]);
 

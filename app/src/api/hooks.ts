@@ -5,13 +5,14 @@
  */
 import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import type { AssessmentAnswer, CefrLevel } from "@art/shared";
+import type { AssessmentAnswer, CefrLevel, CefrTrack } from "@art/shared";
 import { useAuth } from "../context/AuthContext";
 import { enqueueAttempt, flushAttemptQueue } from "../offline/attemptQueue";
 import { fetchWithOfflineCache } from "./offlineCache";
 import { ApiError } from "./client";
 import {
   explainWord,
+  fetchCalibration,
   fetchCoachingMessage,
   fetchProgress,
   fetchStats,
@@ -19,6 +20,7 @@ import {
   fetchWordTopics,
   submitAssessment,
   submitAttempt,
+  updateTrack,
   type ExplainWordParams,
   type FetchWordsParams,
   type SubmitAttemptParams,
@@ -186,5 +188,40 @@ export function useSubmitAssessment() {
 export function useExplainWord() {
   return useMutation({
     mutationFn: (params: ExplainWordParams) => explainWord(params),
+  });
+}
+
+/**
+ * Advisory placement calibration - does recent real practice performance
+ * say the current track is too easy/too hard? (see
+ * `GET /progress/calibration`). Not offline-cached: a suggestion is only
+ * meaningful against fresh data, and the Home banner simply doesn't render
+ * without one. Long staleTime - performance trends move over days, not
+ * minutes, and re-asking on every Home visit would just be noise.
+ */
+export function useCalibrationQuery() {
+  const { isAuthenticated } = useAuth();
+  return useQuery({
+    queryKey: ["calibration"],
+    queryFn: fetchCalibration,
+    enabled: isAuthenticated,
+    staleTime: 6 * 60 * 60 * 1000,
+    retry: 1,
+  });
+}
+
+/**
+ * Accepts a calibration suggestion (or any manual level change): persists
+ * the new track server-side, then refreshes the queries whose contents
+ * depend on it.
+ */
+export function useUpdateTrack() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (track: CefrTrack) => updateTrack(track),
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ["calibration"] });
+      void queryClient.invalidateQueries({ queryKey: ["words"] });
+    },
   });
 }

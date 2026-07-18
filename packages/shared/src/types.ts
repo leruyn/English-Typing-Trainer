@@ -134,11 +134,26 @@ export interface PracticeAttempt {
 }
 
 /**
+ * The kind of item asked in the entrance assessment - see
+ * {@link AssessmentAnswer.itemType}.
+ */
+export type AssessmentItemType = 'mcq' | 'dictation' | 'recall';
+
+/**
  * A single question/answer pair within an adaptive entrance assessment.
  */
 export interface AssessmentAnswer {
   /** Zero-based index of the question within the assessment (0-7). */
   questionIndex: number;
+  /**
+   * What kind of item this was. Multiple-choice ('mcq') has a 25% blind-
+   * guess success rate, so typed items - 'dictation' (hear the word, type
+   * it) and 'recall' (see the Vietnamese meaning, type the English word) -
+   * carry double weight in the placement heuristic: they can't be guessed
+   * and they measure the exact production skill the app trains. Optional
+   * for backward compatibility; absent means 'mcq'.
+   */
+  itemType?: AssessmentItemType;
   /**
    * Difficulty of the question that was asked, on an implementation-defined
    * scale (e.g. 1-6, mirroring CEFR levels). Increases after a correct
@@ -150,13 +165,13 @@ export interface AssessmentAnswer {
 }
 
 /**
- * The outcome of a completed adaptive entrance assessment (5 multiple
- * choice questions) used to place a new user into a starting track.
+ * The outcome of a completed adaptive entrance assessment (8 mixed-type
+ * questions) used to place a new user into a starting track.
  */
 export interface AssessmentResult {
   /** User who took the assessment. */
   userId: string;
-  /** The five question/answer records, in order, forming a difficulty trajectory. */
+  /** The question/answer records, in order, forming a difficulty trajectory. */
   answers: AssessmentAnswer[];
   /** The CEFR track suggested as a starting point based on the trajectory. */
   suggestedTrack: CefrTrack;
@@ -191,4 +206,25 @@ export interface User {
    * landing on the home tabs; an already-assessed account skips straight in.
    */
   hasCompletedAssessment: boolean;
+  /**
+   * Self-declared learner group chosen during onboarding. Young children
+   * ('child') skip the entrance assessment entirely and start on the
+   * beginner track; for 'student'/'adult' this seeds the assessment's
+   * starting difficulty. Absent on accounts created before this field
+   * existed.
+   */
+  learnerGroup?: LearnerGroup;
+  /**
+   * The user's current CEFR track - seeded by the entrance assessment,
+   * then adjusted over time by continuous calibration against real
+   * practice performance (unlike an AssessmentResult's suggestedTrack,
+   * which is a one-time snapshot).
+   */
+  currentTrack: CefrTrack;
 }
+
+/**
+ * Self-declared learner group captured during onboarding, used to route
+ * around or calibrate the entrance assessment.
+ */
+export type LearnerGroup = 'child' | 'student' | 'adult';

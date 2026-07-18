@@ -47,6 +47,8 @@ interface UserRecord {
   minutesPerDay: number;
   newWordCapOverride: number | null;
   hasCompletedAssessment: boolean;
+  learnerGroup: string | null;
+  currentTrack: string;
 }
 
 /** Strips `passwordHash` (and normalizes nullable fields) before sending a user back to the client. */
@@ -58,6 +60,8 @@ function toPublicUser(user: UserRecord) {
     minutesPerDay: user.minutesPerDay,
     newWordCapOverride: user.newWordCapOverride ?? undefined,
     hasCompletedAssessment: user.hasCompletedAssessment,
+    learnerGroup: user.learnerGroup ?? undefined,
+    currentTrack: user.currentTrack,
   };
 }
 

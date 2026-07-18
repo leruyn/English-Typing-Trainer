@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
-import { ActivityIndicator, Pressable, Text, View } from "react-native";
-import { useRouter } from "expo-router";
+import { useEffect, useRef, useState } from "react";
+import { ActivityIndicator, Pressable, Text, TextInput, View } from "react-native";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import Animated, { useAnimatedStyle, withSpring } from "react-native-reanimated";
-import { Check, X } from "lucide-react-native";
+import { Check, Volume2, X } from "lucide-react-native";
+import * as Speech from "expo-speech";
 import Svg, { Circle, Polyline } from "react-native-svg";
 
 import { colors } from "../../src/theme";
-import type { AssessmentAnswer, CefrTrack } from "@art/shared";
+import type { AssessmentAnswer, AssessmentItemType, CefrTrack, LearnerGroup } from "@art/shared";
 import { generateAssessmentQuestion, submitAssessment } from "../../src/api/endpoints";
 import { useAuth } from "../../src/context/AuthContext";
 
@@ -51,6 +52,106 @@ const QUESTION_BANK: Question[] = [
 // data points make that average converge on the learner's real level more
 // reliably.
 const TOTAL_QUESTIONS = 8;
+
+/**
+ * Which item type each of the 8 slots uses. Half the test is typed
+ * production ("nghe rồi gõ" dictation + "nhìn nghĩa gõ từ" recall) because
+ * 4-option MCQ succeeds 25% of the time by pure guessing - a child tapping
+ * randomly can look B1 on an all-MCQ test - while a typed answer can't be
+ * guessed and measures the exact skill this app trains. The server weights
+ * typed answers 2x in the placement heuristic for the same reason.
+ * MCQ slots come first so the (AI-generated, slower to load) questions
+ * front-load while the user is fresh, and the harder production items
+ * arrive once they're warmed up.
+ */
+const ITEM_TYPE_BY_INDEX: AssessmentItemType[] = [
+  "mcq",
+  "mcq",
+  "dictation",
+  "mcq",
+  "recall",
+  "mcq",
+  "dictation",
+  "recall",
+];
+
+/**
+ * Static bank for typed items, ~4 words per difficulty tier, drawn from
+ * the same CEFR tiers the app's vocabulary uses. Deliberately NOT
+ * AI-generated: a typed item needs a guaranteed-unambiguous correct answer
+ * (exact spelling), and these double as difficulty anchors that no model
+ * drift can shift.
+ */
+const TYPED_BANK: Record<number, Array<{ word: string; meaningVi: string }>> = {
+  1: [
+    { word: "dog", meaningVi: "con chó" },
+    { word: "milk", meaningVi: "sữa" },
+    { word: "sun", meaningVi: "mặt trời" },
+    { word: "book", meaningVi: "quyển sách" },
+  ],
+  2: [
+    { word: "window", meaningVi: "cửa sổ" },
+    { word: "breakfast", meaningVi: "bữa sáng" },
+    { word: "market", meaningVi: "chợ" },
+    { word: "family", meaningVi: "gia đình" },
+  ],
+  3: [
+    { word: "moment", meaningVi: "khoảnh khắc" },
+    { word: "improve", meaningVi: "cải thiện" },
+    { word: "journey", meaningVi: "chuyến đi, hành trình" },
+    { word: "protect", meaningVi: "bảo vệ" },
+  ],
+  4: [
+    { word: "efficient", meaningVi: "hiệu quả" },
+    { word: "guarantee", meaningVi: "bảo đảm, cam kết" },
+    { word: "colleague", meaningVi: "đồng nghiệp" },
+    { word: "emphasize", meaningVi: "nhấn mạnh" },
+  ],
+  5: [
+    { word: "phenomenon", meaningVi: "hiện tượng" },
+    { word: "deliberate", meaningVi: "có chủ ý, cố tình" },
+    { word: "inevitable", meaningVi: "không thể tránh khỏi" },
+    { word: "perceive", meaningVi: "nhận thức, cảm nhận" },
+  ],
+  6: [
+    { word: "meticulous", meaningVi: "tỉ mỉ, kỹ lưỡng" },
+    { word: "ambiguous", meaningVi: "mơ hồ, nước đôi" },
+    { word: "resilient", meaningVi: "kiên cường, bền bỉ" },
+    { word: "scrutinize", meaningVi: "xem xét kỹ lưỡng" },
+  ],
+};
+
+/** Pick an unused typed-bank entry at (or nearest to) the given difficulty. */
+function pickTypedEntry(
+  difficulty: number,
+  usedWords: Set<string>,
+): { word: string; meaningVi: string; difficulty: number } {
+  const clamped = Math.max(MIN_DIFFICULTY, Math.min(MAX_DIFFICULTY, difficulty));
+  // Walk outward from the target tier (same tier first, then ±1, ±2...) so
+  // a exhausted tier degrades to the nearest difficulty, not a random one.
+  for (let delta = 0; delta <= MAX_DIFFICULTY; delta += 1) {
+    for (const tier of [clamped - delta, clamped + delta]) {
+      const entries = TYPED_BANK[tier];
+      if (!entries) continue;
+      const available = entries.filter((e) => !usedWords.has(e.word));
+      if (available.length > 0) {
+        const chosen = available[Math.floor(Math.random() * available.length)];
+        return { ...chosen, difficulty: tier };
+      }
+    }
+  }
+  // Every word in the bank used (impossible with 8 questions vs 24 words,
+  // but keep a total fallback anyway).
+  return { ...TYPED_BANK[clamped][0], difficulty: clamped };
+}
+
+/**
+ * Normalizes a typed answer for comparison: case, surrounding whitespace,
+ * and internal double-spaces don't count as spelling errors.
+ */
+function normalizeTyped(value: string): string {
+  return value.trim().toLowerCase().replace(/\s+/g, " ");
+}
 const MIN_DIFFICULTY = 1;
 const MAX_DIFFICULTY = 6;
 const START_DIFFICULTY = 3;
@@ -132,8 +233,19 @@ function TrajectoryTracker({ trajectory }: { trajectory: number[] }) {
 export default function AssessmentScreen() {
   const router = useRouter();
   const { updateUser } = useAuth();
+  // Seeded by the learner-profile step: `start` sets the initial
+  // difficulty (an adult self-rated "khá/giỏi" starts at 4 instead of
+  // grinding up from mid-scale), `group` is forwarded with the final
+  // submit. A retake from Home arrives with no params - defaults apply.
+  const { group, start } = useLocalSearchParams<{ group?: string; start?: string }>();
+  const learnerGroup: LearnerGroup | undefined =
+    group === "child" || group === "student" || group === "adult" ? group : undefined;
+  const parsedStart = start ? Number.parseInt(start, 10) : NaN;
+  const initialDifficulty = Number.isInteger(parsedStart)
+    ? Math.max(MIN_DIFFICULTY, Math.min(MAX_DIFFICULTY, parsedStart))
+    : START_DIFFICULTY;
 
-  const [difficulty, setDifficulty] = useState(START_DIFFICULTY);
+  const [difficulty, setDifficulty] = useState(initialDifficulty);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [trajectory, setTrajectory] = useState<number[]>([]);
   const [answers, setAnswers] = useState<AssessmentAnswer[]>([]);
@@ -142,12 +254,41 @@ export default function AssessmentScreen() {
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
   const [loadingQuestion, setLoadingQuestion] = useState(true);
 
-  // Fetch (or fall back to) one question whenever we advance to a new
-  // question index. `difficulty` is intentionally not in the dependency
-  // array - it's updated in the same batch as `questionIndex` right before
-  // this runs (see handleAnswer), so by the time this effect body executes
-  // it already reads the current value; re-running on both would double-fetch.
+  // Typed-item (dictation/recall) state. `typedUsedWords` is a ref, not
+  // state: it only guards against repeats and never drives a render.
+  const itemType: AssessmentItemType = ITEM_TYPE_BY_INDEX[questionIndex] ?? "mcq";
+  const [typedItem, setTypedItem] = useState<{
+    word: string;
+    meaningVi: string;
+    difficulty: number;
+  } | null>(null);
+  const [typedInput, setTypedInput] = useState("");
+  const [typedResult, setTypedResult] = useState<"correct" | "wrong" | null>(null);
+  const typedUsedWords = useRef<Set<string>>(new Set());
+
+  // Prepare one item whenever we advance to a new question index: MCQ slots
+  // fetch from the AI endpoint (falling back to the static bank), typed
+  // slots draw synchronously from TYPED_BANK. `difficulty` is intentionally
+  // not in the dependency array - it's updated in the same batch as
+  // `questionIndex` right before this runs (see the answer handlers), so by
+  // the time this effect body executes it already reads the current value;
+  // re-running on both would double-fetch.
   useEffect(() => {
+    if (ITEM_TYPE_BY_INDEX[questionIndex] !== "mcq") {
+      const entry = pickTypedEntry(difficulty, typedUsedWords.current);
+      typedUsedWords.current.add(entry.word);
+      setTypedItem(entry);
+      setTypedInput("");
+      setTypedResult(null);
+      setLoadingQuestion(false);
+      // Dictation plays the word immediately - the learner's task starts
+      // with hearing it, not with hunting for a play button.
+      if (ITEM_TYPE_BY_INDEX[questionIndex] === "dictation") {
+        Speech.speak(entry.word, { language: "en-US", rate: 0.9 });
+      }
+      return;
+    }
+
     let cancelled = false;
     setLoadingQuestion(true);
 
@@ -187,18 +328,25 @@ export default function AssessmentScreen() {
     ],
   }));
 
-  function handleAnswer(optionIndex: number) {
-    if (selected !== null || !currentQuestion) return;
-    setSelected(optionIndex);
-    const correct = optionIndex === currentQuestion.correctIndex;
-    const nextTrajectory = [...trajectory, currentQuestion.difficulty];
+  /**
+   * Records one answered item (from either handler below), then advances to
+   * the next question - or, on the last one, submits the whole result and
+   * moves to the completion screen.
+   */
+  function recordAnswer(params: {
+    correct: boolean;
+    answeredDifficulty: number;
+    answeredItemType: AssessmentItemType;
+  }) {
+    const { correct, answeredDifficulty, answeredItemType } = params;
+
+    const nextTrajectory = [...trajectory, answeredDifficulty];
     setTrajectory(nextTrajectory);
     const nextAnswers: AssessmentAnswer[] = [
       ...answers,
-      { questionIndex, difficulty: currentQuestion.difficulty, correct },
+      { questionIndex, itemType: answeredItemType, difficulty: answeredDifficulty, correct },
     ];
     setAnswers(nextAnswers);
-    setAskedPrompts((prev) => new Set(prev).add(currentQuestion.prompt));
 
     const nextDifficulty = correct
       ? Math.min(MAX_DIFFICULTY, difficulty + 1)
@@ -212,16 +360,19 @@ export default function AssessmentScreen() {
         // once the request succeeds.
         let suggestedTrack = trackForDifficulty(nextDifficulty);
 
-        // This screen now always runs in an authenticated context (account
+        // This screen always runs in an authenticated context (account
         // creation/login happens first - see (onboarding)/account.tsx), so
-        // the result can always be submitted directly instead of being
-        // stashed in route params for a later step to POST. Best-effort:
-        // a failed save shouldn't block the learner from seeing their result
+        // the result can always be submitted directly. Best-effort: a
+        // failed save shouldn't block the learner from seeing their result
         // and moving on.
         try {
-          const result = await submitAssessment(nextAnswers);
+          const result = await submitAssessment(nextAnswers, learnerGroup);
           suggestedTrack = result.suggestedTrack;
-          await updateUser({ hasCompletedAssessment: true });
+          await updateUser({
+            hasCompletedAssessment: true,
+            currentTrack: result.currentTrack,
+            ...(learnerGroup ? { learnerGroup } : {}),
+          });
         } catch (err) {
           // eslint-disable-next-line no-console
           console.warn("Failed to submit assessment result:", err);
@@ -240,6 +391,28 @@ export default function AssessmentScreen() {
       setQuestionIndex((i) => i + 1);
       setSelected(null);
     }, 550);
+  }
+
+  function handleAnswer(optionIndex: number) {
+    if (selected !== null || !currentQuestion) return;
+    setSelected(optionIndex);
+    setAskedPrompts((prev) => new Set(prev).add(currentQuestion.prompt));
+    recordAnswer({
+      correct: optionIndex === currentQuestion.correctIndex,
+      answeredDifficulty: currentQuestion.difficulty,
+      answeredItemType: "mcq",
+    });
+  }
+
+  function handleTypedSubmit() {
+    if (typedResult !== null || !typedItem || typedInput.trim().length === 0) return;
+    const correct = normalizeTyped(typedInput) === normalizeTyped(typedItem.word);
+    setTypedResult(correct ? "correct" : "wrong");
+    recordAnswer({
+      correct,
+      answeredDifficulty: typedItem.difficulty,
+      answeredItemType: itemType === "dictation" ? "dictation" : "recall",
+    });
   }
 
   return (
@@ -316,7 +489,112 @@ export default function AssessmentScreen() {
 
       {/* Question card */}
       <View className="mt-6 flex-1">
-        {loadingQuestion || !currentQuestion ? (
+        {itemType !== "mcq" && typedItem ? (
+          <>
+            <View
+              className="rounded-3xl bg-white p-6"
+              style={{
+                shadowColor: colors.ink,
+                shadowOpacity: 0.06,
+                shadowRadius: 10,
+                shadowOffset: { width: 0, height: 4 },
+              }}
+            >
+              {itemType === "dictation" ? (
+                <>
+                  <Text
+                    className="text-center text-sm text-ink/60"
+                    style={{ fontFamily: "Outfit_500Medium" }}
+                  >
+                    Nghe và gõ lại từ tiếng Anh
+                  </Text>
+                  <Pressable
+                    onPress={() =>
+                      Speech.speak(typedItem.word, { language: "en-US", rate: 0.9 })
+                    }
+                    className="mt-4 flex-row items-center justify-center gap-2 self-center rounded-full bg-indigo-600 px-6 py-3"
+                  >
+                    <Volume2 size={18} color="white" />
+                    <Text className="text-sm text-white" style={{ fontFamily: "Outfit_600SemiBold" }}>
+                      Nghe lại
+                    </Text>
+                  </Pressable>
+                </>
+              ) : (
+                <>
+                  <Text
+                    className="text-center text-sm text-ink/60"
+                    style={{ fontFamily: "Outfit_500Medium" }}
+                  >
+                    Gõ từ tiếng Anh có nghĩa là
+                  </Text>
+                  <Text
+                    className="mt-2 text-center text-xl text-ink"
+                    style={{ fontFamily: "Outfit_700Bold" }}
+                  >
+                    “{typedItem.meaningVi}”
+                  </Text>
+                </>
+              )}
+            </View>
+
+            <View className="mt-6">
+              <TextInput
+                value={typedInput}
+                onChangeText={setTypedInput}
+                editable={typedResult === null}
+                autoFocus
+                autoCapitalize="none"
+                autoCorrect={false}
+                spellCheck={false}
+                onSubmitEditing={handleTypedSubmit}
+                placeholder="Gõ từ tiếng Anh..."
+                placeholderTextColor="#94a3b8"
+                className="rounded-2xl bg-white px-5 py-4"
+                style={{
+                  fontFamily: "JetBrainsMono_500Medium",
+                  fontSize: 18,
+                  color: colors.ink,
+                  borderWidth: 1.5,
+                  borderColor:
+                    typedResult === "correct"
+                      ? colors.emerald500
+                      : typedResult === "wrong"
+                        ? "#fb7185"
+                        : colors.border,
+                  textAlign: "center",
+                }}
+              />
+
+              {typedResult === null ? (
+                <Pressable
+                  onPress={handleTypedSubmit}
+                  disabled={typedInput.trim().length === 0}
+                  className="mt-4 items-center rounded-2xl bg-emerald-500 py-3.5"
+                  style={{ opacity: typedInput.trim().length === 0 ? 0.4 : 1 }}
+                >
+                  <Text className="text-base text-white" style={{ fontFamily: "Outfit_600SemiBold" }}>
+                    Trả lời
+                  </Text>
+                </Pressable>
+              ) : (
+                <View className="mt-4 flex-row items-center justify-center gap-2">
+                  {typedResult === "correct" ? (
+                    <Check size={18} color={colors.emerald500} />
+                  ) : (
+                    <X size={18} color="#e11d48" />
+                  )}
+                  <Text
+                    className="text-sm text-ink/70"
+                    style={{ fontFamily: "JetBrainsMono_500Medium" }}
+                  >
+                    {typedResult === "correct" ? "Chính xác!" : `Đáp án: ${typedItem.word}`}
+                  </Text>
+                </View>
+              )}
+            </View>
+          </>
+        ) : loadingQuestion || !currentQuestion ? (
           <View className="mt-10 items-center">
             <ActivityIndicator color={colors.emerald500} />
             <Text className="mt-3 text-xs text-ink/40" style={{ fontFamily: "Outfit_500Medium" }}>

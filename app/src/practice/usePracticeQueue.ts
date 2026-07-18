@@ -18,7 +18,11 @@
 import { useEffect, useMemo, useState } from "react";
 
 import type { Word } from "@art/shared";
-import { computeDailyNewWordCap, throttleNewWordsForReviewLoad } from "@art/shared";
+import {
+  CEFR_LEVEL_TO_TRACK,
+  computeDailyNewWordCap,
+  throttleNewWordsForReviewLoad,
+} from "@art/shared";
 import { useAuth } from "../context/AuthContext";
 import { useProgressQuery, useWordsQuery } from "../api/hooks";
 import { getNewWordsIntroducedToday, recordNewWordIntroduced } from "../offline/dailyNewWordTracker";
@@ -34,7 +38,17 @@ export function usePracticeQueue() {
     getNewWordsIntroducedToday().then(setIntroducedToday);
   }, []);
 
-  const words = wordsQuery.data?.words ?? [];
+  const allWords = wordsQuery.data?.words ?? [];
+  // NEW words are drawn from the user's current CEFR track (the whole
+  // point of placement - a beginner shouldn't be fed C1 vocabulary, an
+  // advanced learner shouldn't grind "cat"). Words the user has already
+  // started (due reviews) are looked up against the unfiltered list below,
+  // so a track change never orphans in-progress SRS reviews from the old
+  // track. Falls back to the full bank if the track filter would leave
+  // nothing (e.g. older cached data with missing cefrLevel fields).
+  const currentTrack = user?.currentTrack ?? "beginner";
+  const trackWords = allWords.filter((w) => CEFR_LEVEL_TO_TRACK[w.cefrLevel] === currentTrack);
+  const words = trackWords.length > 0 ? trackWords : allWords;
   const progress = progressQuery.data?.progress ?? [];
 
   const queue = useMemo<Word[]>(() => {
@@ -42,11 +56,15 @@ export function usePracticeQueue() {
 
     const progressByWordId = new Map(progress.map((p) => [p.wordId, p]));
 
+    // Due reviews resolve against the UNFILTERED word list: a word started
+    // under a previous track still needs its scheduled reviews even after
+    // the user moves tracks - SRS memory maintenance doesn't stop because
+    // the difficulty target changed.
     const dueWords = progress
       .filter((p) => p.isDue)
       .slice()
       .sort((a, b) => new Date(a.nextDueAt).getTime() - new Date(b.nextDueAt).getTime())
-      .map((p) => words.find((w) => w.id === p.wordId))
+      .map((p) => allWords.find((w) => w.id === p.wordId))
       .filter((w): w is Word => Boolean(w));
 
     const candidateNewWords = words.filter((w) => !progressByWordId.has(w.id));
@@ -73,7 +91,7 @@ export function usePracticeQueue() {
     // so the screen always has something to practice.
     return words;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [words, progress, introducedToday, user?.minutesPerDay]);
+  }, [allWords, words, progress, introducedToday, user?.minutesPerDay, currentTrack]);
 
   // Persist any newly-selected new words as "introduced today" so the cap
   // holds even if the app is closed mid-session.

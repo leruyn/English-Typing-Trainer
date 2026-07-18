@@ -57,6 +57,19 @@ model User {
   /// just checking `assessmentResults.length` at login/register time) so
   /// that check is a single indexed row read instead of a join.
   hasCompletedAssessment Boolean @default(false)
+  /// Self-declared learner group chosen during onboarding ('child' |
+  /// 'student' | 'adult'). Young children skip the entrance assessment
+  /// entirely (they can't meaningfully take a reading-based quiz) and are
+  /// placed straight on the beginner track; for everyone else this seeds
+  /// the assessment's starting difficulty.
+  learnerGroup        String?
+  /// The user's *current* CEFR track ('beginner' | 'intermediate' |
+  /// 'advanced'). Seeded from the entrance assessment's suggestedTrack (or
+  /// 'beginner' for the child skip-path), then adjusted over time by the
+  /// continuous-calibration logic as real practice data accumulates -
+  /// unlike AssessmentResult.suggestedTrack, which is an immutable record
+  /// of what one test said on one day.
+  currentTrack        String   @default("beginner")
   /// Cached text of the last Gemini-generated coaching note (GET
   /// /stats/coaching) - re-served as-is if `lastCoachingAt` is recent enough,
   /// so the AI is called at most a few times/day per user instead of on
@@ -164,6 +177,10 @@ model AssessmentAnswer {
   questionIndex      Int
   difficulty         Int
   correct            Boolean
+  /// 'mcq' | 'dictation' | 'recall' - null on rows recorded before typed
+  /// items existed (treated as 'mcq'). Typed items carry double weight in
+  /// the placement heuristic (see suggestTrack in routes/assessment.ts).
+  itemType           String?
 
   assessmentResult   AssessmentResult @relation(fields: [assessmentResultId], references: [id], onDelete: Cascade)
 
