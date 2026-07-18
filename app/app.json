@@ -12,7 +12,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.leruyn.activerecalltyper",
+      "package": "com.leruyn.activerecallenglishtyper",
       "adaptiveIcon": {
         "backgroundColor": "#0f172a",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -42,6 +42,11 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c8e012fe-1c9d-4f8b-99fb-33a6b1b33346"
+      }
     }
   }
 }
