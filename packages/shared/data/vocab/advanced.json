@@ -5,32 +5,11 @@
     "cefrLevel": "C1",
     "words": [
       {
-        "word": "hypothesis",
-        "pos": "n.",
-        "meaningVi": "giả thuyết",
-        "exampleSentence": "The researchers tested their ___ in the lab.",
-        "iconHint": "lightbulb with a question mark over a flask"
-      },
-      {
         "word": "framework",
         "pos": "n.",
         "meaningVi": "khung lý thuyết, khuôn khổ",
         "exampleSentence": "This theory provides a ___ for understanding behavior.",
         "iconHint": "blueprint grid structure"
-      },
-      {
-        "word": "scholar",
-        "pos": "n.",
-        "meaningVi": "học giả",
-        "exampleSentence": "The ___ published a new paper on linguistics.",
-        "iconHint": "person with a graduation cap and book"
-      },
-      {
-        "word": "thesis",
-        "pos": "n.",
-        "meaningVi": "luận văn, luận điểm",
-        "exampleSentence": "She defended her ___ in front of the committee.",
-        "iconHint": "bound thesis document"
       },
       {
         "word": "discourse",
@@ -61,13 +40,6 @@
         "iconHint": "foundation blocks under a house"
       },
       {
-        "word": "assumption",
-        "pos": "n.",
-        "meaningVi": "giả định",
-        "exampleSentence": "We must question our basic ___s.",
-        "iconHint": "thought bubble with a question mark"
-      },
-      {
         "word": "derive",
         "pos": "v.",
         "meaningVi": "suy ra, bắt nguồn từ",
@@ -94,20 +66,6 @@
         "meaningVi": "biến số",
         "exampleSentence": "The experiment controlled for several ___s.",
         "iconHint": "letter x inside a formula box"
-      },
-      {
-        "word": "evident",
-        "pos": "adj.",
-        "meaningVi": "rõ ràng, hiển nhiên",
-        "exampleSentence": "It was ___ that the plan had failed.",
-        "iconHint": "magnifying glass over an obvious clue"
-      },
-      {
-        "word": "implication",
-        "pos": "n.",
-        "meaningVi": "hàm ý, hệ quả",
-        "exampleSentence": "The findings have serious ___s for public policy.",
-        "iconHint": "ripple effect from a dropped stone"
       },
       {
         "word": "interpretation",
@@ -348,13 +306,6 @@
         "iconHint": "finger pressing a large red button"
       },
       {
-        "word": "reinforce",
-        "pos": "v.",
-        "meaningVi": "củng cố, tăng cường",
-        "exampleSentence": "Practice will ___ what you learned.",
-        "iconHint": "steel beams supporting a wall"
-      },
-      {
         "word": "integral",
         "pos": "adj.",
         "meaningVi": "thiết yếu, không thể tách rời",
@@ -388,13 +339,6 @@
         "meaningVi": "có mặt khắp nơi",
         "exampleSentence": "Smartphones have become ___ in modern life.",
         "iconHint": "the same icon repeated everywhere on a map"
-      },
-      {
-        "word": "aesthetic",
-        "pos": "adj.",
-        "meaningVi": "thẩm mỹ",
-        "exampleSentence": "The building's ___ appeal draws many tourists.",
-        "iconHint": "picture frame with a paintbrush"
       },
       {
         "word": "sophisticated",

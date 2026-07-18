@@ -5,97 +5,6 @@
     "cefrLevel": "B2",
     "words": [
       {
-        "word": "career",
-        "pos": "n.",
-        "meaningVi": "sự nghiệp",
-        "exampleSentence": "She built a successful ___ in medicine.",
-        "iconHint": "ladder climbing toward a star"
-      },
-      {
-        "word": "interview",
-        "pos": "n.",
-        "meaningVi": "buổi phỏng vấn",
-        "exampleSentence": "I have a job ___ tomorrow.",
-        "iconHint": "two people talking across a desk"
-      },
-      {
-        "word": "job",
-        "pos": "n.",
-        "meaningVi": "công việc",
-        "exampleSentence": "He got a new ___ at the hospital.",
-        "iconHint": "briefcase"
-      },
-      {
-        "word": "meeting",
-        "pos": "n.",
-        "meaningVi": "cuộc họp",
-        "exampleSentence": "The ___ starts at 9 a.m.",
-        "iconHint": "people around a conference table"
-      },
-      {
-        "word": "office",
-        "pos": "n.",
-        "meaningVi": "văn phòng",
-        "exampleSentence": "She works in a busy ___.",
-        "iconHint": "office building with desks"
-      },
-      {
-        "word": "skill",
-        "pos": "n.",
-        "meaningVi": "kỹ năng",
-        "exampleSentence": "Communication is an important ___.",
-        "iconHint": "gear with a checkmark"
-      },
-      {
-        "word": "business",
-        "pos": "n.",
-        "meaningVi": "kinh doanh, doanh nghiệp",
-        "exampleSentence": "He started his own ___ last year.",
-        "iconHint": "storefront with a growth chart"
-      },
-      {
-        "word": "company",
-        "pos": "n.",
-        "meaningVi": "công ty",
-        "exampleSentence": "The ___ hired 50 new employees.",
-        "iconHint": "office skyscraper"
-      },
-      {
-        "word": "colleague",
-        "pos": "n.",
-        "meaningVi": "đồng nghiệp",
-        "exampleSentence": "My ___ helped me finish the report.",
-        "iconHint": "two coworkers shaking hands"
-      },
-      {
-        "word": "employee",
-        "pos": "n.",
-        "meaningVi": "nhân viên",
-        "exampleSentence": "Every ___ gets health insurance.",
-        "iconHint": "person with an ID badge"
-      },
-      {
-        "word": "employer",
-        "pos": "n.",
-        "meaningVi": "người sử dụng lao động, chủ",
-        "exampleSentence": "Her ___ gave her a bonus.",
-        "iconHint": "person behind an office desk"
-      },
-      {
-        "word": "manager",
-        "pos": "n.",
-        "meaningVi": "quản lý",
-        "exampleSentence": "The ___ approved my vacation request.",
-        "iconHint": "person with a clipboard directing a team"
-      },
-      {
-        "word": "salary",
-        "pos": "n.",
-        "meaningVi": "lương",
-        "exampleSentence": "He negotiated a higher ___.",
-        "iconHint": "stack of money with a paycheck"
-      },
-      {
         "word": "deadline",
         "pos": "n.",
         "meaningVi": "hạn chót",
@@ -144,83 +53,6 @@
     "topicNameVi": "Sức khỏe",
     "cefrLevel": "B2",
     "words": [
-      {
-        "word": "diet",
-        "pos": "n.",
-        "meaningVi": "chế độ ăn uống",
-        "exampleSentence": "A balanced ___ keeps you healthy.",
-        "iconHint": "plate divided into food groups"
-      },
-      {
-        "word": "exercise",
-        "pos": "n.",
-        "meaningVi": "bài tập thể dục",
-        "exampleSentence": "Regular ___ improves your mood.",
-        "iconHint": "person jogging"
-      },
-      {
-        "word": "disease",
-        "pos": "n.",
-        "meaningVi": "bệnh tật",
-        "exampleSentence": "The vaccine protects against the ___.",
-        "iconHint": "virus icon"
-      },
-      {
-        "word": "headache",
-        "pos": "n.",
-        "meaningVi": "đau đầu",
-        "exampleSentence": "I have a terrible ___ today.",
-        "iconHint": "person holding their head in pain"
-      },
-      {
-        "word": "illness",
-        "pos": "n.",
-        "meaningVi": "bệnh, tình trạng ốm",
-        "exampleSentence": "She missed school due to ___.",
-        "iconHint": "thermometer"
-      },
-      {
-        "word": "injury",
-        "pos": "n.",
-        "meaningVi": "chấn thương",
-        "exampleSentence": "He suffered a knee ___ during the match.",
-        "iconHint": "bandaged knee"
-      },
-      {
-        "word": "medicine",
-        "pos": "n.",
-        "meaningVi": "thuốc",
-        "exampleSentence": "Take this ___ twice a day.",
-        "iconHint": "pill bottle"
-      },
-      {
-        "word": "pain",
-        "pos": "n.",
-        "meaningVi": "cơn đau",
-        "exampleSentence": "The ___ in my back won't go away.",
-        "iconHint": "highlighted sore back"
-      },
-      {
-        "word": "patient",
-        "pos": "n.",
-        "meaningVi": "bệnh nhân",
-        "exampleSentence": "The doctor examined the ___ carefully.",
-        "iconHint": "person lying on a hospital bed"
-      },
-      {
-        "word": "stress",
-        "pos": "n.",
-        "meaningVi": "căng thẳng",
-        "exampleSentence": "Too much ___ can affect your sleep.",
-        "iconHint": "tangled knot inside a head"
-      },
-      {
-        "word": "symptom",
-        "pos": "n.",
-        "meaningVi": "triệu chứng",
-        "exampleSentence": "Fever is a common ___ of the flu.",
-        "iconHint": "clipboard with a checklist"
-      },
       {
         "word": "treatment",
         "pos": "n.",
@@ -299,20 +131,6 @@
         "iconHint": "computer tower with a screwdriver"
       },
       {
-        "word": "battery",
-        "pos": "n.",
-        "meaningVi": "pin",
-        "exampleSentence": "My phone's ___ is almost dead.",
-        "iconHint": "battery level icon"
-      },
-      {
-        "word": "software",
-        "pos": "n.",
-        "meaningVi": "phần mềm",
-        "exampleSentence": "This ___ helps you edit photos.",
-        "iconHint": "disk/CD icon"
-      },
-      {
         "word": "update",
         "pos": "v.",
         "meaningVi": "cập nhật",
@@ -339,69 +157,6 @@
         "meaningVi": "ảo (trên mạng)",
         "exampleSentence": "We had a ___ meeting on Zoom.",
         "iconHint": "VR headset"
-      },
-      {
-        "word": "network",
-        "pos": "n.",
-        "meaningVi": "mạng lưới",
-        "exampleSentence": "Connect to the office ___ first.",
-        "iconHint": "connected wifi nodes"
-      },
-      {
-        "word": "device",
-        "pos": "n.",
-        "meaningVi": "thiết bị",
-        "exampleSentence": "This ___ can track your heart rate.",
-        "iconHint": "smartwatch"
-      },
-      {
-        "word": "digital",
-        "pos": "adj.",
-        "meaningVi": "kỹ thuật số",
-        "exampleSentence": "We switched to ___ payments.",
-        "iconHint": "digital screen with numbers"
-      },
-      {
-        "word": "download",
-        "pos": "v.",
-        "meaningVi": "tải xuống",
-        "exampleSentence": "___ the file before you open it.",
-        "iconHint": "download arrow"
-      },
-      {
-        "word": "data",
-        "pos": "n.",
-        "meaningVi": "dữ liệu",
-        "exampleSentence": "The app collects a lot of ___.",
-        "iconHint": "database cylinder icon"
-      },
-      {
-        "word": "technology",
-        "pos": "n.",
-        "meaningVi": "công nghệ",
-        "exampleSentence": "New ___ changes how we work.",
-        "iconHint": "circuit board"
-      },
-      {
-        "word": "screen",
-        "pos": "n.",
-        "meaningVi": "màn hình",
-        "exampleSentence": "The ___ cracked when it fell.",
-        "iconHint": "cracked phone screen"
-      },
-      {
-        "word": "app",
-        "pos": "n.",
-        "meaningVi": "ứng dụng",
-        "exampleSentence": "I downloaded a new fitness ___.",
-        "iconHint": "grid of app icons"
-      },
-      {
-        "word": "website",
-        "pos": "n.",
-        "meaningVi": "trang web",
-        "exampleSentence": "Visit our ___ for more information.",
-        "iconHint": "browser window with a globe"
       }
     ]
   },
@@ -425,46 +180,11 @@
         "iconHint": "person meditating peacefully"
       },
       {
-        "word": "confident",
-        "pos": "adj.",
-        "meaningVi": "tự tin",
-        "exampleSentence": "She gave a ___ presentation.",
-        "iconHint": "person standing tall with a raised chin"
-      },
-      {
-        "word": "generous",
-        "pos": "adj.",
-        "meaningVi": "hào phóng",
-        "exampleSentence": "He is very ___ with his time.",
-        "iconHint": "hand giving a gift"
-      },
-      {
-        "word": "honest",
-        "pos": "adj.",
-        "meaningVi": "trung thực",
-        "exampleSentence": "Please give me an ___ opinion.",
-        "iconHint": "speech bubble with a checkmark"
-      },
-      {
-        "word": "reliable",
-        "pos": "adj.",
-        "meaningVi": "đáng tin cậy",
-        "exampleSentence": "She is a ___ colleague who never misses deadlines.",
-        "iconHint": "handshake with a shield"
-      },
-      {
         "word": "shy",
         "pos": "adj.",
         "meaningVi": "nhút nhát",
         "exampleSentence": "He was too ___ to speak in class.",
         "iconHint": "person hiding behind their hands"
-      },
-      {
-        "word": "talented",
-        "pos": "adj.",
-        "meaningVi": "tài năng",
-        "exampleSentence": "She's a ___ musician.",
-        "iconHint": "star above a person playing an instrument"
       },
       {
         "word": "aggressive",
@@ -507,20 +227,6 @@
         "meaningVi": "lạc quan",
         "exampleSentence": "She stayed ___ despite the setback.",
         "iconHint": "sun rising over a hill"
-      },
-      {
-        "word": "creative",
-        "pos": "adj.",
-        "meaningVi": "sáng tạo",
-        "exampleSentence": "He came up with a ___ solution.",
-        "iconHint": "lightbulb with a paint splash"
-      },
-      {
-        "word": "nervous",
-        "pos": "adj.",
-        "meaningVi": "lo lắng, hồi hộp",
-        "exampleSentence": "I felt ___ before the exam.",
-        "iconHint": "person sweating with shaky hands"
       },
       {
         "word": "modest",
@@ -1242,13 +948,6 @@
         "meaningVi": "cuộc hẹn",
         "exampleSentence": "I have an ___ with the bank manager at ten.",
         "iconHint": "calendar with a clock icon"
-      },
-      {
-        "word": "bank",
-        "pos": "n.",
-        "meaningVi": "ngân hàng",
-        "exampleSentence": "She went to the ___ to withdraw some cash.",
-        "iconHint": "building with a dollar sign"
       },
       {
         "word": "benefit",
@@ -3041,13 +2740,6 @@
         "meaningVi": "kết hợp",
         "exampleSentence": "___ the flour and sugar in a large bowl.",
         "iconHint": "two ingredients merging into one"
-      },
-      {
-        "word": "comment",
-        "pos": "v.",
-        "meaningVi": "bình luận",
-        "exampleSentence": "Several readers chose to ___ on the article online.",
-        "iconHint": "speech bubble with a plus sign"
       },
       {
         "word": "commit",
@@ -5759,13 +5451,6 @@
         "iconHint": "sparkling chandelier icon"
       },
       {
-        "word": "far",
-        "pos": "adj.",
-        "meaningVi": "xa",
-        "exampleSentence": "The station is not ___ from here.",
-        "iconHint": "long dotted line to a pin"
-      },
-      {
         "word": "fascinating",
         "pos": "adj.",
         "meaningVi": "hấp dẫn, mê hoặc",
@@ -7306,13 +6991,6 @@
         "iconHint": "quotation marks with a document"
       },
       {
-        "word": "race",
-        "pos": "n.",
-        "meaningVi": "cuộc đua",
-        "exampleSentence": "He won the ___ by a few seconds.",
-        "iconHint": "checkered flag with runners"
-      },
-      {
         "word": "racing",
         "pos": "n.",
         "meaningVi": "đua xe/đua ngựa",
@@ -7670,13 +7348,6 @@
         "iconHint": "figure leaning forward with sparkles"
       },
       {
-        "word": "kind",
-        "pos": "adj.",
-        "meaningVi": "tử tế",
-        "exampleSentence": "It was very ___ of you to help.",
-        "iconHint": "heart above an open hand"
-      },
-      {
         "word": "latest",
         "pos": "adj.",
         "meaningVi": "mới nhất",
@@ -7829,13 +7500,6 @@
         "meaningVi": "đặt, để nằm",
         "exampleSentence": "She began to ___ the blanket on the grass.",
         "iconHint": "hand placing a flat object down"
-      },
-      {
-        "word": "lie",
-        "pos": "v.",
-        "meaningVi": "nằm",
-        "exampleSentence": "He likes to ___ on the sofa after lunch.",
-        "iconHint": "figure lying flat"
       },
       {
         "word": "locate",
@@ -12479,13 +12143,6 @@
         "iconHint": "figure holding a small flag for a group"
       },
       {
-        "word": "request",
-        "pos": "v.",
-        "meaningVi": "yêu cầu",
-        "exampleSentence": "He decided to ___ a refund.",
-        "iconHint": "hand raised with a speech bubble"
-      },
-      {
         "word": "require",
         "pos": "v.",
         "meaningVi": "yêu cầu, đòi hỏi",
@@ -12624,13 +12281,6 @@
         "meaningVi": "đối xử, điều trị",
         "exampleSentence": "The doctor began to ___ her injury right away.",
         "iconHint": "clipboard with a stethoscope"
-      },
-      {
-        "word": "type",
-        "pos": "v.",
-        "meaningVi": "đánh máy",
-        "exampleSentence": "She learned to ___ quickly on the keyboard.",
-        "iconHint": "hands typing on a keyboard"
       },
       {
         "word": "view",

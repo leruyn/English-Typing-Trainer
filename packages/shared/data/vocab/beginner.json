@@ -145,20 +145,6 @@
         "iconHint": "water bottle"
       },
       {
-        "word": "breakfast",
-        "pos": "n.",
-        "meaningVi": "bữa sáng",
-        "exampleSentence": "I always eat ___ at 7 a.m.",
-        "iconHint": "plate with eggs and toast"
-      },
-      {
-        "word": "cook",
-        "pos": "v.",
-        "meaningVi": "nấu ăn",
-        "exampleSentence": "She likes to ___ dinner for her family.",
-        "iconHint": "chef stirring a pot"
-      },
-      {
         "word": "cup",
         "pos": "n.",
         "meaningVi": "cái cốc, tách",
@@ -166,39 +152,11 @@
         "iconHint": "teacup with steam"
       },
       {
-        "word": "dinner",
-        "pos": "n.",
-        "meaningVi": "bữa tối",
-        "exampleSentence": "We're having pasta for ___.",
-        "iconHint": "dinner plate on a table"
-      },
-      {
         "word": "glass",
         "pos": "n.",
         "meaningVi": "cái ly (thủy tinh)",
         "exampleSentence": "Can I have a ___ of water?",
         "iconHint": "glass of water"
-      },
-      {
-        "word": "kitchen",
-        "pos": "n.",
-        "meaningVi": "nhà bếp",
-        "exampleSentence": "Mom is cooking in the ___.",
-        "iconHint": "kitchen with a stove"
-      },
-      {
-        "word": "lunch",
-        "pos": "n.",
-        "meaningVi": "bữa trưa",
-        "exampleSentence": "We eat ___ at noon.",
-        "iconHint": "packed lunch box"
-      },
-      {
-        "word": "meal",
-        "pos": "n.",
-        "meaningVi": "bữa ăn",
-        "exampleSentence": "That was a delicious ___.",
-        "iconHint": "full dinner plate"
       },
       {
         "word": "boil",
@@ -4023,13 +3981,6 @@
         "iconHint": "small oval bean pod"
       },
       {
-        "word": "bear",
-        "pos": "n.",
-        "meaningVi": "con gấu",
-        "exampleSentence": "They saw a ___ near the campsite.",
-        "iconHint": "bear silhouette"
-      },
-      {
         "word": "beef",
         "pos": "n.",
         "meaningVi": "thịt bò",
@@ -6072,13 +6023,6 @@
         "meaningVi": "cái lỗ",
         "exampleSentence": "There's a ___ in his sock.",
         "iconHint": "small round gap in fabric"
-      },
-      {
-        "word": "hope",
-        "pos": "n.",
-        "meaningVi": "hy vọng",
-        "exampleSentence": "She never lost ___ during the difficult year.",
-        "iconHint": "small star inside cupped hands"
       }
     ]
   },
@@ -7467,13 +7411,6 @@
         "iconHint": "smartphone icon"
       },
       {
-        "word": "monkey",
-        "pos": "n.",
-        "meaningVi": "con khỉ",
-        "exampleSentence": "The ___ swung from branch to branch.",
-        "iconHint": "primate with a long tail"
-      },
-      {
         "word": "network",
         "pos": "n.",
         "meaningVi": "mạng lưới",
@@ -8599,6 +8536,13 @@
         "meaningVi": "trẻ",
         "exampleSentence": "The ___ boy learned to ride a bike quickly.",
         "iconHint": "small figure with energy lines"
+      },
+      {
+        "word": "far",
+        "pos": "adj.",
+        "meaningVi": "xa",
+        "exampleSentence": "The station is not ___ from here.",
+        "iconHint": "long dotted line to a pin"
       }
     ]
   },
@@ -8858,13 +8802,6 @@
         "meaningVi": "việc bay",
         "exampleSentence": "___ is her favourite way to travel.",
         "iconHint": "bird with outstretched wings"
-      },
-      {
-        "word": "frog",
-        "pos": "n.",
-        "meaningVi": "con ếch",
-        "exampleSentence": "The ___ jumped into the pond.",
-        "iconHint": "green amphibian with big eyes"
       },
       {
         "word": "good",
@@ -10405,6 +10342,27 @@
         "meaningVi": "gỗ",
         "exampleSentence": "The table is made of solid ___.",
         "iconHint": "wooden plank texture"
+      },
+      {
+        "word": "interview",
+        "pos": "n.",
+        "meaningVi": "buổi phỏng vấn",
+        "exampleSentence": "I have a job ___ tomorrow.",
+        "iconHint": "two people talking across a desk"
+      },
+      {
+        "word": "business",
+        "pos": "n.",
+        "meaningVi": "kinh doanh, doanh nghiệp",
+        "exampleSentence": "He started his own ___ last year.",
+        "iconHint": "storefront with a growth chart"
+      },
+      {
+        "word": "exercise",
+        "pos": "n.",
+        "meaningVi": "bài tập thể dục",
+        "exampleSentence": "Regular ___ improves your mood.",
+        "iconHint": "person jogging"
       }
     ]
   },
@@ -10841,13 +10799,6 @@
         "iconHint": "arrow swapping one item for another"
       },
       {
-        "word": "report",
-        "pos": "v.",
-        "meaningVi": "báo cáo",
-        "exampleSentence": "She will ___ the incident to her manager.",
-        "iconHint": "speech bubble with a document"
-      },
-      {
         "word": "respond",
         "pos": "v.",
         "meaningVi": "phản hồi",
@@ -10972,6 +10923,20 @@
         "meaningVi": "lo lắng",
         "exampleSentence": "Try not to ___ about the exam.",
         "iconHint": "figure with sweat drops"
+      },
+      {
+        "word": "lie",
+        "pos": "v.",
+        "meaningVi": "nằm",
+        "exampleSentence": "He likes to ___ on the sofa after lunch.",
+        "iconHint": "figure lying flat"
+      },
+      {
+        "word": "type",
+        "pos": "v.",
+        "meaningVi": "đánh máy",
+        "exampleSentence": "She learned to ___ quickly on the keyboard.",
+        "iconHint": "hands typing on a keyboard"
       }
     ]
   }
